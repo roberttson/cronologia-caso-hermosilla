@@ -2235,9 +2235,12 @@ function renderYearNav() {
 function scrollToYear(anio) {
   const col = document.querySelector(`.year-col[data-anio="${anio}"]`);
   if (!col) return;
-  const scroll = document.getElementById('timeline-scroll');
-  const colLeft = col.offsetLeft;
-  scroll.scrollTo({ left: colLeft - 40, behavior: 'smooth' });
+  if (window.innerWidth <= 600) {
+    col.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  } else {
+    const scroll = document.getElementById('timeline-scroll');
+    scroll.scrollTo({ left: col.offsetLeft - 40, behavior: 'smooth' });
+  }
   document.querySelectorAll('.year-btn').forEach(b => {
     b.classList.toggle('active', b.textContent === String(anio));
   });
