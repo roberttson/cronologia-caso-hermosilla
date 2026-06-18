@@ -61,3 +61,11 @@ python gen_html.py
 ---
 
 Construido con fuentes públicas. Las fuentes primarias son los reportajes de [CIPER Chile](https://ciperchile.cl).
+
+## Licencia
+
+**Autor:** roberttson
+
+[![CC BY 4.0](https://licensebuttons.net/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/deed.es)
+
+Este trabajo está bajo una [Licencia Creative Commons Atribución 4.0 Internacional](https://creativecommons.org/licenses/by/4.0/deed.es). Puedes usar, compartir y adaptar libremente el contenido siempre que des crédito al autor.

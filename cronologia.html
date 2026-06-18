@@ -639,7 +639,14 @@ footer {
   color: var(--text-muted);
   font-size: 0.85rem;
   border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
+footer a { color: var(--text-muted); text-decoration: underline; }
+footer a:hover { color: #fff; }
+.footer-author { font-size: 0.9rem; color: var(--text-secondary); }
+.footer-author strong { color: #fff; }
 
 /* ============ RESPONSIVE ============ */
 @media (max-width: 900px) {
@@ -745,7 +752,14 @@ footer {
 </div>
 
 <footer>
-  Cronología construida a partir de reportajes de CIPER, La Tercera, El Mostrador, T13, The Clinic, Emol, BioBioChile, Diario Financiero, Cooperativa, El Dínamo y otros.
+  <div class="footer-author">Construido por <strong>roberttson</strong> · <a href="https://github.com/roberttson/cronologia-caso-hermosilla" target="_blank">GitHub</a></div>
+  <div class="footer-sources">Fuentes: CIPER, La Tercera, El Mostrador, T13, The Clinic, Emol, BioBioChile, Diario Financiero, Cooperativa, El Dínamo y otros.</div>
+  <div class="footer-license">
+    <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="license">
+      <img src="https://licensebuttons.net/l/by/4.0/88x31.png" alt="Licencia Creative Commons BY 4.0" style="height:22px;vertical-align:middle;margin-right:6px;">
+    </a>
+    Este trabajo está bajo una <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank">Licencia Creative Commons Atribución 4.0 Internacional</a>.
+  </div>
 </footer>
 
 <script>
