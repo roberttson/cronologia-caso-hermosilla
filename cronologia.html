@@ -777,7 +777,15 @@ footer a:hover { color: #fff; }
     bottom: auto;
   }
 
-  .event-desc { -webkit-line-clamp: 4; }
+  .event-title {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+  }
+  .event-desc {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    display: block;
+  }
 
   /* Modal: slide desde abajo */
   .modal-overlay {
