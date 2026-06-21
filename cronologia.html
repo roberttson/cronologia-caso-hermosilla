@@ -816,9 +816,6 @@ footer a:hover { color: #fff; }
 .player {
   max-width: 760px;
   margin: 28px auto 0;
-  padding: 0 24px;
-}
-.player-box {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -844,13 +841,13 @@ footer a:hover { color: #fff; }
 .player-summary:active { transform: scale(0.99); }
 .player-summary .player-title-text {
   font-weight: 900;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   line-height: 1.1;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
 }
 .player-summary .player-icon {
-  font-size: 1.9rem;
+  font-size: 1.7rem;
   line-height: 1;
   animation: pulseIcon 1.8s ease-in-out infinite;
 }
@@ -863,7 +860,7 @@ footer a:hover { color: #fff; }
   display: inline-flex;
   align-items: flex-end;
   gap: 3.5px;
-  height: 26px;
+  height: 22px;
 }
 .player-eq i {
   width: 4px;
@@ -1006,25 +1003,23 @@ footer a:hover { color: #fff; }
 </section>
 
 <details class="player" id="player">
-  <div class="player-box">
-    <summary class="player-summary">
-      <span class="player-icon">🎧</span>
-      <span class="player-title-text">Escucha el caso</span>
-      <span class="player-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="chevron">▾</span>
-    </summary>
-    <div class="player-panel">
-      <div class="player-label">Elige a tu narrador</div>
-      <div class="voice-options" id="voice-options">
-        <button class="voice-btn active" data-voice="kevin"   data-src="audio/kevin.mp3"   data-name="Kevin">Kevin</button>
-        <button class="voice-btn"        data-voice="relator" data-src="audio/relator.mp3" data-name="Pudito">Pudito</button>
-        <button class="voice-btn"        data-voice="salva"   data-src="audio/salva.mp3"   data-name="Salvador">Salvador</button>
-      </div>
-      <div class="player-now" id="player-now">Voz seleccionada: <strong>Kevin</strong></div>
-      <audio id="audio-player" controls preload="none" src="audio/kevin.mp3"></audio>
-      <a class="download-btn" id="download-btn" href="audio/kevin.mp3" download="Caso-Hermosilla-Kevin.mp3">⬇ Descargar MP3 (voz Kevin)</a>
-      <p class="player-note">Puedes bloquear la pantalla o salir del navegador, la narración seguirá en segundo plano.</p>
+  <summary class="player-summary">
+    <span class="player-icon">🎧</span>
+    <span class="player-title-text">Escucha el caso</span>
+    <span class="player-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="chevron">▾</span>
+  </summary>
+  <div class="player-panel">
+    <div class="player-label">Elige a tu narrador</div>
+    <div class="voice-options" id="voice-options">
+      <button class="voice-btn active" data-voice="kevin"   data-src="audio/kevin.mp3"   data-name="Kevin">Kevin</button>
+      <button class="voice-btn"        data-voice="relator" data-src="audio/relator.mp3" data-name="Pudito">Pudito</button>
+      <button class="voice-btn"        data-voice="salva"   data-src="audio/salva.mp3"   data-name="Salvador">Salvador</button>
     </div>
+    <div class="player-now" id="player-now">Voz seleccionada: <strong>Kevin</strong></div>
+    <audio id="audio-player" controls preload="none" src="audio/kevin.mp3"></audio>
+    <a class="download-btn" id="download-btn" href="audio/kevin.mp3" download="Caso-Hermosilla-Kevin.mp3">⬇ Descargar MP3 (voz Kevin)</a>
+    <p class="player-note">Puedes bloquear la pantalla o salir del navegador, la narración seguirá en segundo plano.</p>
   </div>
 </details>
 
