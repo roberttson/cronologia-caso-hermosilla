@@ -896,6 +896,24 @@ footer a:hover { color: #fff; }
   height: 42px;
   border-radius: 10px;
 }
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 22px;
+  font-size: 0.86rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+.download-btn:hover { background: var(--accent); color: var(--bg); }
+.download-btn:active { transform: scale(0.97); }
+
 .player-note {
   font-size: 0.78rem;
   color: var(--text-muted);
@@ -964,6 +982,7 @@ footer a:hover { color: #fff; }
       </div>
       <div class="player-now" id="player-now">Voz seleccionada: <strong>Kevin</strong></div>
       <audio id="audio-player" controls preload="none" src="audio/kevin.mp3"></audio>
+      <a class="download-btn" id="download-btn" href="audio/kevin.mp3" download="Caso-Hermosilla-Kevin.mp3">⬇ Descargar MP3 (voz Kevin)</a>
       <p class="player-note">▸ Sigue sonando con la pantalla bloqueada o en otra app (controles en la pantalla de bloqueo). Cambiar de voz reinicia el relato.</p>
     </div>
   </div>
@@ -2516,6 +2535,7 @@ document.addEventListener('keydown', (e) => {
   const audio = document.getElementById('audio-player');
   const options = document.getElementById('voice-options');
   const nowEl = document.getElementById('player-now');
+  const downloadBtn = document.getElementById('download-btn');
   if (!audio || !options) return;
 
   function setMediaSession(name) {
@@ -2540,6 +2560,11 @@ document.addEventListener('keydown', (e) => {
     const name = btn.dataset.name;
     audio.src = btn.dataset.src;
     nowEl.innerHTML = 'Voz seleccionada: <strong>' + name + '</strong>';
+    if (downloadBtn) {
+      downloadBtn.href = btn.dataset.src;
+      downloadBtn.setAttribute('download', 'Caso-Hermosilla-' + name + '.mp3');
+      downloadBtn.textContent = '⬇ Descargar MP3 (voz ' + name + ')';
+    }
     setMediaSession(name);
     if (autoplay) audio.play().catch(() => {});
   }
