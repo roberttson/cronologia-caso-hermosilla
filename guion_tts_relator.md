@@ -1,11 +1,9 @@
 CASO HERMOSILLA — GUION CONTINUO PARA LOCUCIÓN — VOZ: RELATOR (narrador anónimo) — V3
 
 
-«Porque aquí estamos haciendo una hueá que es delito. Esta hueá es delito… y es la única manera de hacerlo.»
+Hola, te doy la bienvenida. En este episodio vamos a recorrer con calma el caso de corrupción más grande que ha vivido Chile en las últimas décadas, ese que quizás has escuchado nombrar como Caso Audios, Caso Factop o, simplemente, Caso Hermosilla, porque los tres nombres apuntan a la misma trama.
 
-Esa frase la dijo uno de los abogados más poderosos de Chile, un penalista llamado Luis Hermosilla, y la soltó en una reunión privada frente a un empresario y a otra abogada sin imaginar que alguien lo estaba grabando. Y cuando ese audio salió a la luz no cayó solo un abogado sino que empezó a tambalear un pedazo entero del Estado de Chile, porque de pronto aparecían enredados jueces de la Corte Suprema y fiscales y hasta el director de la Policía de Investigaciones, además de exministros e incluso un embajador. ¿Cómo puede una grabación de apenas cien minutos hacer temblar a la justicia entera? ¡Quédate conmigo que te voy a contar esta historia completa de principio a fin!
-
-¡Hola! Te doy la bienvenida. Durante la próxima hora vamos a desarmar juntos el caso de corrupción más grande que ha vivido Chile en décadas, ese que quizás has escuchado nombrar como Caso Audios o Caso Factop o simplemente Caso Hermosilla, porque todos son el mismo monstruo mirado desde tres ángulos distintos.
+Todo comienza con una grabación. En una reunión privada, uno de los abogados más influyentes del país quedó registrado mientras proponía pagar a funcionarios públicos para frenar una investigación en su contra, y cuando ese audio se hizo público la onda expansiva no alcanzó solo a ese abogado, porque con el tiempo terminó tocando a jueces de la Corte Suprema, a fiscales, al director de la Policía de Investigaciones, a exministros e incluso a un embajador. Esta es esa historia, y la vamos a contar paso a paso, con orden y sin sensacionalismo, para que la entiendas de principio a fin.
 
 Pero antes te propongo un trato, y es que yo no voy a dar por hecho que tú sabes de leyes, así que cada vez que aparezca una palabra de abogado voy a frenar y te la explico con un ejemplo de la vida real, y seguimos. Esto es largo y tiene muchos nombres, por eso cada cierto rato voy a parar para recapitular, y si en algún momento te perdiste no te preocupes que siempre viene un resumen para reengancharte. ¿Listo? ¡Vamos!
 
