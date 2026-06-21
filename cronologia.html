@@ -827,14 +827,11 @@ footer a:hover { color: #fff; }
 .player-summary {
   list-style: none;
   cursor: pointer;
-  padding: 17px 24px;
+  padding: 19px 24px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 11px;
-  font-weight: 800;
-  font-size: 1.02rem;
-  letter-spacing: 0.01em;
+  gap: 13px;
   user-select: none;
   color: var(--bg);
   background: linear-gradient(135deg, #F4A261 0%, #E76F51 100%);
@@ -845,7 +842,48 @@ footer a:hover { color: #fff; }
 .player-summary::marker { content: ''; }
 .player-summary:hover { filter: brightness(1.06); }
 .player-summary:active { transform: scale(0.99); }
-.player-summary .player-icon { font-size: 1.3rem; line-height: 1; }
+.player-summary .player-title-text {
+  font-weight: 900;
+  font-size: 1.18rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.player-summary .player-icon {
+  font-size: 1.55rem;
+  line-height: 1;
+  animation: pulseIcon 1.8s ease-in-out infinite;
+}
+@keyframes pulseIcon {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+/* Ecualizador animado: símbolo de "aquí se puede escuchar" */
+.player-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+.player-eq i {
+  width: 3.5px;
+  height: 100%;
+  background: var(--bg);
+  border-radius: 2px;
+  transform-origin: bottom;
+  animation: eqBar 0.9s ease-in-out infinite;
+}
+.player-eq i:nth-child(1) { animation-delay: 0s;    }
+.player-eq i:nth-child(2) { animation-delay: 0.25s; }
+.player-eq i:nth-child(3) { animation-delay: 0.1s;  }
+.player-eq i:nth-child(4) { animation-delay: 0.4s;  }
+@keyframes eqBar {
+  0%, 100% { transform: scaleY(0.32); }
+  50%      { transform: scaleY(1);    }
+}
+@media (prefers-reduced-motion: reduce) {
+  .player-icon, .player-eq i { animation: none; }
+  .player-eq i { transform: scaleY(0.7); }
+}
 .player-summary .chevron {
   transition: transform 0.2s;
   font-size: 0.82rem;
@@ -970,7 +1008,8 @@ footer a:hover { color: #fff; }
   <div class="player-box">
     <summary class="player-summary">
       <span class="player-icon">🎧</span>
-      <span class="player-title-text">Escuchar en Formato Podcast</span>
+      <span class="player-title-text">Escucha el caso</span>
+      <span class="player-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
       <span class="chevron">▾</span>
     </summary>
     <div class="player-panel">
