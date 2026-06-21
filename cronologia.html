@@ -523,23 +523,26 @@ body {
 
 .modal-close {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 18px;
+  right: 18px;
   background: var(--border);
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   color: var(--text);
-  font-size: 1.1rem;
+  font-size: 1.4rem;
+  line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.15s;
+  z-index: 3;
 }
 
 .modal-close:hover { background: var(--accent); color: var(--bg); }
+.modal-close:active { transform: scale(0.92); }
 
 .modal-date {
   font-size: 0.78rem;
@@ -802,7 +805,110 @@ footer a:hover { color: #fff; }
 
   /* Footer */
   footer { padding: 24px 16px; font-size: 0.78rem; }
+
+  /* Reproductor en móvil */
+  .player { margin: 20px 16px 0; }
+  .player-summary { padding: 16px 18px; font-size: 0.92rem; }
+  .player-panel { padding: 16px 18px 18px; }
 }
+
+/* ============ REPRODUCTOR DE AUDIO ============ */
+.player {
+  max-width: 760px;
+  margin: 28px auto 0;
+  padding: 0 24px;
+}
+.player-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.player-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 700;
+  font-size: 0.98rem;
+  user-select: none;
+  transition: background 0.15s;
+}
+.player-summary::-webkit-details-marker { display: none; }
+.player-summary:hover { background: var(--bg-card-hover, rgba(255,255,255,0.03)); }
+.player-summary .player-icon { font-size: 1.3rem; line-height: 1; }
+.player-summary .player-sub {
+  font-weight: 400;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  text-align: right;
+}
+.player-summary .chevron {
+  transition: transform 0.2s;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+.player[open] .chevron { transform: rotate(180deg); }
+.player-panel {
+  padding: 4px 22px 22px;
+  border-top: 1px solid var(--border);
+}
+.player-label {
+  font-size: 0.74rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: 600;
+  margin: 16px 0 8px;
+}
+.voice-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.voice-btn {
+  background: var(--border);
+  color: var(--text);
+  border: 1px solid transparent;
+  padding: 8px 16px;
+  border-radius: 22px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.voice-btn:hover { filter: brightness(1.15); }
+.voice-btn.active {
+  background: var(--accent);
+  color: var(--bg);
+}
+.voice-btn .voice-meta {
+  font-weight: 400;
+  opacity: 0.75;
+  font-size: 0.78rem;
+}
+#audio-player {
+  width: 100%;
+  height: 42px;
+  border-radius: 10px;
+}
+.player-note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+.player-now {
+  font-size: 0.86rem;
+  color: var(--text);
+  margin-bottom: 10px;
+  min-height: 1.2em;
+}
+.player-now strong { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -840,6 +946,28 @@ footer a:hover { color: #fff; }
     <div class="stat-label">Fuentes citadas</div>
   </div>
 </section>
+
+<details class="player" id="player">
+  <div class="player-box">
+    <summary class="player-summary">
+      <span class="player-icon">🎧</span>
+      <span>Escucha el caso en formato pódcast</span>
+      <span class="player-sub">26–31 min · 3 voces<br>narración del caso completo</span>
+      <span class="chevron">▾</span>
+    </summary>
+    <div class="player-panel">
+      <div class="player-label">Elige la voz del relato</div>
+      <div class="voice-options" id="voice-options">
+        <button class="voice-btn active" data-voice="kevin"   data-src="audio/kevin.mp3"   data-name="Kevin">Kevin <span class="voice-meta">· enérgico</span></button>
+        <button class="voice-btn"        data-voice="relator" data-src="audio/relator.mp3" data-name="Relator">Relator <span class="voice-meta">· sin nombre</span></button>
+        <button class="voice-btn"        data-voice="salva"   data-src="audio/salva.mp3"   data-name="Salvador">Salvador <span class="voice-meta">· pausado</span></button>
+      </div>
+      <div class="player-now" id="player-now">Voz seleccionada: <strong>Kevin</strong></div>
+      <audio id="audio-player" controls preload="none" src="audio/kevin.mp3"></audio>
+      <p class="player-note">▸ Sigue sonando con la pantalla bloqueada o en otra app (controles en la pantalla de bloqueo). Cambiar de voz reinicia el relato.</p>
+    </div>
+  </div>
+</details>
 
 <nav class="filters">
   <div class="filters-title">Filtrar por arista</div>
@@ -2335,8 +2463,8 @@ function openModal(idx) {
   `).join('');
 
   modal.innerHTML = `
-    <button class="modal-close" onclick="closeModal()">×</button>
     <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()" aria-label="Cerrar y volver a la línea de tiempo" title="Cerrar (Esc)">×</button>
       <div class="modal-date">${ev.fecha}</div>
       <h2 class="modal-title">${ev.titulo}</h2>
     </div>
@@ -2382,6 +2510,51 @@ document.getElementById('modal-overlay').addEventListener('click', (e) => {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
+
+// ============ REPRODUCTOR DE AUDIO (pódcast) ============
+(function () {
+  const audio = document.getElementById('audio-player');
+  const options = document.getElementById('voice-options');
+  const nowEl = document.getElementById('player-now');
+  if (!audio || !options) return;
+
+  function setMediaSession(name) {
+    if (!('mediaSession' in navigator)) return;
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: 'Caso Hermosilla — el caso completo',
+      artist: 'Narrado por ' + name,
+      album: 'Cronología Caso Hermosilla',
+      artwork: [
+        { src: 'https://licensebuttons.net/l/by/4.0/88x31.png', sizes: '88x31', type: 'image/png' }
+      ]
+    });
+    navigator.mediaSession.setActionHandler('play',  () => audio.play());
+    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+    navigator.mediaSession.setActionHandler('seekbackward', (d) => { audio.currentTime = Math.max(0, audio.currentTime - (d.seekOffset || 15)); });
+    navigator.mediaSession.setActionHandler('seekforward',  (d) => { audio.currentTime = Math.min(audio.duration || 1e9, audio.currentTime + (d.seekOffset || 30)); });
+  }
+
+  function selectVoice(btn, autoplay) {
+    options.querySelectorAll('.voice-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const name = btn.dataset.name;
+    audio.src = btn.dataset.src;
+    nowEl.innerHTML = 'Voz seleccionada: <strong>' + name + '</strong>';
+    setMediaSession(name);
+    if (autoplay) audio.play().catch(() => {});
+  }
+
+  options.querySelectorAll('.voice-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Si ya está activa, no hacer nada (conserva la posición de reproducción)
+      if (btn.classList.contains('active')) return;
+      // Cambia de voz: reinicia el relato y empieza a sonar
+      selectVoice(btn, true);
+    });
+  });
+
+  audio.addEventListener('play', () => setMediaSession(options.querySelector('.voice-btn.active').dataset.name));
+})();
 
 // ============ INIT ============
 renderStats();
