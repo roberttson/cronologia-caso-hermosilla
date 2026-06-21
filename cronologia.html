@@ -827,29 +827,30 @@ footer a:hover { color: #fff; }
 .player-summary {
   list-style: none;
   cursor: pointer;
-  padding: 18px 22px;
+  padding: 17px 24px;
   display: flex;
   align-items: center;
-  gap: 12px;
-  font-weight: 700;
-  font-size: 0.98rem;
+  justify-content: center;
+  gap: 11px;
+  font-weight: 800;
+  font-size: 1.02rem;
+  letter-spacing: 0.01em;
   user-select: none;
-  transition: background 0.15s;
+  color: var(--bg);
+  background: linear-gradient(135deg, #F4A261 0%, #E76F51 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18);
+  transition: filter 0.15s, transform 0.08s;
 }
 .player-summary::-webkit-details-marker { display: none; }
-.player-summary:hover { background: var(--bg-card-hover, rgba(255,255,255,0.03)); }
+.player-summary::marker { content: ''; }
+.player-summary:hover { filter: brightness(1.06); }
+.player-summary:active { transform: scale(0.99); }
 .player-summary .player-icon { font-size: 1.3rem; line-height: 1; }
-.player-summary .player-sub {
-  font-weight: 400;
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-left: auto;
-  text-align: right;
-}
 .player-summary .chevron {
   transition: transform 0.2s;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
+  opacity: 0.85;
+  margin-left: 2px;
 }
 .player[open] .chevron { transform: rotate(180deg); }
 .player-panel {
@@ -969,21 +970,20 @@ footer a:hover { color: #fff; }
   <div class="player-box">
     <summary class="player-summary">
       <span class="player-icon">🎧</span>
-      <span>Escucha el caso en formato pódcast</span>
-      <span class="player-sub">26–31 min · 3 voces<br>narración del caso completo</span>
+      <span class="player-title-text">Escuchar en Formato Podcast</span>
       <span class="chevron">▾</span>
     </summary>
     <div class="player-panel">
-      <div class="player-label">Elige la voz del relato</div>
+      <div class="player-label">Elige a tu podcaster</div>
       <div class="voice-options" id="voice-options">
-        <button class="voice-btn active" data-voice="kevin"   data-src="audio/kevin.mp3"   data-name="Kevin">Kevin <span class="voice-meta">· enérgico</span></button>
-        <button class="voice-btn"        data-voice="relator" data-src="audio/relator.mp3" data-name="Relator">Relator <span class="voice-meta">· sin nombre</span></button>
-        <button class="voice-btn"        data-voice="salva"   data-src="audio/salva.mp3"   data-name="Salvador">Salvador <span class="voice-meta">· pausado</span></button>
+        <button class="voice-btn active" data-voice="kevin"   data-src="audio/kevin.mp3"   data-name="Kevin">Kevin</button>
+        <button class="voice-btn"        data-voice="relator" data-src="audio/relator.mp3" data-name="Pudito">Pudito</button>
+        <button class="voice-btn"        data-voice="salva"   data-src="audio/salva.mp3"   data-name="Salvador">Salvador</button>
       </div>
       <div class="player-now" id="player-now">Voz seleccionada: <strong>Kevin</strong></div>
       <audio id="audio-player" controls preload="none" src="audio/kevin.mp3"></audio>
       <a class="download-btn" id="download-btn" href="audio/kevin.mp3" download="Caso-Hermosilla-Kevin.mp3">⬇ Descargar MP3 (voz Kevin)</a>
-      <p class="player-note">▸ Sigue sonando con la pantalla bloqueada o en otra app (controles en la pantalla de bloqueo). Cambiar de voz reinicia el relato.</p>
+      <p class="player-note">Puedes bloquear la pantalla o salir del navegador, la narración seguirá en segundo plano.</p>
     </div>
   </div>
 </details>
