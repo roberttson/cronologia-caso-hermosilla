@@ -2,7 +2,7 @@
 
 > Línea de tiempo del Caso Hermosilla (también llamado Caso Audios o Caso Factop), construida desde noticias y reportajes.
 > Cada entrada sigue un formato estándar para facilitar la futura conversión a JSON.
-> Última actualización: 17 de junio de 2026.
+> Última actualización: 22 de junio de 2026.
 
 ---
 
@@ -1206,6 +1206,41 @@
 **Fuentes:**
 - [Gobierno condiciona continuidad de embajador Zaliasnik a eventual formalización por caso Hermosilla](https://www.elmostrador.cl/noticias/pais/2026/06/17/gobierno-condiciona-continuidad-de-embajador-zaliasnik-a-eventual-formalizacion-por-caso-hermosilla/) — El Mostrador, 17/06/2026
 - [Colegio de Abogados abre proceso contra embajador Zaliasnik por chats con Luis Hermosilla](https://www.elmostrador.cl/noticias/pais/2026/06/17/colegio-de-abogados-abre-proceso-contra-embajador-zaliasnik-por-chats-con-luis-hermosilla/) — El Mostrador, 17/06/2026
+
+---
+
+### [2026-06-04] Álvaro Jalaff reconoce ante la Fiscalía coima de 10 mil UF (~$410 millones) a Hermosilla por Parque Capital
+
+**Descripción:** Álvaro Jalaff, cofundador del Grupo Patio, declara ante la Fiscalía de Alta Complejidad Metropolitana Oriente y reconoce haber pagado a Luis Hermosilla 10.000 UF (aproximadamente $410 millones) por gestiones para destrabar el proyecto Parque Capital. El desglose: 6.000 UF en efectivo sin respaldo documental y 4.000 UF mediante compensación de una deuda que Hermosilla mantenía con Factop. Jalaff señala textualmente: "En total a Luis Hermosilla le pagué el equivalente a 10 mil UF" y "No se emitió ninguna clase de documento". Reconoce además que sabía que el pago constituía delito: "Luis, en esa época, era un funcionario público y que lo que yo le solicité y por lo cual le pagué era un delito". La declaración compromete también al exministro de Vivienda Felipe Ward, a quien Hermosilla habría mostrado conversaciones de WhatsApp para acreditar cercanía, y describe reuniones en su oficina y residencia vinculadas al proyecto. La declaración se hizo pública el 19 de junio de 2026 a través de Mega Investiga.
+**Intervinientes:** Álvaro Jalaff (Grupo Patio), Luis Hermosilla, Felipe Ward (exministro de Vivienda), Fiscalía de Alta Complejidad Metropolitana Oriente, Factop
+**Categorías:** judicial, financiero
+**Aristas:** parque-capital, factop
+**Fuentes:**
+- [EXCLUSIVO | Jalaff admite coima por $410 millones a Hermosilla para destrabar Parque Capital y salpica a exministro Ward](https://www.meganoticias.cl/nacional/525081-mega-investiga-revela-declaracion-alvaro-jalaff-pago-efectivo-luis-hermosilla-parque-capital-19-06-2026.html) — Meganoticias, 19/06/2026
+- [Álvaro Jalaff reconoce coima de $410 millones a Hermosilla en arista Parque Capital](https://www.elmostrador.cl/noticias/pais/2026/06/20/alvaro-jalaff-reconoce-coima-de-410-millones-a-hermosilla-en-arista-parque-capital/) — El Mostrador, 20/06/2026
+- [Jalaff admite coima a Hermosilla para destrabar Parque Capital: "Me planteó que debía pagarle como $300 millones de pesos"](https://www.t13.cl/noticia/nacional/jalaff-admite-coima-hermosilla-para-destrabar-parque-capital-p-19-6-2026) — T13, 19/06/2026
+
+---
+
+### [2026-06-22] Jalaff firma acuerdo con la Fiscalía: procedimiento abreviado fijado para julio
+
+**Descripción:** BioBioChile revela que Álvaro Jalaff firmó un acuerdo con la Fiscalía bajo la modalidad de procedimiento abreviado, con audiencia programada para el 27 de julio de 2026. A cambio de su confesión y de comprometer a Luis Hermosilla y al exministro Felipe Ward, Jalaff obtiene beneficios procesales: rebaja de pena por colaboración eficaz y cambio de medida cautelar desde arresto domiciliario parcial a firma mensual. El acuerdo tiene carácter reservado según fuentes judiciales consultadas por el medio.
+**Intervinientes:** Álvaro Jalaff, Fiscalía de Alta Complejidad Metropolitana Oriente, Luis Hermosilla
+**Categorías:** judicial
+**Aristas:** parque-capital
+**Fuentes:**
+- ["Entregó a Lucho": Álvaro Jalaff deja caer a Hermosilla y firma acuerdo con la fiscalía](https://www.biobiochile.cl/especial/bbcl-investiga/noticias/de-pasillo/2026/06/22/entrego-a-lucho-alvaro-jalaff-deja-caer-a-hermosilla-y-firma-acuerdo-con-la-fiscalia.shtml) — BioBioChile, 22/06/2026
+
+---
+
+### [2026-06-22] CDE se querella contra Hermosilla y Jalaff en el Cuarto Juzgado de Garantía por arista Parque Capital
+
+**Descripción:** El Consejo de Defensa del Estado presenta una querella en el Cuarto Juzgado de Garantía de Santiago contra Luis Hermosilla y Álvaro Jalaff por los hechos de la arista Parque Capital. A Hermosilla se le imputan cohecho agravado y tráfico de influencias; a Jalaff, soborno. La querella se sustenta en la declaración del 4 de junio en que Jalaff reconoció pagos en efectivo a Hermosilla en 2019 (aproximadamente $300 millones, sumados luego al resto hasta totalizar 10.000 UF) para destrabar permisos del Ministerio de Vivienda. Menciona también al exministro Felipe Ward y al seremi metropolitano de Vivienda Manuel José Errázuriz como funcionarios cuyas decisiones se habrían visto influenciadas. Los permisos del proyecto Parque Capital fueron aprobados en agosto de 2021.
+**Intervinientes:** Consejo de Defensa del Estado (CDE), Luis Hermosilla, Álvaro Jalaff, Felipe Ward (exministro de Vivienda), Manuel José Errázuriz (seremi Metropolitano de Vivienda), Cuarto Juzgado de Garantía de Santiago
+**Categorías:** judicial
+**Aristas:** parque-capital
+**Fuentes:**
+- [CDE se querella contra Luis Hermosilla y Álvaro Jalaff por caso Parque Capital](https://www.elmostrador.cl/noticias/pais/2026/06/22/cde-se-querella-contra-luis-hermosilla-y-alvaro-jalaff-por-caso-parque-capital/) — El Mostrador, 22/06/2026
 
 ---
 
