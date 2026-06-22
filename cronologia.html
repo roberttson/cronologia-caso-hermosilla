@@ -836,9 +836,9 @@ footer a:hover { color: #fff; }
   justify-content: center;
   gap: 15px;
   user-select: none;
-  color: #FBEFE7;
-  background: linear-gradient(135deg, #B97A5A 0%, #9C5742 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid rgba(255,255,255,0.6);
   transition: filter 0.15s, transform 0.08s;
 }
 .player-summary::-webkit-details-marker { display: none; }
@@ -871,7 +871,7 @@ footer a:hover { color: #fff; }
 .player-eq i {
   width: 4px;
   height: 100%;
-  background: var(--bg);
+  background: var(--text);
   border-radius: 2px;
   transform-origin: bottom;
   animation: eqBar 0.9s ease-in-out infinite;
