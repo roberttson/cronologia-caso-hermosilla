@@ -19,3 +19,9 @@ actualizar_audios.py
 
 # Guion v1 antiguo (con comas, superado por v2/v3)
 guion_tts_caso_hermosilla.md
+
+# Guiones TTS (uso local, no se publican)
+guion_tts_caso_hermosilla_v2.md
+guion_tts_relator.md
+guion_tts_salva.md
+podcast_caso_hermosilla.md
