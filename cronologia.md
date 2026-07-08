@@ -1109,7 +1109,7 @@
 
 ---
 
-### [2026-06-04] Reportea destapa la red judicial de José Ramón Correa: coordinó con Hermosilla nombramientos y gestiónó por la Contralora
+### [2026-06-04] Reportea destapa la red judicial de José Ramón Correa: coordinó con Hermosilla nombramientos y gestionó por la Contralora
 
 **Descripción:** Reportea publica chats entre Luis Hermosilla y el abogado José Ramón Correa —exjefe de gabinete de la Contraloría y accionista/director de Azul Azul— que abarcan el período 2018–2023. Las conversaciones revelan: (1) gestión conjunta en el caso Luchsinger-Mackay (Correa identifica al ministro Valderrama como contacto clave para evitar la anulación del juicio); (2) coordinación ante la Corte Suprema en 2018 para que la actual Contralora Dorothy Pérez fuera reincorporada tras su desvinculación; y (3) participación en el nombramiento de al menos cuatro magistrados: Lilian Leyton (Corte de Apelaciones, 2019), Verónica Sabaj (Corte de Santiago, 2020), Mario Carroza (Suprema) y Ángela Vivanco (Suprema, 2018). En los chats, Correa describe a uno de los ministros como "absolutamente nuestro". La red de Correa también cruza con Chadwick, Héctor Mery, Gabriel Zaliasnik y Sergio Yáber.
 **Intervinientes:** José Ramón Correa (abogado, exjefe gabinete Contraloría, Azul Azul), Luis Hermosilla, Dorothy Pérez (Contralora), Lilian Leyton, Verónica Sabaj, Mario Carroza, Ángela Vivanco, Andrés Chadwick, Héctor Mery, Gabriel Zaliasnik, Sergio Yáber, Manuel Valderrama (ministro Suprema), Reportea
@@ -1117,6 +1117,19 @@
 **Aristas:** poder-judicial, politico-diplomatico
 **Fuentes:**
 - [Chats con Hermosilla destapan las redes judiciales de José Ramón Correa: nombramientos de ministros y gestiones en favor de la contralora](https://reportea.cl/2026/06/04/chats-con-hermosilla-destapan-las-redes-judiciales-de-jose-ramon-correa-nombramientos-de-ministros-y-gestiones-en-favor-de-la-contralora/) — Reportea, 04/06/2026
+
+---
+
+### [2026-06-04] Álvaro Jalaff reconoce ante la Fiscalía coima de 10 mil UF (~$410 millones) a Hermosilla por Parque Capital
+
+**Descripción:** Álvaro Jalaff, cofundador del Grupo Patio, declara ante la Fiscalía de Alta Complejidad Metropolitana Oriente y reconoce haber pagado a Luis Hermosilla 10.000 UF (aproximadamente $410 millones) por gestiones para destrabar el proyecto Parque Capital. El desglose: 6.000 UF en efectivo sin respaldo documental y 4.000 UF mediante compensación de una deuda que Hermosilla mantenía con Factop. Jalaff señala textualmente: "En total a Luis Hermosilla le pagué el equivalente a 10 mil UF" y "No se emitió ninguna clase de documento". Reconoce además que sabía que el pago constituía delito: "Luis, en esa época, era un funcionario público y que lo que yo le solicité y por lo cual le pagué era un delito". La declaración compromete también al exministro de Vivienda Felipe Ward, a quien Hermosilla habría mostrado conversaciones de WhatsApp para acreditar cercanía, y describe reuniones en su oficina y residencia vinculadas al proyecto. La declaración se hizo pública el 19 de junio de 2026 a través de Mega Investiga.
+**Intervinientes:** Álvaro Jalaff (Grupo Patio), Luis Hermosilla, Felipe Ward (exministro de Vivienda), Fiscalía de Alta Complejidad Metropolitana Oriente, Factop
+**Categorías:** judicial, financiero
+**Aristas:** parque-capital, factop
+**Fuentes:**
+- [EXCLUSIVO | Jalaff admite coima por $410 millones a Hermosilla para destrabar Parque Capital y salpica a exministro Ward](https://www.meganoticias.cl/nacional/525081-mega-investiga-revela-declaracion-alvaro-jalaff-pago-efectivo-luis-hermosilla-parque-capital-19-06-2026.html) — Meganoticias, 19/06/2026
+- [Álvaro Jalaff reconoce coima de $410 millones a Hermosilla en arista Parque Capital](https://www.elmostrador.cl/noticias/pais/2026/06/20/alvaro-jalaff-reconoce-coima-de-410-millones-a-hermosilla-en-arista-parque-capital/) — El Mostrador, 20/06/2026
+- [Jalaff admite coima a Hermosilla para destrabar Parque Capital: "Me planteó que debía pagarle como $300 millones de pesos"](https://www.t13.cl/noticia/nacional/jalaff-admite-coima-hermosilla-para-destrabar-parque-capital-p-19-6-2026) — T13, 19/06/2026
 
 ---
 
@@ -1147,6 +1160,18 @@
 
 ---
 
+### [2026-06-11] Gobierno ratifica a Zaliasnik como embajador pese a sus vínculos con el Caso Hermosilla
+
+**Descripción:** Pese a la apertura de la investigación fiscal y la presión política, el gobierno de José Antonio Kast ratifica a Gabriel Zaliasnik en su cargo de embajador en Israel. El canciller sostiene que la investigación "no modifica las decisiones". La posición generó críticas de parlamentarios de oposición y alimentó el debate sobre estándares de probidad del gobierno.
+**Intervinientes:** Gabriel Zaliasnik, José Antonio Kast (presidente), canciller Pérez Mackenna
+**Categorías:** político
+**Aristas:** politico-diplomatico
+**Fuentes:**
+- [Gobierno ratifica a Gabriel Zaliasnik como embajador en Israel pese a vínculos con Caso Hermosilla](https://www.elmostrador.cl/noticias/pais/2026/06/11/gobierno-ratifica-a-gabriel-zaliasnik-como-embajador-en-israel-pese-a-vinculos-con-caso-hermosilla/) — El Mostrador, 11/06/2026
+- [Canciller e investigación por caso Hermosilla a embajador Zaliasnik: "No modifica las decisiones"](https://www.emol.com/noticias/Nacional/2026/06/11/1202517/canciller-embajador-caso-hermosilla.html) — Emol, 11/06/2026
+
+---
+
 ### [2026-06-12] Vivanco sale de prisión preventiva tras 133 días: arresto domiciliario total
 
 **Descripción:** Tras 133 días en el centro penitenciario femenino, la Corte de Apelaciones de Santiago acoge la apelación de Ángela Vivanco y sustituye la prisión preventiva por arresto domiciliario total. Al salir de reclusión, Vivanco insiste en su inocencia: "No soy una persona que se pueda catalogar de peligro para la sociedad" y declara que quiere "defenderme en un juicio justo".
@@ -1170,18 +1195,6 @@
 - ["Y borramos x fa después": PDI detecta que Sabaj revisó borrador de recurso para bloquear publicación de chats de Hermosilla y Zaliasnik](https://www.elciudadano.com/justicia/y-borramos-x-fa-despues-pdi-detecta-que-sabaj-reviso-borrador-de-recurso-judicial-para-bloquear-publicacion-de-chats-de-hermosilla-y-zaliasnik/06/16/) — El Ciudadano, 16/06/2026
 - [La desconocida asesoría de Sabaj al abogado Samuel Donoso: revisó recurso de protección para frenar publicación](https://reportea.cl/2026/06/15/la-desconocida-asesoria-de-sabaj-al-abogado-samuel-donoso-reviso-recurso-de-proteccion-para-frenar-publicacion-de-chats-con-hermosilla-y-zaliasnik/) — Reportea, 15/06/2026
 - [Expediente Zaliasnik: los jueces que ayudó a nombrar y los fallos con que se benefició](https://reportea.cl/2026/06/14/expediente-zaliasnik-los-jueces-que-ayudo-a-nombrar-y-los-fallos-con-que-se-beneficio/) — Reportea, 14/06/2026
-
----
-
-### [2026-06-11] Gobierno ratifica a Zaliasnik como embajador pese a sus vínculos con el Caso Hermosilla
-
-**Descripción:** Pese a la apertura de la investigación fiscal y la presión política, el gobierno de José Antonio Kast ratifica a Gabriel Zaliasnik en su cargo de embajador en Israel. El canciller sostiene que la investigación "no modifica las decisiones". La posición generó críticas de parlamentarios de oposición y alimentó el debate sobre estándares de probidad del gobierno.
-**Intervinientes:** Gabriel Zaliasnik, José Antonio Kast (presidente), canciller Pérez Mackenna
-**Categorías:** político
-**Aristas:** politico-diplomatico
-**Fuentes:**
-- [Gobierno ratifica a Gabriel Zaliasnik como embajador en Israel pese a vínculos con Caso Hermosilla](https://www.elmostrador.cl/noticias/pais/2026/06/11/gobierno-ratifica-a-gabriel-zaliasnik-como-embajador-en-israel-pese-a-vinculos-con-caso-hermosilla/) — El Mostrador, 11/06/2026
-- [Canciller e investigación por caso Hermosilla a embajador Zaliasnik: "No modifica las decisiones"](https://www.emol.com/noticias/Nacional/2026/06/11/1202517/canciller-embajador-caso-hermosilla.html) — Emol, 11/06/2026
 
 ---
 
@@ -1209,19 +1222,6 @@
 
 ---
 
-### [2026-06-04] Álvaro Jalaff reconoce ante la Fiscalía coima de 10 mil UF (~$410 millones) a Hermosilla por Parque Capital
-
-**Descripción:** Álvaro Jalaff, cofundador del Grupo Patio, declara ante la Fiscalía de Alta Complejidad Metropolitana Oriente y reconoce haber pagado a Luis Hermosilla 10.000 UF (aproximadamente $410 millones) por gestiones para destrabar el proyecto Parque Capital. El desglose: 6.000 UF en efectivo sin respaldo documental y 4.000 UF mediante compensación de una deuda que Hermosilla mantenía con Factop. Jalaff señala textualmente: "En total a Luis Hermosilla le pagué el equivalente a 10 mil UF" y "No se emitió ninguna clase de documento". Reconoce además que sabía que el pago constituía delito: "Luis, en esa época, era un funcionario público y que lo que yo le solicité y por lo cual le pagué era un delito". La declaración compromete también al exministro de Vivienda Felipe Ward, a quien Hermosilla habría mostrado conversaciones de WhatsApp para acreditar cercanía, y describe reuniones en su oficina y residencia vinculadas al proyecto. La declaración se hizo pública el 19 de junio de 2026 a través de Mega Investiga.
-**Intervinientes:** Álvaro Jalaff (Grupo Patio), Luis Hermosilla, Felipe Ward (exministro de Vivienda), Fiscalía de Alta Complejidad Metropolitana Oriente, Factop
-**Categorías:** judicial, financiero
-**Aristas:** parque-capital, factop
-**Fuentes:**
-- [EXCLUSIVO | Jalaff admite coima por $410 millones a Hermosilla para destrabar Parque Capital y salpica a exministro Ward](https://www.meganoticias.cl/nacional/525081-mega-investiga-revela-declaracion-alvaro-jalaff-pago-efectivo-luis-hermosilla-parque-capital-19-06-2026.html) — Meganoticias, 19/06/2026
-- [Álvaro Jalaff reconoce coima de $410 millones a Hermosilla en arista Parque Capital](https://www.elmostrador.cl/noticias/pais/2026/06/20/alvaro-jalaff-reconoce-coima-de-410-millones-a-hermosilla-en-arista-parque-capital/) — El Mostrador, 20/06/2026
-- [Jalaff admite coima a Hermosilla para destrabar Parque Capital: "Me planteó que debía pagarle como $300 millones de pesos"](https://www.t13.cl/noticia/nacional/jalaff-admite-coima-hermosilla-para-destrabar-parque-capital-p-19-6-2026) — T13, 19/06/2026
-
----
-
 ### [2026-06-22] Jalaff firma acuerdo con la Fiscalía: procedimiento abreviado fijado para julio
 
 **Descripción:** BioBioChile revela que Álvaro Jalaff firmó un acuerdo con la Fiscalía bajo la modalidad de procedimiento abreviado, con audiencia programada para el 27 de julio de 2026. A cambio de su confesión y de comprometer a Luis Hermosilla y al exministro Felipe Ward, Jalaff obtiene beneficios procesales: rebaja de pena por colaboración eficaz y cambio de medida cautelar desde arresto domiciliario parcial a firma mensual. El acuerdo tiene carácter reservado según fuentes judiciales consultadas por el medio.
@@ -1241,6 +1241,41 @@
 **Aristas:** parque-capital
 **Fuentes:**
 - [CDE se querella contra Luis Hermosilla y Álvaro Jalaff por caso Parque Capital](https://www.elmostrador.cl/noticias/pais/2026/06/22/cde-se-querella-contra-luis-hermosilla-y-alvaro-jalaff-por-caso-parque-capital/) — El Mostrador, 22/06/2026
+
+---
+
+### [2026-06-22] El Colegio de Abogados expulsa a Luis Hermosilla en fallo unánime
+
+**Descripción:** Se hace pública la sentencia del Tribunal Ético del Colegio de Abogados de Chile que, con fecha 4 de junio, resolvió por unanimidad expulsar a Luis Hermosilla del gremio por infracciones al Código de Ética Profesional derivadas de los hechos públicos y notorios del Caso Audio. Es la sanción máxima que contempla la orden gremial. Hermosilla presentó el 17 de junio un recurso de apelación que será conocido por la Corte de Apelaciones de Santiago.
+**Intervinientes:** Luis Hermosilla, Colegio de Abogados de Chile, Tribunal Ético del Colegio de Abogados, Corte de Apelaciones de Santiago
+**Categorías:** judicial
+**Aristas:** audio-sii
+**Fuentes:**
+- [Caso Audio: Colegio de Abogados expulsa a Luis Hermosilla en fallo unánime](https://www.emol.com/noticias/Nacional/2026/06/22/1203584/colegio-abogados-expulsa-luis-hermosilla.html) — Emol, 22/06/2026
+- [Decisión unánime: Colegio de Abogados expulsa a Luis Hermosilla tras investigación ética en su contra por Caso Audio](https://www.latercera.com/nacional/noticia/colegio-de-abogados-expulsa-a-luis-hermosilla-tras-investigacion-etica-en-su-contra-por-caso-audio/) — La Tercera, 22/06/2026
+
+---
+
+### [2026-07-03] Reportea revela que el "agente topo" de Hermosilla en la PDI dirigía la contrainteligencia de la ANI; renuncia dos días después
+
+**Descripción:** Una investigación de Reportea, basada en un informe de más de 470 páginas, revela que el exprefecto general de la PDI Paulo Contreras —segundo al mando de la institución tras la caída de Sergio Muñoz— mantuvo entre 2018 y 2023 un intercambio de información reservada con Luis Hermosilla: datos de investigaciones judiciales, reportes de inteligencia policial y movimientos de figuras públicas (entre ellos, la ubicación de Daniel Jadue en el extranjero y antecedentes de generales de Carabineros durante evaluaciones de ascensos), vía WhatsApp, Telegram y reuniones presenciales. Contreras había asumido en marzo de 2026, con la llegada del presidente Kast, como jefe de la División de Contrainteligencia de la Agencia Nacional de Inteligencia (ANI). El 5 de julio, tras la divulgación de los chats, renuncia al cargo, según confirma el Ministerio del Interior.
+**Intervinientes:** Paulo Contreras (exprefecto PDI, exjefe de Contrainteligencia ANI), Luis Hermosilla, ANI, PDI, Ministerio del Interior, Reportea
+**Categorías:** mediático, político
+**Aristas:** pdi
+**Fuentes:**
+- [El "agente topo" de Hermosilla en la PDI dio el salto a la ANI con Kast: dirige contrainteligencia](https://www.elmostrador.cl/noticias/pais/2026/07/03/el-agente-topo-de-hermosilla-en-la-pdi-dio-el-salto-a-la-ani-con-kast-dirige-contrainteligencia/) — El Mostrador, 03/07/2026
+- [Jefe de Contrainteligencia de la ANI renuncia a su cargo tras divulgación de chats con Luis Hermosilla](https://www.emol.com/noticias/Nacional/2026/07/05/1204717/contrainteligencia-ani-hermosilla-renuncia-contreras.html) — Emol, 05/07/2026
+
+---
+
+### [2026-07-06] A tres años del audio: Hermosilla apela su expulsión y pide volver a declarar; arriesga más de 20 años solo en la arista Audios
+
+**Descripción:** Al cumplirse tres años de la grabación del audio que destapó el caso, El Mostrador repasa la situación procesal de Luis Hermosilla: el exabogado apeló ante la Corte de Apelaciones de Santiago la expulsión dictada por el Tribunal Ético del Colegio de Abogados y solicitó volver a declarar ante la Fiscalía Oriente. Tras la confesión de Álvaro Jalaff sobre la coima de $410 millones por Parque Capital, Hermosilla arriesga más de 20 años de cárcel solo en la arista Audios, con investigaciones repartidas en tres fiscalías distintas.
+**Intervinientes:** Luis Hermosilla, Colegio de Abogados de Chile, Corte de Apelaciones de Santiago, Fiscalía Oriente, Álvaro Jalaff
+**Categorías:** judicial, mediático
+**Aristas:** audio-sii
+**Fuentes:**
+- [A tres años del explosivo audio: los últimos cartuchos de Hermosilla](https://www.elmostrador.cl/noticias/multimedia/punto-por-punto/2026/07/06/a-tres-anos-del-explosivo-audio-los-ultimos-cartuchos-de-hermosilla/) — El Mostrador, 06/07/2026
 
 ---
 

@@ -10,8 +10,8 @@ Línea de tiempo interactiva del caso de corrupción más complejo de la última
 
 Una base de datos cronológica de los hitos del Caso Hermosilla, construida desde reportajes de CIPER Chile, La Tercera, El Mostrador, The Clinic, BioBioChile, Cooperativa y otros medios verificados.
 
-- **101 hitos** documentados (2020–2026)
-- **184 fuentes** citadas con URL
+- **105 hitos** documentados (2020–2026)
+- **190 fuentes** citadas con URL
 - **7 aristas** del caso cubiertas
 
 ## Aristas
