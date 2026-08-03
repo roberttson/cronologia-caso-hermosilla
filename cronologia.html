@@ -391,6 +391,34 @@ body {
   transform: scale(1.04);
 }
 
+/* Imagen prestada de otro evento de la misma arista: no documenta este hecho,
+   asi que se atenua y desatura para que se lea como textura, no como foto
+   del suceso. Tampoco aparece en el modal. */
+.event-thumb.generica img {
+  opacity: 0.34;
+  filter: grayscale(0.85) contrast(0.92);
+}
+
+.event-card:hover .event-thumb.generica img {
+  opacity: 0.46;
+  transform: none;
+}
+
+.event-thumb.generica {
+  position: relative;
+}
+
+.event-thumb.generica::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg,
+              var(--card-color, transparent) 0%,
+              transparent 78%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .event-body {
   flex: 1;
   min-height: 0;
@@ -1715,6 +1743,8 @@ const EVENTOS = [
   {
     fecha: '28 marzo 2025', anio: 2025,
     titulo: 'Exdirector PDI llega a acuerdo de procedimiento abreviado',
+    imagen: 'https://media-front.elmostrador.cl/2024/03/EDITAR-IMAGENES-2-3-700x394.png', imagenMedio: '',
+    imagenGenerica: true,
     desc: 'El exdirector general de la PDI Sergio Muñoz acepta el procedimiento abreviado con la Fiscalía, lo que evita el juicio oral. Reconoce la violación reiterada del secreto de la investigación al filtrar información a Luis Hermosilla en causas como Dominga, Vitacura, Enjoy y Torrealba.',
     intervinientes: ['Sergio Muñoz (exdirector PDI)', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1875,6 +1905,8 @@ const EVENTOS = [
   {
     fecha: '13 agosto 2025', anio: 2025,
     titulo: 'CIPER: jueza nombrada por Ulloa y Hermosilla votó por el conservador que transfirió $25 millones a la pareja de Vivanco',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-vh.png', imagenMedio: '',
+    imagenGenerica: true,
     desc: 'CIPER revela el eslabón que conecta la arista `poder-judicial` con la `bielorrusa`: la jueza Paulina Gallardo García, nombrada ministra de la Corte de Apelaciones de Chillán en enero de 2021 gracias a gestiones coordinadas de Antonio Ulloa y Luis Hermosilla (quienes enviaron su currículo y lobbaron ante senadores), votó el 13 de mayo de 2024 a favor de Yamil Najle para el cargo de Conservador de Bienes Raíces de Chillán. Apenas 35 días después, Najle transfirió $25 millones a Gonzalo Migueles, pareja de Ángela Vivanco. Ulloa mantenía amistad cercana con Vivanco y Migueles.',
     intervinientes: ['Paulina Gallardo García (jueza Corte de Apelaciones Chillán)', 'Antonio Ulloa', 'Luis Hermosilla', 'Yamil Najle (conservador Chillán)', 'Gonzalo Migueles', 'Ángela Vivanco', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1950,6 +1982,8 @@ const EVENTOS = [
   {
     fecha: '15 septiembre 2025', anio: 2025,
     titulo: 'Incidente de supuesto incumplimiento del arresto domiciliario de Hermosilla',
+    imagen: 'https://www.ex-ante.cl/wp-content/uploads/2024/08/Portadas-Ex-Ante-6-4-800x450.png', imagenMedio: '',
+    imagenGenerica: true,
     desc: 'Se reporta un incidente relacionado con el cumplimiento del arresto domiciliario de Luis Hermosilla. La defensa niega cualquier infracción con el argumento de que "no sonó el timbre" al momento del control policial.',
     intervinientes: ['Luis Hermosilla'],
     categorias: ['judicial'],
@@ -2411,6 +2445,8 @@ const EVENTOS = [
   {
     fecha: '16 junio 2026', anio: 2026,
     titulo: 'Comisión investigadora cita al canciller por chats Zaliasnik-Hermosilla',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2026/01/social-fiscalia-confirma-que-andres-chadwick-es-imputado-en-causa-reservada-tras-cierre-de-factop.png', imagenMedio: '',
+    imagenGenerica: true,
     desc: 'La comisión investigadora de la Cámara sobre el estallido social cita al canciller para que explique las conversaciones de Zaliasnik con Hermosilla, en las que el embajador habría sugerido al gobierno de Piñera cortar internet durante el estallido social. El Colegio de Abogados da curso a una denuncia contra Zaliasnik.',
     intervinientes: ['Gabriel Zaliasnik', 'canciller Pérez Mackenna', 'Cámara de Diputados (comisión investigadora)', 'Colegio de Abogados de Chile'],
     categorias: ['judicial', 'político'],
@@ -2717,7 +2753,7 @@ function renderTimeline() {
       // Si la imagen del medio no carga, se elimina la banda entera para no
       // dejar un hueco ni el icono de imagen rota.
       const thumb = ev.imagen ? `
-          <div class="event-thumb">
+          <div class="event-thumb${ev.imagenGenerica ? ' generica' : ''}">
             <img src="${ev.imagen}" alt="" loading="lazy" referrerpolicy="no-referrer"
                  onerror="this.closest('.event-card').classList.remove('has-img');this.closest('.event-thumb').remove();">
           </div>` : '';
@@ -2843,7 +2879,9 @@ function openModal(idx) {
   const intervinientesTags = ev.intervinientes.map(i => `<span class="tag">${i}</span>`).join('');
   const categoriasTags = ev.categorias.map(c => `<span class="tag">${c}</span>`).join('');
 
-  const figura = ev.imagen ? `
+  // Las genericas no van en el detalle: ahi una foto se lee como prueba
+  // del hecho, y esta viene de otro evento de la misma arista.
+  const figura = (ev.imagen && !ev.imagenGenerica) ? `
     <figure class="modal-figure">
       <img src="${ev.imagen}" alt="" loading="lazy" referrerpolicy="no-referrer"
            onerror="this.closest('.modal-figure').remove();">

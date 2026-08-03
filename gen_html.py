@@ -76,7 +76,9 @@ def migrate_md(md_path, jsonl_path):
     if jsonl_path.exists():
         for ev in load_jsonl(jsonl_path):
             if ev.get('imagen'):
-                imgs[_clave_imagen(ev)] = (ev['imagen'], ev.get('imagen_medio', ''))
+                imgs[_clave_imagen(ev)] = (ev['imagen'],
+                                           ev.get('imagen_medio', ''),
+                                           ev.get('imagen_generica', False))
 
     text = md_path.read_text(encoding='utf-8')
     blocks = re.split(r'\n(?=### \[)', text)
@@ -131,7 +133,11 @@ def migrate_md(md_path, jsonl_path):
         }
         prev = imgs.get(_clave_imagen(ev))
         if prev:
-            ev['imagen'], ev['imagen_medio'] = prev
+            ev['imagen'], medio, generica = prev
+            if medio:
+                ev['imagen_medio'] = medio
+            if generica:
+                ev['imagen_generica'] = True
         eventos.append(ev)
 
     dump_jsonl(jsonl_path, eventos)
@@ -153,6 +159,8 @@ def ev_to_js(ev):
     if ev.get('imagen'):
         img = (f"    imagen: '{esc(ev['imagen'])}', "
                f"imagenMedio: '{esc(ev.get('imagen_medio',''))}',\n")
+        if ev.get('imagen_generica'):
+            img += "    imagenGenerica: true,\n"
     return (
         f"  {{\n"
         f"    fecha: '{esc(ev['fecha'])}', anio: {ev['anio']},\n"

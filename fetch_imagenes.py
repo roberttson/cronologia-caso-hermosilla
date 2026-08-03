@@ -9,9 +9,16 @@ para que las siguientes corridas no vuelvan a pedir lo mismo.
 Las imagenes NO se descargan: se enlazan desde el servidor del medio. Eso evita
 sumar peso al sitio y deja la imagen alojada en su origen.
 
+Para los eventos cuyas fuentes no entregan imagen (medios que bloquean el
+enlace directo), --genericas presta la imagen representativa de su arista. Esa
+imagen se marca como generica: se usa solo como fondo de la tarjeta, atenuada,
+y NO se muestra en el modal de detalle, para no dar a entender que documenta
+ese hecho puntual.
+
 Uso:
   python fetch_imagenes.py            # solo eventos sin imagen
   python fetch_imagenes.py --todos    # re-consulta todos (ignora cache)
+  python fetch_imagenes.py --genericas # rellena los huecos con imagen de arista
   python fetch_imagenes.py --reporte  # no consulta nada, solo muestra cobertura
 """
 
@@ -85,9 +92,52 @@ def extraer_og(url):
     return None
 
 
+def rellenar_genericas(eventos):
+    """Presta a cada evento sin imagen la representativa de su arista.
+
+    Representativa = la imagen del evento mas antiguo cuya arista principal es
+    esa. Es deterministico, asi que no cambia sola entre corridas.
+    """
+    repr_arista = {}
+    for ev in eventos:
+        if not ev.get("imagen") or ev.get("imagen_generica"):
+            continue
+        aristas = ev.get("aristas") or []
+        if aristas and aristas[0] not in repr_arista:
+            repr_arista[aristas[0]] = ev["imagen"]
+
+    puestas = sin_cubrir = 0
+    for ev in eventos:
+        if ev.get("imagen"):
+            continue
+        img = next((repr_arista[a] for a in (ev.get("aristas") or [])
+                    if a in repr_arista), None)
+        if img:
+            ev["imagen"] = img
+            ev["imagen_generica"] = True
+            ev.pop("imagen_medio", None)   # sin credito: no ilustra este hecho
+            puestas += 1
+            print(f"  generica [{ev['fecha']}] {ev['titulo'][:50]} "
+                  f"<- {(ev.get('aristas') or ['?'])[0]}")
+        else:
+            sin_cubrir += 1
+
+    print(f"\nGenericas puestas: {puestas}  |  sin cubrir: {sin_cubrir}")
+    return eventos
+
+
 def main():
     todos   = "--todos" in sys.argv
     reporte = "--reporte" in sys.argv
+
+    if "--genericas" in sys.argv:
+        eventos = [json.loads(l) for l in
+                   JSONL.read_text(encoding="utf-8").splitlines() if l.strip()]
+        rellenar_genericas(eventos)
+        with open(JSONL, "w", encoding="utf-8") as f:
+            for ev in eventos:
+                f.write(json.dumps(ev, ensure_ascii=False) + "\n")
+        return
 
     eventos = [json.loads(l) for l in JSONL.read_text(encoding="utf-8").splitlines() if l.strip()]
     cache   = {} if todos else cargar_cache()
