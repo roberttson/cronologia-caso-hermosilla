@@ -57,7 +57,27 @@ def _parse_date(raw):
         return m.group(1), int(m.group(1))
     return raw, 2023
 
+def _clave_imagen(ev):
+    """Clave estable para reconocer un evento entre migraciones.
+
+    Usa la URL de la primera fuente: sobrevive a correcciones de titulo o de
+    fecha, que son las ediciones habituales en el Markdown.
+    """
+    fuentes = ev.get('fuentes') or []
+    if fuentes and fuentes[0].get('url'):
+        return fuentes[0]['url']
+    return f"{ev.get('fecha','')}|{ev.get('titulo','')}"
+
+
 def migrate_md(md_path, jsonl_path):
+    # Las imagenes viven solo en el JSONL (las pone fetch_imagenes.py), asi que
+    # hay que rescatarlas antes de reconstruirlo desde el Markdown.
+    imgs = {}
+    if jsonl_path.exists():
+        for ev in load_jsonl(jsonl_path):
+            if ev.get('imagen'):
+                imgs[_clave_imagen(ev)] = (ev['imagen'], ev.get('imagen_medio', ''))
+
     text = md_path.read_text(encoding='utf-8')
     blocks = re.split(r'\n(?=### \[)', text)
     eventos = []
@@ -99,7 +119,7 @@ def migrate_md(md_path, jsonl_path):
                                 'url':    fm.group(2),
                                 'medio':  (fm.group(3) or '').strip()})
 
-        eventos.append({
+        ev = {
             'fecha':        fecha_label,
             'anio':         anio,
             'titulo':       titulo,
@@ -108,10 +128,16 @@ def migrate_md(md_path, jsonl_path):
             'categorias':   [x.strip() for x in re.split(r'[,|]', categorias) if x.strip()],
             'aristas':      [x.strip() for x in re.split(r'[,|]', aristas)   if x.strip()],
             'fuentes':      fuentes,
-        })
+        }
+        prev = imgs.get(_clave_imagen(ev))
+        if prev:
+            ev['imagen'], ev['imagen_medio'] = prev
+        eventos.append(ev)
 
     dump_jsonl(jsonl_path, eventos)
-    print(f"Migracion completa: {len(eventos)} eventos -> {jsonl_path.name}")
+    conservadas = sum(1 for e in eventos if e.get('imagen'))
+    print(f"Migracion completa: {len(eventos)} eventos -> {jsonl_path.name} "
+          f"({conservadas} con imagen)")
     return eventos
 
 # ── Serializar a JS ───────────────────────────────────────────────────────────
@@ -123,10 +149,15 @@ def ev_to_js(ev):
     fuents = ''
     for f in ev['fuentes']:
         fuents += f"      {{ titulo: '{esc(f['titulo'])}', medio: '{esc(f['medio'])}', url: '{esc(f['url'])}' }},\n"
+    img = ''
+    if ev.get('imagen'):
+        img = (f"    imagen: '{esc(ev['imagen'])}', "
+               f"imagenMedio: '{esc(ev.get('imagen_medio',''))}',\n")
     return (
         f"  {{\n"
         f"    fecha: '{esc(ev['fecha'])}', anio: {ev['anio']},\n"
         f"    titulo: '{esc(ev['titulo'])}',\n"
+        f"{img}"
         f"    desc: '{esc(ev['desc'])}',\n"
         f"    intervinientes: [{ints}],\n"
         f"    categorias: [{cats}],\n"

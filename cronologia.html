@@ -358,11 +358,44 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 16px 18px;
+  padding: 0;
   cursor: pointer;
   transition: all 0.25s ease;
   overflow: hidden;
   height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Banda de imagen de la fuente. Se enlaza desde el medio, no se aloja aca. */
+.event-thumb {
+  flex: none;
+  height: 86px;
+  overflow: hidden;
+  background: #0D1117;
+  border-bottom: 1px solid var(--border);
+}
+
+.event-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* recorta sin deformar */
+  object-position: center 35%;   /* las caras suelen ir arriba del centro */
+  display: block;
+  opacity: 0.82;
+  transition: opacity 0.25s ease, transform 0.35s ease;
+}
+
+.event-card:hover .event-thumb img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.event-body {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  padding: 14px 16px;
   display: flex;
   flex-direction: column;
 }
@@ -385,6 +418,7 @@ body {
   bottom: 0;
   width: 4px;
   background: var(--card-color, var(--text-muted));
+  z-index: 2;   /* por encima de la banda de imagen */
 }
 
 .event-card:hover {
@@ -427,6 +461,10 @@ body {
   overflow: hidden;
   flex: 1;
 }
+
+/* Con imagen queda menos alto para texto: se recorta antes. */
+.event-card.has-img .event-title { -webkit-line-clamp: 2; line-clamp: 2; }
+.event-card.has-img .event-desc  { -webkit-line-clamp: 2; line-clamp: 2; }
 
 .event-aristas {
   margin-top: 10px;
@@ -562,6 +600,31 @@ body {
 
 .modal-body {
   padding: 30px 36px 36px;
+}
+
+/* Imagen de la fuente en el detalle: proporciones intactas, sin recorte. */
+.modal-figure {
+  margin: 0 0 26px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #0D1117;
+  border: 1px solid var(--border);
+}
+
+.modal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 380px;
+  object-fit: contain;
+}
+
+.modal-figure figcaption {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  padding: 8px 12px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.04em;
 }
 
 .modal-section {
@@ -789,6 +852,18 @@ footer a:hover { color: #fff; }
     overflow: visible;
     display: block;
   }
+  /* Anula el recorte extra de las tarjetas con imagen (mas especifico que
+     las dos reglas de arriba, por eso hay que repetirlo aqui). */
+  .event-card.has-img .event-title,
+  .event-card.has-img .event-desc {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+  }
+
+  /* En vertical la tarjeta ocupa todo el ancho: la imagen puede respirar. */
+  .event-thumb { height: 165px; }
+  .event-body  { padding: 14px 16px 16px; }
 
   /* Modal: slide desde abajo */
   .modal-overlay {
@@ -1082,6 +1157,7 @@ const EVENTOS = [
   {
     fecha: '2020', anio: 2020,
     titulo: 'CMF solicita información al SII sobre STF Capital y Factop',
+    imagen: 'https://www.malaespinacheck.cl/wp-content/uploads/2023/11/me-81.png', imagenMedio: 'Mala Espina Check, 24/11/2023',
     desc: 'La Comisión para el Mercado Financiero (CMF) solicita al Servicio de Impuestos Internos (SII) información relativa a doce RUT vinculados a la corredora STF Capital y a la empresa de factoring Factop, ambas controladas por los hermanos Daniel y Ariel Sauer. Es el primer antecedente regulatorio del caso.',
     intervinientes: ['CMF', 'SII', 'Daniel Sauer', 'Ariel Sauer', 'STF Capital', 'Factop'],
     categorias: ['regulatorio', 'financiero'],
@@ -1094,6 +1170,7 @@ const EVENTOS = [
   {
     fecha: 'junio 2020', anio: 2020,
     titulo: 'Chadwick presenta a Hermosilla ante el ministro Ward: origen de la gestión Parque Capital',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ward.png', imagenMedio: 'CIPER Chile, 01/10/2024',
     desc: 'Andrés Chadwick, exministro del Interior del gobierno Piñera, convoca en junio de 2020 al ministro de Vivienda Felipe Ward a un almuerzo en su oficina de Alonso de Córdova. Al término del encuentro, Chadwick lleva a Ward a conocer a Luis Hermosilla, donde los tres conversan sobre el proyecto Parque Capital de Grupo Patio y la necesidad de obtener certificados del Ministerio de Vivienda. El 25 de junio de 2020, Chadwick envía a Hermosilla el número de celular de Ward; el 30 de junio, Ward escribe a Hermosilla: "¿Será posible que estas personas pidan una reunión por ley del lobby con mi jefe de gabinete y el seremi?" Este encuentro inaugura la red de gestión que derivará en la aprobación acelerada de los IFC de Parque Capital en 2021.',
     intervinientes: ['Andrés Chadwick (exministro Interior)', 'Felipe Ward (ministro de Vivienda)', 'Luis Hermosilla', 'Álvaro Jalaff (Grupo Patio)', 'Francisco Feres (asesor Parque Capital)'],
     categorias: ['político', 'financiero'],
@@ -1106,6 +1183,7 @@ const EVENTOS = [
   {
     fecha: '9 agosto 2021', anio: 2021,
     titulo: 'Aprobación acelerada de tres IFC de Parque Capital: 2,5 meses en lugar de 18',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-patio.png', imagenMedio: 'CIPER Chile, 02/09/2024',
     desc: 'La Seremi Metropolitana de Vivienda aprueba los tres Informes de Factibilidad para Construcciones (IFC n° 2443, 2444 y 2445) del proyecto Parque Capital de Grupo Patio en Lampa. Los certificados, ingresados entre el 5 y el 27 de mayo de 2021, son aprobados el 9 de agosto —en apenas 2 meses y medio— cuando el trámite habitualmente demora entre 18 meses y 2 años. El seremi Manuel José Errázuriz informa a Hermosilla del resultado ese mismo día. Los tres terrenos habilitados son traspasados por un valor total de $10.372.650.925. Funcionarios de la Seremi declararon posteriormente ante la Fiscalía que recibieron presiones explícitas para aprobar los documentos "sí o sí ese día", con expedientes incompletos, consultas jurídicas resueltas en dos días (4–6 de agosto) y despacho nocturno a las 20:00 del 6 de agosto.',
     intervinientes: ['Luis Hermosilla', 'Manuel José Errázuriz (seremi Metropolitano de Vivienda)', 'Felipe Ward (ministro de Vivienda)', 'Álvaro Jalaff (Grupo Patio)', 'Antonio Jalaff (Grupo Patio)', 'Francisco Feres (asesor Parque Capital)', 'Nicolás Bucarey Ilabaca (jefe sección jurídica SEREMI)'],
     categorias: ['financiero', 'regulatorio'],
@@ -1118,6 +1196,7 @@ const EVENTOS = [
   {
     fecha: '24 marzo 2023', anio: 2023,
     titulo: 'CMF suspende operaciones de STF Capital y Factop',
+    imagen: 'https://www.df.cl/noticias/site/artic/20230324/imag/foto_0000000320230324141449/275714976_153323813763471_7311769577906249600_n.jpeg', imagenMedio: 'Diario Financiero',
     desc: 'El Consejo de la CMF resuelve suspender las operaciones de STF Capital Corredores de Bolsa por 30 días, tras verificar que los estados financieros de 2022 no habían sido auditados y que la corredora no cumplía los requisitos de patrimonio. Dos días después, la CMF suspende también a Factop por ocultar pasivos y falsear su situación financiera. Factop es investigada por facilitar cerca de 10.000 facturas falsas por un monto aproximado de $13 mil millones.',
     intervinientes: ['CMF', 'STF Capital', 'Factop', 'Daniel Sauer', 'Ariel Sauer'],
     categorias: ['regulatorio', 'financiero'],
@@ -1131,6 +1210,7 @@ const EVENTOS = [
   {
     fecha: 'junio 2023', anio: 2023,
     titulo: 'Reunión en edificio Grupo Patio: la grabación que origina el caso',
+    imagen: 'https://www.ex-ante.cl/wp-content/uploads/2024/08/Portadas-Ex-Ante-6-4-800x450.png', imagenMedio: 'Ex-Ante',
     desc: 'Luis Hermosilla, la abogada María Leonarda Villalobos y el empresario Daniel Sauer se reúnen en las oficinas del Grupo Patio en Alonso de Córdova, Vitacura. Durante la reunión —de aproximadamente 105 minutos— discuten estrategias para enfrentar la investigación de la CMF sobre Factop. En la conversación, Hermosilla propone pagar a contactos en el SII y la CMF para obtener información y frenar la investigación. La reunión es grabada en audio.',
     intervinientes: ['Luis Hermosilla', 'María Leonarda Villalobos', 'Daniel Sauer', 'Grupo Patio'],
     categorias: ['judicial', 'financiero'],
@@ -1142,6 +1222,7 @@ const EVENTOS = [
   {
     fecha: '13 noviembre 2023', anio: 2023,
     titulo: 'El audio "Némesis" llega al Ministerio Público y a CIPER',
+    imagen: 'https://www.ex-ante.cl/wp-content/uploads/2024/08/Portadas-Ex-Ante-6-4-800x450.png', imagenMedio: 'Ex-Ante',
     desc: 'A las 14:00 horas, el fiscal de turno recibe en su teléfono institucional un mensaje desde un número de WhatsApp del Reino Unido con un archivo MP3 de 105 minutos llamado "Némesis". El mismo archivo es enviado simultáneamente a CIPER Chile y a la CMF. Rodrigo Topelberg —socio de los hermanos Sauer en Factop— confesaría posteriormente haber comprado un teléfono de prepago en Quilicura para filtrar el audio.',
     intervinientes: ['Rodrigo Topelberg', 'Ministerio Público', 'CIPER Chile', 'CMF'],
     categorias: ['mediático', 'judicial'],
@@ -1154,6 +1235,7 @@ const EVENTOS = [
   {
     fecha: '14 noviembre 2023', anio: 2023,
     titulo: 'CIPER publica el audio: estalla el escándalo',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-factop.png', imagenMedio: 'CIPER Chile, 14/11/2023',
     desc: 'CIPER Chile publica el reportaje "«Aquí estamos haciendo una huevá que es delito»: el audio en el que Luis Hermosilla menciona pagos a funcionarios del SII y la CMF". El artículo incluye la transcripción de la conversación y desata el escándalo político y judicial. El caso es bautizado inicialmente como "Caso Audios" o "Hermosilla-Gate".',
     intervinientes: ['CIPER Chile', 'Luis Hermosilla', 'María Leonarda Villalobos', 'Daniel Sauer', 'SII', 'CMF'],
     categorias: ['mediático', 'judicial'],
@@ -1166,6 +1248,7 @@ const EVENTOS = [
   {
     fecha: '16 noviembre 2023', anio: 2023,
     titulo: 'Fiscalía allana oficinas de Hermosilla e incauta su iPhone: nacen los 777.000 chats',
+    imagen: 'https://media-front.elmostrador.cl/2023/11/luis-hermosilla-cmf-sii-caso-coimas-audio.jpeg', imagenMedio: 'El Mostrador, 16/11/2023',
     desc: 'Dos días después de la publicación de CIPER, efectivos del OS-7 de Carabineros allanan las oficinas de Luis Hermosilla en Alonso de Córdova, Vitacura, por orden del 4° Juzgado de Garantía. Se incauta un iPhone Pro Max con toda la actividad hasta esa fecha. La extracción forense del dispositivo arroja más de 777.000 páginas de conversaciones, videos, fotografías y archivos. Este material se convierte en la fuente de todas las aristas posteriores del caso.',
     intervinientes: ['Luis Hermosilla', 'Fiscalía Metropolitana Oriente', 'OS-7 de Carabineros', '4° Juzgado de Garantía de Santiago'],
     categorias: ['judicial'],
@@ -1178,6 +1261,7 @@ const EVENTOS = [
   {
     fecha: '15 marzo 2024', anio: 2024,
     titulo: 'Allanamiento y formalización del director general de la PDI, Sergio Muñoz',
+    imagen: 'https://media-front.elmostrador.cl/2024/03/EDITAR-IMAGENES-2-3-700x394.png', imagenMedio: 'El Mostrador, 15/03/2024',
     desc: 'La Fiscalía allana el domicilio y la oficina del director general de la PDI, Sergio Muñoz, en el marco de la investigación del Caso Audios. Los antecedentes del teléfono de Hermosilla revelan que Muñoz le habría filtrado información confidencial sobre investigaciones en curso —entre ellas las causas Minera Dominga y Enjoy, y diligencias contra su antecesor Héctor Espinosa— violando el secreto de la investigación. Parlamentarios exigen su renuncia inmediata.',
     intervinientes: ['Sergio Muñoz (director general PDI)', 'Luis Hermosilla', 'Fiscalía Metropolitana Oriente', 'Poder Legislativo'],
     categorias: ['judicial', 'político'],
@@ -1191,6 +1275,7 @@ const EVENTOS = [
   {
     fecha: '17 marzo 2024', anio: 2024,
     titulo: 'CIPER: Las 12 filtraciones de Muñoz a Hermosilla: Dominga, Enjoy, Torrealba, Guevara y corrupción PDI',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-pdi-hermosilla.jpg', imagenMedio: 'CIPER Chile, 17/03/2024',
     desc: 'Dos días después del allanamiento, CIPER publica el análisis de los 510 mensajes de WhatsApp entre Sergio Muñoz y Luis Hermosilla (agosto 2020–octubre 2023), detallando 12 filtraciones concretas agrupadas en cinco causas: el caso Héctor Espinosa (exdirector PDI, malversación de $146 millones de gastos reservados), la Minera Dominga (Muñoz envía listados de sociedades investigadas vinculadas a la familia Piñera: Bancorp, Odisea, Andes Iron, fondos Mediterráneo y Rupamanqui), el Casino Enjoy (filtración de citación de testigos al ministro Moreno Guzmán), el caso Raúl Torrealba (esquema de corrupción en Vitacura con Felipe Guevara) y el caso Felipe Guevara (adjudicación a su hermano Matías de proyecto IND en La Granja). Muñoz remitía requerimientos fiscales reservados, listados de sociedades, cronogramas de diligencias y nombres de testigos. Hermosilla respondía: "Es un tremendo problema" y "Gracias Sergio".',
     intervinientes: ['Sergio Muñoz (director general PDI)', 'Luis Hermosilla', 'Héctor Espinosa (exdirector PDI)', 'Sebastián Piñera', 'Raúl Torrealba', 'Felipe Guevara', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1202,6 +1287,7 @@ const EVENTOS = [
   {
     fecha: '19 marzo 2024', anio: 2024,
     titulo: 'Prisión preventiva para el director de la PDI Sergio Muñoz',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2024/03/19/file_20240319164700.jpg', imagenMedio: 'Emol, 19/03/2024',
     desc: 'El tribunal decreta prisión preventiva para Sergio Muñoz, director general de la PDI, por el delito de violación del secreto de la investigación. El tribunal considera que los antecedentes recopilados acreditan el delito y que la libertad del imputado constituye un peligro. Muñoz cumple la medida en la Brigada de Respuesta Táctica de la PDI en Cerrillos.',
     intervinientes: ['Sergio Muñoz (director general PDI)', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'político'],
@@ -1214,6 +1300,7 @@ const EVENTOS = [
   {
     fecha: 'abril 2024', anio: 2024,
     titulo: 'Formalización de Daniel y Ariel Sauer por facturas falsas',
+    imagen: 'https://media-front.elmostrador.cl/2023/11/daniel-y-ariel-sauer-hermanos-factop-facturas-sii-700x350.jpeg', imagenMedio: 'El Mostrador, 08/04/2024',
     desc: 'El 4° Juzgado de Garantía de Santiago formaliza a Daniel Sauer, Ariel Sauer y a otros asociados por la emisión de 9.970 facturas falsas que causaron un perjuicio fiscal superior a $12.900 millones. Es la primera formalización en la arista Factop del caso.',
     intervinientes: ['Daniel Sauer', 'Ariel Sauer', '4° Juzgado de Garantía de Santiago', 'Ministerio Público'],
     categorias: ['judicial', 'financiero'],
@@ -1226,6 +1313,7 @@ const EVENTOS = [
   {
     fecha: '22 mayo 2024', anio: 2024,
     titulo: 'CIPER: La filtración secreta desde Panamá que la Fiscalía no imputó a Muñoz',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-panama-1.jpg', imagenMedio: 'CIPER Chile, 22/05/2024',
     desc: 'CIPER revela que entre el 25 y 26 de enero de 2022, el director de la PDI Sergio Muñoz filtró a Luis Hermosilla una solicitud de cooperación judicial internacional proveniente de la fiscalía anticorrupción panameña (fiscal Lizzie Bonilla) a través del mecanismo de la Red de Recuperación de Activos para América Latina (GAFILAT). La solicitud panameña investigaba a un ciudadano chileno con vínculos societarios en Panamá en una causa por lavado de activos vinculada a los Pandora Papers. La Fiscalía reconoció a CIPER no haber incluido esta filtración en la formalización de marzo 2024 porque "no tuvieron tiempo de averiguar más detalles", aunque señaló que probablemente se sumará a la acusación.',
     intervinientes: ['Sergio Muñoz (director general PDI)', 'Luis Hermosilla', 'Lizzie Marelis Bonilla (fiscal panameña)', 'Fiscalía Metropolitana Oriente', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1237,6 +1325,7 @@ const EVENTOS = [
   {
     fecha: '21 agosto 2024', anio: 2024,
     titulo: 'Comienza audiencia de formalización: caso Audio-Factop',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2024/08/social-prision-preventiva-luis-hermosilla.jpg', imagenMedio: 'BioBioChile, 27/08/2024',
     desc: 'Se inicia la audiencia de formalización en la causa rol 9.081-2023 ante el 4° Juzgado de Garantía. En el primer día se formaliza a Renato Robles Iturriaga (ejecutivo de cobros de la Tesorería General de la República) y a Patricio Mejías Esparza (funcionario del SII, Dirección Regional Oriente) por cohecho. El 23 de agosto, tercer día de audiencia, la abogada Leonarda Villalobos se desvanece durante un receso.',
     intervinientes: ['Renato Robles Iturriaga', 'Patricio Mejías Esparza', 'María Leonarda Villalobos', 'Luis Hermosilla', 'Tesorería General de la República', 'SII', 'Juzgado de Garantía'],
     categorias: ['judicial'],
@@ -1248,6 +1337,7 @@ const EVENTOS = [
   {
     fecha: '23 agosto 2024', anio: 2024,
     titulo: 'SII presenta querella contra Hermosilla, Villalobos y Angulo por delitos tributarios',
+    imagen: 'https://www.df.cl/noticias/site/artic/20240821/imag/foto_0000001720240821090025/Luis-Hermosilla--Juan-Pablo-Hermosilla-_JC.jpg', imagenMedio: 'Diario Financiero',
     desc: 'Durante la audiencia de formalización, el Servicio de Impuestos Internos (SII) presenta querella y solicita prisión preventiva contra Luis Hermosilla, María Leonarda Villalobos y Luis Angulo —esposo de Villalobos y representante legal de la empresa Asesorías y Negocios Commercia Spa— por delitos tributarios reiterados, incluyendo declaraciones de renta maliciosamente falsas y uso de facturas falsas.',
     intervinientes: ['SII', 'Luis Hermosilla', 'María Leonarda Villalobos', 'Luis Angulo'],
     categorias: ['judicial', 'financiero'],
@@ -1260,6 +1350,7 @@ const EVENTOS = [
   {
     fecha: '27 agosto 2024', anio: 2024,
     titulo: 'Prisión preventiva para Hermosilla y Villalobos',
+    imagen: 'https://www.latercera.com/resizer/v2/QSM5JYOEQJCF3E4XIZSZFFLFTM.jpeg?auth=286be8af9bd6eb8f9f5b736187f20d8bba324f9fa739af97600190f5a4c2c69f&height=630&width=1200&smart=true', imagenMedio: 'La Tercera, 27/08/2024',
     desc: 'La magistrada Mariana Leyton Andaur decreta prisión preventiva para Luis Hermosilla y María Leonarda Villalobos, al considerar que su libertad representa un peligro para la seguridad de la sociedad. Se fija un plazo de investigación de 180 días. Luis Angulo queda con arresto domiciliario nocturno.',
     intervinientes: ['Luis Hermosilla', 'María Leonarda Villalobos', 'Luis Angulo', 'jueza Mariana Leyton Andaur', '4° Juzgado de Garantía'],
     categorias: ['judicial'],
@@ -1273,6 +1364,7 @@ const EVENTOS = [
   {
     fecha: '31 agosto 2024', anio: 2024,
     titulo: 'Topelberg sale de prisión preventiva por colaboración con la investigación',
+    imagen: 'https://media.eldinamo.cl/2024/08/31-133013_z28k_Rodrigo-Topelberg-oka-oka-1600x900.jpg', imagenMedio: 'El Dínamo, 31/08/2024',
     desc: 'La Corte de Apelaciones revoca la prisión preventiva de Rodrigo Topelberg —el socio de los Sauer que filtró el audio Némesis— y le otorga arresto domiciliario total tras valorar su colaboración con la investigación: autodenuncias, querellas y aportes a la CMF y SII desde el inicio del caso.',
     intervinientes: ['Rodrigo Topelberg', 'Corte de Apelaciones de Santiago', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1284,6 +1376,7 @@ const EVENTOS = [
   {
     fecha: '2 septiembre 2024', anio: 2024,
     titulo: 'CIPER: Hermosilla operó para destrabar el multimillonario negocio de Parque Capital durante el gobierno Piñera',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-patio.png', imagenMedio: 'CIPER Chile, 02/09/2024',
     desc: 'CIPER publica la investigación que destapa cómo Luis Hermosilla —actuando como asesor del Ministerio del Interior— ejerció presiones directas sobre el seremi de Vivienda Manuel José Errázuriz y coordinó reuniones con el gabinete del ministro Felipe Ward para acelerar los IFC del proyecto Parque Capital de Grupo Patio en Lampa. La investigación detalla los mensajes entre Hermosilla y los funcionarios del Minvu, y establece que los tres terrenos habilitados fueron traspasados por $10.372.650.925. La publicación abre la arista Parque Capital como nueva línea del Caso Hermosilla e instala en la agenda pública la triangulación Chadwick–Hermosilla–Minvu.',
     intervinientes: ['Luis Hermosilla', 'Álvaro Jalaff', 'Antonio Jalaff', 'Felipe Ward', 'Manuel José Errázuriz', 'Francisco Feres', 'Andrés Chadwick', 'CIPER Chile'],
     categorias: ['financiero', 'regulatorio', 'mediático'],
@@ -1295,6 +1388,7 @@ const EVENTOS = [
   {
     fecha: '5 septiembre 2024', anio: 2024,
     titulo: 'CIPER: exsenador Letelier hizo lobby por Parque Capital ante el SAG',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-letelier.png', imagenMedio: 'CIPER Chile, 05/09/2024',
     desc: 'CIPER revela que el exsenador socialista Juan Pablo Letelier realizó dos intervenciones ante el Servicio Agrícola y Ganadero (SAG) a favor de los IFC de Parque Capital, a pedido de Francisco Feres (asesor del proyecto y amigo personal de Letelier). El primer contacto, el 21 de julio de 2023, no fue registrado en la plataforma de lobby; el segundo, el 27 de marzo de 2024, sí consta. Letelier se reunió con el director regional del SAG, Claudio Ternicier (militante DC), y con el jefe del Departamento Ambiental, Mario Ahumada. Feres describió el gesto como "un acto extremadamente generoso". Sin embargo, el SAG rechazó posteriormente la mayoría de las solicitudes, haciendo infructuosas las gestiones de Letelier.',
     intervinientes: ['Juan Pablo Letelier (exsenador)', 'Francisco Feres (asesor Parque Capital)', 'Claudio Ternicier (director regional SAG)', 'Mario Ahumada (SAG)', 'CIPER Chile'],
     categorias: ['político'],
@@ -1306,6 +1400,7 @@ const EVENTOS = [
   {
     fecha: '7 septiembre 2024', anio: 2024,
     titulo: 'CIPER revela los favores entre Hermosilla y la ministra Vivanco',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-vh.png', imagenMedio: 'CIPER Chile, 07/09/2024',
     desc: 'CIPER publica el reportaje con los chats entre Luis Hermosilla y la ministra de la Corte Suprema Ángela Vivanco. Las conversaciones —extraídas del teléfono incautado— muestran que la ministra le pedía a Hermosilla integrar la Sala Penal en causas específicas, que ambos coordinaron desde 2018 las gestiones ante La Moneda y senadores para que Vivanco llegara a la Suprema, y que ella le compartió información reservada sobre recursos judiciales relativos a Carabineros y FFAA. Dos días después, el 9 de septiembre, la Corte Suprema abre cuaderno de remoción contra Vivanco.',
     intervinientes: ['Luis Hermosilla', 'Ángela Vivanco (ministra Corte Suprema)', 'Corte Suprema de Chile', 'CIPER Chile'],
     categorias: ['judicial', 'político', 'mediático'],
@@ -1320,6 +1415,7 @@ const EVENTOS = [
   {
     fecha: '11 septiembre 2024', anio: 2024,
     titulo: 'CIPER abre la arista bielorrusa: Vivanco falló a favor del consorcio Belaz-Movitec',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-vv.png', imagenMedio: 'CIPER Chile, 11/09/2024',
     desc: 'CIPER publica que la ministra Ángela Vivanco redactó y firmó fallos a favor del Consorcio Belaz-Movitec (CBM, capitales chilenos y bielorrusos) en su litigio contra Codelco —el cobre desembolsó cerca de $17 mil millones— sin transparentar su relación cercana con el abogado del consorcio, Mario Vargas. La revelación abre la arista conocida como "Muñeca Bielorrusa", paralela al Caso Hermosilla. Días después la Corte Suprema solicita a Vivanco informe por las "irregularidades".',
     intervinientes: ['Ángela Vivanco', 'Mario Vargas (abogado del consorcio)', 'Consorcio Belaz-Movitec (CBM)', 'Codelco', 'CIPER Chile', 'Corte Suprema de Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1333,6 +1429,7 @@ const EVENTOS = [
   {
     fecha: '15 septiembre 2024', anio: 2024,
     titulo: 'CIPER: chats revelan que fiscal Palma coordinó con Hermosilla y Chadwick su candidatura a fiscal nacional',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-palma-hermosilla.png', imagenMedio: 'CIPER Chile, 15/09/2024',
     desc: 'CIPER publica que el fiscal regional de Aysén, Carlos Palma, coordinó con Luis Hermosilla una campaña sistemática para convertirse en fiscal nacional: Hermosilla gestionaba votos ante ministros de la Corte Suprema, ayudaba a nombrar jueces afines y le proporcionó el contacto directo de Andrés Chadwick. Palma se reunió con Chadwick y declaró "Vine a hablar con Andrés". Los chats también revelan que Palma compartió con Hermosilla audios de interceptaciones telefónicas de causas bajo su investigación, configurando presunta revelación de secreto. Hermosilla también apoyaba la candidatura del fiscal José Morales. Palma enfrenta posteriormente investigaciones penales y administrativas.',
     intervinientes: ['Carlos Palma (fiscal regional Aysén)', 'Luis Hermosilla', 'Andrés Chadwick', 'Sebastián Piñera', 'Ana Lya Uriarte (ministra Boric)', 'José Morales (fiscal)', 'CIPER Chile'],
     categorias: ['judicial', 'político', 'mediático'],
@@ -1344,6 +1441,7 @@ const EVENTOS = [
   {
     fecha: 'septiembre 2024', anio: 2024,
     titulo: 'Corte de Apelaciones confirma prisión preventiva',
+    imagen: 'https://www.df.cl/noticias/site/artic/20240905/imag/foto_0000001020240905190701/Audiencia-Hermosilla-_A1.jpg', imagenMedio: 'Diario Financiero',
     desc: 'La Corte de Apelaciones de Santiago confirma la prisión preventiva de Luis Hermosilla y María Leonarda Villalobos, rechazando los recursos presentados por las defensas.',
     intervinientes: ['Luis Hermosilla', 'María Leonarda Villalobos', 'Corte de Apelaciones de Santiago'],
     categorias: ['judicial'],
@@ -1355,6 +1453,7 @@ const EVENTOS = [
   {
     fecha: '1 octubre 2024', anio: 2024,
     titulo: 'Exministro Ward declara ante la Fiscalía detalles de su reunión con Chadwick y Hermosilla por Parque Capital',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ward.png', imagenMedio: 'CIPER Chile, 01/10/2024',
     desc: 'Felipe Ward, exministro de Vivienda del segundo gobierno Piñera, declara ante la Fiscalía los detalles de su encuentro con Andrés Chadwick y Luis Hermosilla en junio de 2020: Chadwick lo convocó a un almuerzo aparentemente político en su oficina de Alonso de Córdova y al final lo llevó a saludar a Hermosilla en su despacho, donde se habló del proyecto Parque Capital. Ward reconoció haberle enviado a Hermosilla el 30 de junio de 2020 un mensaje preguntando si los representantes de Grupo Patio podían solicitar reunión con su jefe de gabinete y el seremi. El testimonio de Ward es clave para acreditar la triangulación Chadwick–Hermosilla–Minvu y sitúa a Chadwick como articulador de la red de influencias.',
     intervinientes: ['Felipe Ward (exministro de Vivienda)', 'Andrés Chadwick', 'Luis Hermosilla', 'Álvaro Jalaff', 'Francisco Feres', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'político'],
@@ -1366,6 +1465,7 @@ const EVENTOS = [
   {
     fecha: '5 octubre 2024', anio: 2024,
     titulo: 'CIPER: la reunión reservada en que Hermosilla entregó minutas a Ward para destrabar Parque Capital',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ward2.png', imagenMedio: 'CIPER Chile, 05/10/2024',
     desc: 'CIPER revela la existencia de una reunión reservada celebrada en agosto de 2020 en la oficina de Hermosilla, donde este entregó personalmente minutas jurídicas al ministro de Vivienda Felipe Ward para destrabar el proyecto Parque Capital. Las minutas contenían "argumentos jurídicos" centrados en el rol de la División de Desarrollo Urbano (DDU) como blindaje legal: "El énfasis del tema DDU me parece importante. Es lo que puede blindar jurídicamente la decisión." Se estableció una estrategia de dos niveles: Ward y Hermosilla impulsarían el avance político, mientras Feres y Errázuriz resolverían los aspectos técnicos ante la Seremi.',
     intervinientes: ['Luis Hermosilla', 'Felipe Ward (ministro de Vivienda)', 'Manuel José Errázuriz (seremi Metropolitano Vivienda)', 'Francisco Feres (asesor Parque Capital)'],
     categorias: ['financiero', 'regulatorio'],
@@ -1377,6 +1477,7 @@ const EVENTOS = [
   {
     fecha: '10 octubre 2024', anio: 2024,
     titulo: 'Corte Suprema destituye a la ministra Ángela Vivanco',
+    imagen: 'https://media-front.elmostrador.cl/2024/10/A_UNO_1610327-700x467.jpg', imagenMedio: 'El Mostrador, 10/10/2024',
     desc: 'El Pleno de la Corte Suprema remueve por unanimidad a la ministra Ángela Vivanco como consecuencia de los chats revelados con Luis Hermosilla que evidenciaban una relación de influencia indebida. Es el primer ministro del máximo tribunal removido en el marco del caso.',
     intervinientes: ['Ángela Vivanco', 'Corte Suprema de Chile', 'Luis Hermosilla'],
     categorias: ['judicial', 'político'],
@@ -1391,6 +1492,7 @@ const EVENTOS = [
   {
     fecha: '16 octubre 2024', anio: 2024,
     titulo: 'Senado destituye al ministro de la Corte Suprema Sergio Muñoz vía acusación constitucional',
+    imagen: 'https://www.df.cl/noticias/site/artic/20241016/imag/foto_0000000720241016175355/Sergio-Mun_oz-_A1.jpg', imagenMedio: 'Diario Financiero',
     desc: 'El Senado aprueba la acusación constitucional contra el ministro de la Corte Suprema Sergio Muñoz —diferente al director de la PDI del mismo nombre— por notable abandono de deberes. Los dos capítulos de la acusación son aprobados por estrecha mayoría (27-21 y 25-23). Muñoz es inhabilitado para ejercer cargos públicos por cinco años. Es el segundo ministro supremo destituido en menos de una semana, tras la remoción de Ángela Vivanco.',
     intervinientes: ['Sergio Muñoz (ministro Corte Suprema)', 'Senado de Chile', 'Luis Hermosilla'],
     categorias: ['judicial', 'político'],
@@ -1404,6 +1506,7 @@ const EVENTOS = [
   {
     fecha: '4 octubre 2024', anio: 2024,
     titulo: 'The Clinic publica los chats del exfiscal Manuel Guerra con Hermosilla',
+    imagen: 'https://static.theclinic.cl/media/2024/10/04-032530_3yju_HER-GUE-2.jpg', imagenMedio: 'The Clinic, 04/10/2024',
     desc: 'The Clinic publica más de 2.300 páginas de conversaciones de WhatsApp entre Luis Hermosilla y el exfiscal regional Oriente Manuel Guerra, que se extienden desde 2016 hasta 2023. Los chats revelan coordinación con el exministro del Interior Andrés Chadwick para resolver el Caso Penta —incluido un acuerdo que evitó el juicio al senador Iván Moreira—, que Guerra entregó información sobre la venta de Minera Dominga (causa que involucraba a la familia Piñera), y que mientras era fiscal pidió a Hermosilla y Chadwick que lo contrataran al salir del Ministerio Público. Posteriores publicaciones revelan insultos a alcaldes Matthei, Carter y Merino.',
     intervinientes: ['Luis Hermosilla', 'Manuel Guerra (exfiscal regional Oriente)', 'Andrés Chadwick (exministro Interior)', 'Iván Moreira', 'Sebastián Piñera', 'The Clinic', 'Ministerio Público'],
     categorias: ['mediático', 'judicial', 'político'],
@@ -1418,6 +1521,7 @@ const EVENTOS = [
   {
     fecha: '21 noviembre 2024', anio: 2024,
     titulo: 'Andrés Chadwick declara más de 2 horas como imputado en el Caso Audio',
+    imagen: 'https://media-front.elmostrador.cl/2024/10/A_UNO_1138788-700x442.jpg', imagenMedio: 'El Mostrador, 21/11/2024',
     desc: 'El exministro del Interior del gobierno de Sebastián Piñera, Andrés Chadwick, declara como imputado durante más de dos horas ante la Fiscalía por su rol en el Caso Audio. Es citado por los chats entre Hermosilla y el exfiscal Manuel Guerra, que sugieren coordinación para favorecer políticos imputados en el Caso Penta. La Fiscalía investiga una posible estructura triangular Guerra–Hermosilla–Chadwick.',
     intervinientes: ['Andrés Chadwick (exministro Interior)', 'Luis Hermosilla', 'Manuel Guerra (exfiscal)', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'político'],
@@ -1430,6 +1534,7 @@ const EVENTOS = [
   {
     fecha: '7 noviembre 2024', anio: 2024,
     titulo: '"La caja de Pandora": Juan Pablo Hermosilla revela lista de 28 jueces y fiscales',
+    imagen: 'https://www.latercera.com/resizer/v2/UPKOVSPRXZFALGRW6P75K5ZU6M.jpg?auth=f197b0d4029ccd421fab45c1ef8441567a5c19223bfc964fbe675e5290138a44&height=630&width=1200&smart=true', imagenMedio: 'La Tercera, 07/11/2024',
     desc: 'El abogado Juan Pablo Hermosilla, hermano y parte del equipo defensor de Luis Hermosilla, hace pública una lista de 28 magistrados y fiscales que habrían sostenido conversaciones por chat con el imputado. La revelación genera enorme impacto institucional. La defensa entrega el listado con el criterio de "interés público": intervención en nombramientos judiciales y en la persecución penal. Entre los nombres aparecen ministros de la Corte Suprema, jueces de cortes de apelaciones y fiscales regionales.',
     intervinientes: ['Juan Pablo Hermosilla', 'Luis Hermosilla', 'Ángel Valencia (fiscal nacional)', 'Jean Pierre Matus (ministro CS)', 'María Teresa Letelier (ministra CS)', 'Mario Carroza (ministro CS)', 'Verónica Sabaj (ministra Corte de Apelaciones de Santiago)', 'Antonio Ulloa (juez Corte de Apelaciones de Santiago)', 'Lorena Parra (fiscal regional Oriente)', 'Manuel Guerra (exfiscal)'],
     categorias: ['judicial', 'político', 'mediático'],
@@ -1444,6 +1549,7 @@ const EVENTOS = [
   {
     fecha: '13 noviembre 2024', anio: 2024,
     titulo: 'Fiscalía de O\'Higgins solicita acceso a chats con jueces Ulloa, Carroza y Poblete',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ulloa.png', imagenMedio: 'CIPER Chile, 13/11/2024',
     desc: 'La Fiscalía Regional de O\'Higgins solicita formalmente al tribunal acceso a los chats del teléfono de Luis Hermosilla que involucran a los jueces Antonio Ulloa, Mario Carroza y Poblete, abriendo una nueva arista territorial del caso que expande la investigación más allá de la Fiscalía Oriente.',
     intervinientes: ['Fiscalía Regional de O\'Higgins', 'Antonio Ulloa', 'Mario Carroza', 'Luis Hermosilla'],
     categorias: ['judicial'],
@@ -1455,6 +1561,7 @@ const EVENTOS = [
   {
     fecha: '29 noviembre 2024', anio: 2024,
     titulo: 'Fiscalía entrega al CDE chats de funcionarios públicos del teléfono de Hermosilla',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-cde.png', imagenMedio: 'CIPER Chile, 29/11/2024',
     desc: 'La Fiscalía Metropolitana Oriente hace entrega al Consejo de Defensa del Estado (CDE) de los chats detectados en el teléfono de Luis Hermosilla que involucran a funcionarios públicos. El material amplía el universo de investigados y permite al CDE evaluar acciones civiles o penales adicionales.',
     intervinientes: ['Fiscalía Metropolitana Oriente', 'Consejo de Defensa del Estado (CDE)', 'Luis Hermosilla'],
     categorias: ['judicial'],
@@ -1466,6 +1573,7 @@ const EVENTOS = [
   {
     fecha: '3 diciembre 2024', anio: 2024,
     titulo: 'CIPER: Chadwick declaró haber convocado la reunión con Ward y admite $235 millones en pagos de Hermosilla',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-pc-1.png', imagenMedio: 'CIPER Chile, 03/12/2024',
     desc: 'En su declaración ante la Fiscalía en el marco de la arista Parque Capital, Andrés Chadwick confirmó haber convocado en junio de 2020 al ministro Ward a un almuerzo y haber facilitado el contacto con Hermosilla, reconociendo que el 25 de junio envió el número de Ward a Hermosilla. Sostuvo desconocer los detalles de las gestiones posteriores ante el Minvu. Admitió además haber recibido de Hermosilla pagos totales por $235 millones —transferencias, cheques y depósitos— que explicó como asesorías a una AFP ($24,9 M), a una empresa tecnológica ($152 M) y a grupos empresariales ($6,4 M), manteniendo en reserva la identidad de sus clientes.',
     intervinientes: ['Andrés Chadwick (exministro Interior)', 'Felipe Ward (exministro Vivienda)', 'Luis Hermosilla', 'Álvaro Jalaff', 'Antonio Jalaff', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'político'],
@@ -1477,6 +1585,7 @@ const EVENTOS = [
   {
     fecha: '6 diciembre 2024', anio: 2024,
     titulo: 'CIPER: Funcionarios de la Seremi de Vivienda revelan ante la Fiscalía las presiones para aprobar Parque Capital',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-parque-capital.jpg', imagenMedio: 'CIPER Chile, 06/12/2024',
     desc: 'Ocho funcionarios de la Seremi Metropolitana de Vivienda declaran ante la Fiscalía describiendo las presiones institucionales para aprobar los IFC de Parque Capital en agosto de 2021. Un analista de planificación recibió llamadas y mensajes mientras estaba en terreno exigiéndole aprobar un expediente el mismo día; la sección jurídica resolvió en dos días (4–6 de agosto) una consulta que normalmente demora meses; los supervisores pedían redactar resoluciones favorables pese a desacuerdos técnicos, señalando "hay que sacarlo sí o sí ese día". Los IFC fueron aprobados en despacho nocturno a las 20:00 del 6 de agosto, con documentos incompletos. El seremi Errázuriz notificó a Hermosilla el resultado entre el 9 y 10 de agosto.',
     intervinientes: ['Manuel José Errázuriz (seremi Metropolitano de Vivienda)', 'Nicolás Bucarey Ilabaca (jefe sección jurídica)', 'Luis Hermosilla', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'regulatorio'],
@@ -1488,6 +1597,7 @@ const EVENTOS = [
   {
     fecha: '17 diciembre 2024', anio: 2024,
     titulo: 'Ariel Sauer y Rodrigo Topelberg dejan la prisión preventiva',
+    imagen: 'https://media-front.elmostrador.cl/2024/12/Ariel-Sauer-Rodrigo-Topelberg-Caso-Factop-700x350.png', imagenMedio: 'El Mostrador, 17/12/2024',
     desc: 'La Corte de Apelaciones revoca la prisión preventiva de Ariel Sauer y Rodrigo Topelberg en el caso Factop, sustituyéndola por arresto domiciliario total. La Fiscalía Oriente no se opuso al cambio, valorando la colaboración de Topelberg con la investigación.',
     intervinientes: ['Ariel Sauer', 'Rodrigo Topelberg', 'Corte de Apelaciones de Santiago', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1500,6 +1610,7 @@ const EVENTOS = [
   {
     fecha: '7 enero 2025', anio: 2025,
     titulo: 'CDE presenta querella criminal contra Hermosilla por tráfico de influencias en arista Parque Capital',
+    imagen: 'https://www.cooperativa.cl/noticias/site/artic/20250107/imag/foto_0000000920250107233528.jpg', imagenMedio: 'Cooperativa, 07/01/2025',
     desc: 'El Consejo de Defensa del Estado (CDE) interpone querella criminal contra Luis Hermosilla por tráfico de influencias en el marco de la arista Parque Capital, un día antes de su formalización. El CDE acusa a Hermosilla de haber ejercido influencias indebidas sobre el ministro Felipe Ward y el seremi Manuel José Errázuriz para obtener la aprobación acelerada de los IFC, en tanto él mismo actuaba como funcionario público (asesor del Ministerio del Interior) y mantenía interés económico en los negocios de Grupo Patio. Según el CDE, los hermanos Álvaro y Antonio Jalaff pagaron a Hermosilla 45.000 UF a cambio de sus gestiones, con lo cual se violó el principio de probidad funcionaria.',
     intervinientes: ['Consejo de Defensa del Estado (CDE)', 'Luis Hermosilla', 'Felipe Ward', 'Manuel José Errázuriz', 'Álvaro Jalaff', 'Antonio Jalaff'],
     categorias: ['judicial'],
@@ -1513,6 +1624,7 @@ const EVENTOS = [
   {
     fecha: '8 enero 2025', anio: 2025,
     titulo: 'Nueva formalización: arista Parque Capital y tráfico de influencias',
+    imagen: 'https://media-front.elmostrador.cl/2024/08/A_UNO_1599409-700x466.jpg', imagenMedio: 'El Mostrador, 08/01/2025',
     desc: 'La Fiscalía formaliza a Luis Hermosilla por tráfico de influencias en el marco de la arista Parque Capital, vinculada a Álvaro Jalaff, Daniel Sauer y el proyecto inmobiliario Parque Capital. Es una ramificación del caso original que amplía los delitos imputados a Hermosilla.',
     intervinientes: ['Luis Hermosilla', 'Álvaro Jalaff', 'Daniel Sauer', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1525,6 +1637,7 @@ const EVENTOS = [
   {
     fecha: '14 enero 2025', anio: 2025,
     titulo: 'Comienza formalización de 20 imputados: causa unificada',
+    imagen: 'https://www.infobae.com/resizer/v2/IJK3VPOLFBEA3L3S4ZU72WSZJU.jpg?auth=15f8b19a0ed040de773865a3c48a166337d9ddf5a6f4f72e9d285a3f607369c7&smart=true&width=1200&height=630&quality=85', imagenMedio: 'Infobae, 14/01/2025',
     desc: 'Se inicia la formalización de 20 imputados en el marco de una causa unificada que agrupa las aristas Audios y Factop. Es considerado el proceso por corrupción más grande de los últimos años en Chile. La investigación llega a sumar hasta 35 imputados. Luis Hermosilla y Leonarda Villalobos son los primeros en ser reformalizados.',
     intervinientes: ['Luis Hermosilla', 'María Leonarda Villalobos', 'Daniel Sauer', 'Ariel Sauer', 'Ministerio Público', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1536,6 +1649,7 @@ const EVENTOS = [
   {
     fecha: '22 enero 2025', anio: 2025,
     titulo: 'Corte Suprema suspende a la ministra Verónica Sabaj y abre cuaderno de remoción',
+    imagen: 'https://media-front.elmostrador.cl/2025/01/magistrada-veronica-sabaj-700x365.jpg', imagenMedio: 'El Mostrador, 22/01/2025',
     desc: 'The Clinic publica las conversaciones que la ministra de la Corte de Apelaciones de Santiago, Verónica Sabaj, sostuvo con Luis Hermosilla desde 2020: los chats revelan que Sabaj colaboró activamente con el abogado en causas que involucraban al expresidente Sebastián Piñera, incluyendo el caso Dominga. La frase "sabes que tenemos pacto forever" sintetiza la relación. Ese mismo día, la Corte Suprema suspende a Sabaj preventivamente y abre un cuaderno de remoción.',
     intervinientes: ['Verónica Sabaj (ministra Corte de Apelaciones de Santiago)', 'Luis Hermosilla', 'Corte Suprema de Chile', 'The Clinic', 'Sebastián Piñera', 'caso Dominga'],
     categorias: ['judicial', 'mediático'],
@@ -1548,6 +1662,7 @@ const EVENTOS = [
   {
     fecha: '23 enero 2025', anio: 2025,
     titulo: 'Tribunal decreta arresto domiciliario para los hermanos Jalaff',
+    imagen: 'https://media.eldinamo.cl/2025/01/23-161351_xsy0_Los-hermanos-Antonio-y-Alvaro-Jalaff-Caso-Factop-1600x900.jpg', imagenMedio: 'El Dínamo, 23/01/2025',
     desc: 'Tras la formalización masiva, la jueza Cheryl Fernández decreta arresto domiciliario total para Álvaro Jalaff y arresto domiciliario nocturno para Antonio Jalaff, rechazando la solicitud de prisión preventiva de la Fiscalía. Álvaro Jalaff arriesga hasta 20 años de cárcel; Antonio, hasta 23 años, por los delitos de lavado de activos, estafa, administración desleal y uso malicioso de instrumento privado falso.',
     intervinientes: ['Álvaro Jalaff', 'Antonio Jalaff', 'jueza Cheryl Fernández', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1561,6 +1676,7 @@ const EVENTOS = [
   {
     fecha: '9 enero 2025', anio: 2025,
     titulo: 'Topelberg amplía querella contra LarrainVial',
+    imagen: 'https://media-front.elmostrador.cl/2024/08/rodrigo-topelberg-factop-hermosilla-700x330.png', imagenMedio: 'El Mostrador, 09/01/2025',
     desc: 'Rodrigo Topelberg amplía por segunda vez su querella en el Caso Factop, esta vez apuntando a LarrainVial, sumando una arista financiera contra la corredora más antigua del país por su rol en la estructuración del fondo "Capital Estructurado I" ligado a Factop.',
     intervinientes: ['Rodrigo Topelberg', 'LarrainVial'],
     categorias: ['judicial', 'financiero'],
@@ -1572,6 +1688,7 @@ const EVENTOS = [
   {
     fecha: '5 febrero 2025', anio: 2025,
     titulo: 'Corte de Apelaciones rechaza sobreseer a Hermosilla en arista Parque Capital',
+    imagen: 'https://uchile-media-storage.nyc3.cdn.digitaloceanspaces.com/2024/08/Luis-Hermosilla-2-1.jpg', imagenMedio: 'Radio Universidad de Chile, 05/02/2025',
     desc: 'La Séptima Sala de la Corte de Apelaciones de Santiago rechaza el recurso de sobreseimiento presentado por la defensa de Luis Hermosilla (su hermano Juan Pablo Hermosilla) en la arista Parque Capital, despejando el camino hacia el juicio oral. El fiscal Miguel Ángel Orellana declaró que "el destino final de este caso es efectivamente un juicio oral". El eje del debate fue si Hermosilla tenía la calidad de funcionario público cuando operó por Parque Capital —condición que la Fiscalía considera acreditada (era asesor del Ministerio del Interior) y la defensa rechaza—. Hermosilla había declarado ante la Fiscalía: "No gané ni recibí 5.000 UF".',
     intervinientes: ['Luis Hermosilla', 'Juan Pablo Hermosilla (defensa)', 'Corte de Apelaciones de Santiago', 'fiscal Miguel Ángel Orellana'],
     categorias: ['judicial'],
@@ -1585,6 +1702,7 @@ const EVENTOS = [
   {
     fecha: '20 marzo 2025', anio: 2025,
     titulo: 'Hermosilla sale de prisión preventiva tras 205 días: arresto domiciliario',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2025/03/20/file_20250320142349.jpg', imagenMedio: 'Emol, 20/03/2025',
     desc: 'El 4° Juzgado de Garantía sustituye la prisión preventiva de Luis Hermosilla por arresto domiciliario total y arraigo nacional, tras 205 días privado de libertad. La defensa argumentó deterioro de salud mental respaldado por informes médicos.',
     intervinientes: ['Luis Hermosilla', '4° Juzgado de Garantía de Santiago'],
     categorias: ['judicial'],
@@ -1608,6 +1726,7 @@ const EVENTOS = [
   {
     fecha: '31 marzo 2025', anio: 2025,
     titulo: 'Corte de Apelaciones revoca el arresto domiciliario: Hermosilla vuelve a prisión',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2025/03/31/file_20250331174435.jpg', imagenMedio: 'Emol, 31/03/2025',
     desc: 'La Corte de Apelaciones de Santiago revoca la resolución que había concedido el arresto domiciliario a Hermosilla y ordena su regreso inmediato a prisión preventiva, acogiendo el recurso de la Fiscalía.',
     intervinientes: ['Luis Hermosilla', 'Corte de Apelaciones de Santiago', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1619,6 +1738,7 @@ const EVENTOS = [
   {
     fecha: '19 marzo 2025', anio: 2025,
     titulo: 'CIPER: Fiscalía investiga gestiones de Ulloa y Hermosilla en el nombramiento de 8 jueces y 3 fiscales judiciales',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ulloa-1.png', imagenMedio: 'CIPER Chile, 19/03/2025',
     desc: 'CIPER revela que la Fiscalía de Alta Complejidad de O\'Higgins investiga 14 gestiones coordinadas entre Luis Hermosilla y el ministro Antonio Ulloa relativas a nombramientos judiciales: cuatro postulaciones del propio Ulloa, siete designaciones ministeriales y tres concursos fiscales. Los ocho jueces cuestionados son: Alejandro Aguilar, Graciela Gómez, Rafael Corvalán, Paulina Gallardo, Gerardo Bernales, Verónica Sabaj, Mónica Olivares y María Gutiérrez. Los tres fiscales judiciales involucrados incluyen a Macarena Troncoso y Ana María Hernández. Los mecanismos identificados incluyen presión directa de Hermosilla a asesores presidenciales de Piñera (Benjamín Salas Kantor, Andrés Sotomayor, Pablo Urquízar) y solicitudes recíprocas de Sabaj hacia Hermosilla "como favor personal". La investigación se abrió en octubre de 2024 tras denuncia de parlamentarios PS.',
     intervinientes: ['Luis Hermosilla', 'Antonio Ulloa', 'Verónica Sabaj', 'Paulina Gallardo', 'Alejandro Aguilar', 'Graciela Gómez', 'Macarena Troncoso', 'Benjamín Salas Kantor', 'Andrés Sotomayor', 'Pablo Urquízar', 'Carlos Palma (fiscal suspendido)', 'Fiscalía Regional O\'Higgins'],
     categorias: ['judicial', 'mediático'],
@@ -1630,6 +1750,7 @@ const EVENTOS = [
   {
     fecha: '4 abril 2025', anio: 2025,
     titulo: 'Contradicción entre Chadwick y Guerra: el exministro niega reuniones, el exfiscal admite cinco o seis encuentros',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-fiscalia-1.png', imagenMedio: 'CIPER Chile, 04/04/2025',
     desc: 'CIPER revela la profunda contradicción entre las declaraciones de Andrés Chadwick y Manuel Guerra ante el fiscal Mario Carrera. Chadwick niega categóricamente haberse reunido con Guerra fuera de un encuentro oficial de 2018: "No tuve otras interacciones con él". En cambio, Guerra admite entre cinco y seis encuentros con Chadwick, principalmente en almuerzos con Luis Hermosilla como intermediario, e incluso una reunión en el domicilio de Chadwick en Vitacura en el verano de 2020 donde habría estado presente el expresidente Sebastián Piñera. La Fiscalía ordena un peritaje de georreferenciación telefónica para verificar los encuentros reales entre ambos.',
     intervinientes: ['Andrés Chadwick (exministro Interior)', 'Manuel Guerra (exfiscal regional)', 'Luis Hermosilla', 'Sebastián Piñera', 'Mario Carrera (fiscal regional Arica)'],
     categorias: ['judicial', 'político'],
@@ -1641,6 +1762,7 @@ const EVENTOS = [
   {
     fecha: '7 abril 2025', anio: 2025,
     titulo: 'Carlos Eugenio Lavín confirma reuniones con Chadwick y Hermosilla por el Caso Penta',
+    imagen: 'https://media.eldesconcierto.cl/p/5f92c61ad4a54d23d370bd13436a9c61/adjuntos/378/imagenes/100/011/0100011573/1200x675/smart/se-metio-la-oficina-carlos-eugenio-lavin-confirma-reuniones-chadwick-y-hermosilla-el-caso-pentawebp.webp', imagenMedio: 'El Desconcierto, 07/04/2025',
     desc: 'Carlos Eugenio Lavín, uno de los históricos dueños del Grupo Penta, declara ante la Fiscalía y confirma que sostuvo reuniones con el exministro Andrés Chadwick y el abogado Luis Hermosilla en el contexto del Caso Penta sobre financiamiento ilegal de la política. Lavín dice que Chadwick "se metió a la oficina", reforzando la tesis de la estructura triangular Guerra–Hermosilla–Chadwick.',
     intervinientes: ['Carlos Eugenio Lavín (Grupo Penta)', 'Andrés Chadwick', 'Luis Hermosilla', 'Manuel Guerra', 'Fiscalía'],
     categorias: ['judicial', 'político'],
@@ -1652,6 +1774,7 @@ const EVENTOS = [
   {
     fecha: '25 abril 2025', anio: 2025,
     titulo: 'Fiscalía ofrece a Héctor Mery (ministro TC) que él mismo seleccione sus mensajes con Hermosilla',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-mery.png', imagenMedio: 'CIPER Chile, 25/04/2025',
     desc: 'La Fiscalía Regional de O\'Higgins, que investiga la red de nombramientos judiciales, ofrece al ministro del Tribunal Constitucional Héctor Mery un trato inusual: que él mismo determine cuáles de sus mensajes con Luis Hermosilla son relevantes para la investigación, evitando así que los fiscales revisen toda su correspondencia. El fiscal señala que Mery "fue invitado a acudir a la fiscalía a entregar él sus mensajes para no indagar en textos o mensajería". La propuesta es rechazada por la defensa de Mery. Las comunicaciones investigadas involucran a Mery, Hermosilla y Ulloa en la coordinación de al menos 14 nombramientos de altos cargos judiciales. Mery fue exjefe de la División Judicial del Ministerio de Justicia.',
     intervinientes: ['Héctor Mery (ministro Tribunal Constitucional)', 'Luis Hermosilla', 'Antonio Ulloa', 'Aquiles Cubillos (fiscal regional O\'Higgins)', 'Matías Künsemüller (abogado defensor de Mery)'],
     categorias: ['judicial'],
@@ -1663,6 +1786,7 @@ const EVENTOS = [
   {
     fecha: '9 mayo 2025', anio: 2025,
     titulo: 'PRIMERA SENTENCIA del caso: exdirector PDI Sergio Muñoz condenado a 3 años de libertad vigilada',
+    imagen: 'https://www.cooperativa.cl/noticias/site/artic/20250509/imag/foto_0000000120250509123013.jpg', imagenMedio: 'Cooperativa, 09/05/2025',
     desc: 'El exdirector general de la PDI, Sergio Muñoz, es condenado a 3 años y 1 día de libertad vigilada intensiva por revelación de secreto reiterada. Debe pagar 823 mil pesos de multa y queda inhabilitado para ejercer cargos públicos durante el cumplimiento de la pena. Es la **primera sentencia condenatoria** dictada en el marco del Caso Hermosilla, tras acuerdo de procedimiento abreviado. Muñoz declara: "Soy un hombre honesto que cometió un error fatal que he asumido".',
     intervinientes: ['Sergio Muñoz (exdirector PDI)', 'Fiscalía Metropolitana Oriente', '4° Juzgado de Garantía'],
     categorias: ['judicial'],
@@ -1676,6 +1800,7 @@ const EVENTOS = [
   {
     fecha: '20 mayo 2025', anio: 2025,
     titulo: 'CIPER: nuevos chats muestran que Ulloa filtraba resoluciones reservadas a Hermosilla',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ulloa-2-1.png', imagenMedio: 'CIPER Chile, 20/05/2025',
     desc: 'CIPER revela nuevos chats que demuestran que el ministro Antonio Ulloa filtraba resoluciones reservadas, decisiones administrativas del pleno de la Corte de Apelaciones y actas de concursos de al menos 11 postulaciones a Luis Hermosilla. Es el aporte clave del reportaje que sostiene la posterior acusación constitucional.',
     intervinientes: ['Antonio Ulloa', 'Luis Hermosilla', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1687,6 +1812,7 @@ const EVENTOS = [
   {
     fecha: '26 mayo 2025', anio: 2025,
     titulo: 'Corte de Santiago aplica sanción máxima a Sabaj: suspensión de cuatro meses',
+    imagen: 'https://static.theclinic.cl/media/2025/04/04-143430_ajn5_veronica-sabaj.jpeg', imagenMedio: 'The Clinic, 26/05/2025',
     desc: 'El pleno de la Corte de Apelaciones de Santiago aprueba por unanimidad la sanción máxima contra Verónica Sabaj en el marco del sumario disciplinario: cuatro meses de suspensión con medio sueldo. Es la sanción más alta que puede aplicar ese tribunal.',
     intervinientes: ['Verónica Sabaj', 'Corte de Apelaciones de Santiago'],
     categorias: ['judicial'],
@@ -1699,6 +1825,7 @@ const EVENTOS = [
   {
     fecha: '6 junio 2025', anio: 2025,
     titulo: 'Corte revoca prisión preventiva: Hermosilla sale de Capitán Yáber',
+    imagen: 'https://uchile-media-storage.nyc3.cdn.digitaloceanspaces.com/2025/06/Luis-Hermosilla.jpg', imagenMedio: 'Radio Universidad de Chile, 06/06/2025',
     desc: 'La Octava Sala de la Corte de Apelaciones de Santiago revoca definitivamente la prisión preventiva de Luis Hermosilla y decreta arresto domiciliario total, más arraigo nacional y prohibición de comunicarse con otros imputados. Hermosilla abandona el penal Capitán Yáber. La Corte pondera los informes médicos de la defensa y el tiempo ya cumplido en reclusión.',
     intervinientes: ['Luis Hermosilla', 'Corte de Apelaciones de Santiago (Octava Sala)'],
     categorias: ['judicial'],
@@ -1712,6 +1839,7 @@ const EVENTOS = [
   {
     fecha: '12 junio 2025', anio: 2025,
     titulo: 'Corte de Apelaciones de Santiago suspende al juez Ulloa y abre cuaderno de remoción',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ulloa-2-2.png', imagenMedio: 'CIPER Chile, 12/06/2025',
     desc: 'El pleno de la Corte de Apelaciones de Santiago, actuando sobre propuesta de la fiscal judicial Javiera González, aprueba cuatro meses de suspensión con medio sueldo para Antonio Ulloa y abre cuaderno de remoción. Los tres cargos son: (1) falta a la probidad por conflicto de intereses al intervenir en causas donde actuaban Hermosilla y Samuel Donoso sin abstenerse; (2) filtración de información reservada —envío a Hermosilla de actas de al menos 11 postulaciones a concursos de cargos judiciales antes de su firma oficial—; y (3) participación indebida en la recusación presentada por Donoso contra el juez Daniel Urrutia, cuya enemistad con Ulloa quedó evidenciada en chats. La Corte Suprema queda encargada de resolver la remoción definitiva.',
     intervinientes: ['Antonio Ulloa (ministro Corte de Apelaciones de Santiago)', 'Corte de Apelaciones de Santiago', 'Javiera González (fiscal judicial)', 'Luis Hermosilla', 'Samuel Donoso (abogado)', 'Daniel Urrutia (juez)', 'Corte Suprema de Chile'],
     categorias: ['judicial'],
@@ -1723,6 +1851,7 @@ const EVENTOS = [
   {
     fecha: '17 junio 2025', anio: 2025,
     titulo: 'Manuel Guerra acusa al fiscal del caso de haberle filtrado antecedentes sobre el exalcalde Torrealba',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-guerra-3.png', imagenMedio: 'CIPER Chile, 17/06/2025',
     desc: 'Durante su declaración ante la Fiscalía Regional de Arica, el exfiscal Manuel Guerra declaró que el fiscal Felipe Sepúlveda —quien lleva la causa Hermosilla— le habría revelado antecedentes confidenciales de la investigación contra el exalcalde de Vitacura, Raúl Torrealba. Según CIPER, la filtración ocurrió el 28 de agosto de 2021: ese día Guerra escribió a Hermosilla detalles específicos ("La Antonia Larraín... fue apretada por el nuevo director" y "Le encontraron 7 palos en la casa en efectivo") que la prensa solo conocería tres días después. La declaración agrega presión sobre el equipo fiscal e introduce la defensa de Guerra basada en la "responsabilidad compartida".',
     intervinientes: ['Manuel Guerra (exfiscal regional Oriente)', 'Felipe Sepúlveda (fiscal caso Hermosilla)', 'Luis Hermosilla', 'Raúl Torrealba (exalcalde Vitacura)', 'Mario Carrera (fiscal regional Arica)'],
     categorias: ['judicial'],
@@ -1734,6 +1863,7 @@ const EVENTOS = [
   {
     fecha: '28 junio 2025', anio: 2025,
     titulo: 'Arista bielorrusa: Fiscalía solicita al Banco Central los movimientos de Vivanco',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-vivanco.png', imagenMedio: 'CIPER Chile, 28/06/2025',
     desc: 'En el marco de la investigación de la "Muñeca Bielorrusa", la Fiscalía solicita al Banco Central los movimientos de dinero de la exjueza Ángela Vivanco, su pareja Gonzalo Migueles, Luis Hermosilla y otras ocho personas. La diligencia busca rastrear los pagos del Consorcio Belaz-Movitec a quienes fallaron a su favor contra Codelco.',
     intervinientes: ['Fiscalía', 'Banco Central', 'Ángela Vivanco', 'Gonzalo Migueles', 'Luis Hermosilla'],
     categorias: ['judicial'],
@@ -1756,6 +1886,7 @@ const EVENTOS = [
   {
     fecha: '25 agosto 2025', anio: 2025,
     titulo: 'CMF aplica multa histórica de US$2,45 millones a LarrainVial por "fondo corneta"',
+    imagen: 'https://www.df.cl/noticias/site/artic/20250825/imag/foto_0000001420250825174050/COLLAGE.jpg', imagenMedio: 'Diario Financiero',
     desc: 'La CMF aplica la **sanción más alta de su historia** —US$2,45 millones (UF 60.000)— a LarrainVial Activos AGF por su rol en la estructuración del fondo de inversión "Capital Estructurado I", la llamada arista "fondo corneta" del Caso Factop. Su ex gerente general Claudio Yáñez Fregonara recibe una multa de UF 15.000 ($589 millones). La CMF determina que valorizaron activos como participación en equity (Grupo Patio) cuando en realidad eran créditos deteriorados contra Inversiones San Antonio.',
     intervinientes: ['CMF', 'LarrainVial Activos AGF', 'Claudio Yáñez Fregonara', 'Grupo Patio', 'Inversiones San Antonio'],
     categorias: ['regulatorio', 'financiero'],
@@ -1769,6 +1900,7 @@ const EVENTOS = [
   {
     fecha: '25 agosto 2025', anio: 2025,
     titulo: 'CIPER: chats revelan 14 nombramientos coordinados entre Ulloa y Hermosilla',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ulloa-4.png', imagenMedio: 'CIPER Chile, 25/08/2025',
     desc: 'CIPER publica una investigación que demuestra cómo Hermosilla y el ministro Ulloa se coordinaron para empujar 14 nombramientos de altos cargos judiciales —incluido el del juez que llegó a presidir la Corte de Valparaíso—, develando un mecanismo sistemático para instalar jueces y fiscales según afinidad política. La evidencia complementa el sumario administrativo y la acusación constitucional contra Ulloa.',
     intervinientes: ['Antonio Ulloa', 'Luis Hermosilla', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1781,6 +1913,7 @@ const EVENTOS = [
   {
     fecha: '25 agosto 2025', anio: 2025,
     titulo: 'Nuevas formalizaciones: arista Parque Capital por administración desleal y lavado de activos',
+    imagen: 'https://www.cooperativa.cl/noticias/site/artic/20250825/imag/foto_0000000120250825112416.jpg', imagenMedio: 'Cooperativa, 25/08/2025',
     desc: 'La Fiscalía formaliza a Luis Hermosilla, Daniel Sauer y Álvaro Jalaff por los delitos de administración desleal y lavado de activos en el marco de la arista Parque Capital. No se modifican las medidas cautelares: los imputados continúan en arresto domiciliario total.',
     intervinientes: ['Luis Hermosilla', 'Daniel Sauer', 'Álvaro Jalaff', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial'],
@@ -1793,6 +1926,7 @@ const EVENTOS = [
   {
     fecha: '25 agosto 2025', anio: 2025,
     titulo: 'Corte Suprema ratifica suspensión de cuatro meses a Sabaj',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2025/08/social-veronica-sabaj.png', imagenMedio: 'BioBioChile, 25/08/2025',
     desc: 'La Corte Suprema ratifica la sanción de cuatro meses de suspensión con medio sueldo impuesta a Verónica Sabaj por la Corte de Santiago.',
     intervinientes: ['Verónica Sabaj', 'Corte Suprema de Chile'],
     categorias: ['judicial'],
@@ -1804,6 +1938,7 @@ const EVENTOS = [
   {
     fecha: '10 septiembre 2025', anio: 2025,
     titulo: 'Corte Suprema ordena la expulsión de Sabaj del Poder Judicial',
+    imagen: 'https://cambio21.cl/image/68c1a863a6a3544b8e3aeb43.jpg', imagenMedio: 'Cambio21, 2025',
     desc: 'La Corte Suprema resuelve la remoción definitiva de Verónica Sabaj del Poder Judicial, en el marco del cuaderno de remoción iniciado en enero. La sanción disciplinaria la aparta definitivamente de la magistratura.',
     intervinientes: ['Verónica Sabaj', 'Corte Suprema de Chile'],
     categorias: ['judicial'],
@@ -1826,6 +1961,7 @@ const EVENTOS = [
   {
     fecha: '26 septiembre 2025', anio: 2025,
     titulo: 'CMF rebaja las multas a LarrainVial tras recursos de reposición',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2025/09/social-comision-para-el-mercado-financiero-cmf-rebaja-multas-a-larrainvial-y-ex-ejecutivos.jpg', imagenMedio: 'BioBioChile, 26/09/2025',
     desc: 'Tras los recursos de reposición presentados por LarrainVial Activos y sus exejecutivos, la CMF rebaja las multas: la sanción a la AGF baja de UF 60.000 a UF 50.000 y la del ex gerente Yáñez de UF 15.000 a UF 12.000. La sanción a STF Capital se mantiene.',
     intervinientes: ['CMF', 'LarrainVial Activos AGF', 'Claudio Yáñez Fregonara', 'STF Capital'],
     categorias: ['regulatorio', 'financiero'],
@@ -1838,6 +1974,7 @@ const EVENTOS = [
   {
     fecha: '8 octubre 2025', anio: 2025,
     titulo: 'CIPER revela chats de Hermosilla, Sabaj y Ulloa para nombrar a la fiscal Lorena Parra',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-hermosilla.png', imagenMedio: 'CIPER Chile, 08/10/2025',
     desc: 'CIPER publica una investigación que muestra cómo Luis Hermosilla, la exministra Verónica Sabaj y el juez Antonio Ulloa coordinaron acciones para conseguir los votos necesarios en la nominación de Lorena Parra como fiscal regional Oriente. La publicación amplía la evidencia de una red de interferencia en nombramientos judiciales y del Ministerio Público.',
     intervinientes: ['Luis Hermosilla', 'Verónica Sabaj', 'Antonio Ulloa', 'Lorena Parra (fiscal regional Oriente)', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1849,6 +1986,7 @@ const EVENTOS = [
   {
     fecha: '23 octubre 2025', anio: 2025,
     titulo: 'OS7 allana el Conservador de Bienes Raíces de Chillán: $25 millones de Najle a la pareja de Vivanco',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-najle.png', imagenMedio: 'CIPER Chile, 24/10/2025',
     desc: 'Funcionarios del OS7 de Carabineros allanan las oficinas del Conservador de Bienes Raíces de Chillán, dirigidas por Yamil Najle, entre las 15:00 y las 19:30 horas, incautando documentos en papel y formato digital. La investigación de la Fiscalía Regional de Los Lagos determina que Najle transfirió $25 millones a Gonzalo Migueles —pareja de la exministra Ángela Vivanco— en cinco cuotas de $5 millones realizadas entre el 17 y el 19 de julio de 2024. Dos meses después de esas transferencias, Najle fue designado conservador en Chillán. Vivanco justificó los pagos indicando que Migueles "presta servicios para las empresas del señor Najle y su familia desde 2022" mediante boletas de honorarios.',
     intervinientes: ['Yamil Najle (conservador Chillán)', 'Gonzalo Migueles', 'Ángela Vivanco', 'OS7 de Carabineros', 'Fiscalía Regional de Los Lagos', 'Luis Hermosilla'],
     categorias: ['judicial', 'financiero'],
@@ -1860,6 +1998,7 @@ const EVENTOS = [
   {
     fecha: '27 octubre 2025', anio: 2025,
     titulo: 'Corte Suprema rechaza recurso de Sabaj y sella su remoción definitiva',
+    imagen: 'https://media.eldinamo.cl/2025/10/Veronica-Sabaj.png', imagenMedio: 'El Dínamo, 27/10/2025',
     desc: 'La Corte Suprema rechaza el recurso de reposición interpuesto por Verónica Sabaj y confirma su expulsión definitiva del Poder Judicial. Sabaj había intentado revertir la sanción argumentando que no hubo dolo en sus actuaciones.',
     intervinientes: ['Verónica Sabaj', 'Corte Suprema de Chile'],
     categorias: ['judicial'],
@@ -1872,6 +2011,7 @@ const EVENTOS = [
   {
     fecha: '29 octubre 2025', anio: 2025,
     titulo: 'Cámara de Diputados aprueba acusación constitucional contra el juez Antonio Ulloa',
+    imagen: 'https://media.eldinamo.cl/2025/10/AC-juez-Antonio-Ulloa.png', imagenMedio: 'El Dínamo, 29/10/2025',
     desc: 'La Cámara de Diputados aprueba por amplia mayoría la acusación constitucional contra el juez de la Corte de Apelaciones de Santiago, Antonio Ulloa, por sus vínculos con Luis Hermosilla. Los capítulos acusados incluyen filtración de resoluciones reservadas al abogado, infracción al deber de abstención e imparcialidad, e intervención indebida en nombramientos judiciales. El Senado queda encargado de resolver la destitución.',
     intervinientes: ['Antonio Ulloa (juez Corte de Apelaciones de Santiago)', 'Cámara de Diputados', 'Senado de Chile', 'Luis Hermosilla'],
     categorias: ['judicial', 'político'],
@@ -1883,6 +2023,7 @@ const EVENTOS = [
   {
     fecha: '10 noviembre 2025', anio: 2025,
     titulo: 'Senado destituye al juez Antonio Ulloa: cuarto magistrado removido por el caso',
+    imagen: 'https://www.latercera.com/resizer/v2/WZZBOXW6WZCKFAUJC42WSDV6JM.jpg?auth=a0c9ad1ca87a866dce162cc97205861fc7970880a1facafc16d42fb0678d6e71&height=630&width=1200&smart=true', imagenMedio: 'La Tercera, 10/11/2025',
     desc: 'El Senado aprueba los tres capítulos de la acusación constitucional contra el juez de la Corte de Apelaciones de Santiago, Antonio Ulloa, y lo destituye del Poder Judicial. El primer capítulo es aprobado por 44 votos a favor y 3 abstenciones; los capítulos segundo y tercero por mayorías más estrechas. Ulloa queda inhabilitado para ejercer cargos públicos por cinco años.',
     intervinientes: ['Antonio Ulloa', 'Senado de Chile', 'Luis Hermosilla'],
     categorias: ['judicial', 'político'],
@@ -1896,6 +2037,7 @@ const EVENTOS = [
   {
     fecha: '5 noviembre 2025', anio: 2025,
     titulo: 'Fiscalía acusa: al menos $57 millones del consorcio bielorruso llegaron a Vivanco y su pareja',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-vargas.png', imagenMedio: 'CIPER Chile, 05/11/2025',
     desc: 'La Fiscalía acusa que al menos dos pagos —US$14.000 y $45 millones— del Consorcio Belaz-Movitec fueron recibidos por Gonzalo Migueles, pareja de la exjueza Ángela Vivanco, totalizando un beneficio de $57 millones para la pareja. Parte del dinero se habría gastado en vacaciones en Argentina y Brasil. Los conservadores Sergio Yáber y Yamil Najle aparecen como intermediarios en la circulación de los fondos.',
     intervinientes: ['Ángela Vivanco', 'Gonzalo Migueles', 'Consorcio Belaz-Movitec (CBM)', 'Sergio Yáber (conservador)', 'Yamil Najle (conservador)', 'Fiscalía'],
     categorias: ['judicial'],
@@ -1908,6 +2050,7 @@ const EVENTOS = [
   {
     fecha: '14 noviembre 2025', anio: 2025,
     titulo: 'CIPER: supremo que viajó en crucero con abogado bielorruso redactó el fallo a favor del consorcio',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-ds.png', imagenMedio: 'CIPER Chile, 14/11/2025',
     desc: 'CIPER revela que otro ministro de la Corte Suprema —que viajó en crucero con el abogado del Consorcio Belaz-Movitec, Mario Vargas— fue el redactor del fallo que entregó $1.026 millones a esa empresa contra Codelco. Profundiza la arista bielorrusa más allá de Vivanco.',
     intervinientes: ['Corte Suprema de Chile', 'Mario Vargas (abogado CBM)', 'Consorcio Belaz-Movitec', 'Codelco', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -1919,6 +2062,7 @@ const EVENTOS = [
   {
     fecha: 'diciembre 2025', anio: 2025,
     titulo: 'PDI: informe sobre Inversiones Guayasamín revela esquema de lavado de los Sauer',
+    imagen: 'https://www.latercera.com/resizer/v2/2D2X23QMPBEZ7EHLL564FKWZ2E.png?auth=765d72a96989f3dd321bac48f58e3e3400e64bcd0fe6ba7d8be9b45b3c5ea108&height=630&width=1200&smart=true', imagenMedio: 'La Tercera',
     desc: 'La PDI emite un informe sobre Inversiones Guayasamín —empresa del clan Sauer— como pieza clave del lavado de activos. Según la investigación, mediante diversas sociedades los Sauer "estructuraron un esquema fraudulento" para dar apariencia de legalidad a su actividad ilícita ligada a delitos de estafa, infracción a la Ley de Mercado de Valores y actividad bancaria no autorizada. Guayasamín habría generado ventas por más de $24 mil millones.',
     intervinientes: ['PDI', 'Daniel Sauer', 'Ariel Sauer', 'Inversiones Guayasamín', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'financiero'],
@@ -1930,6 +2074,7 @@ const EVENTOS = [
   {
     fecha: '22 diciembre 2025', anio: 2025,
     titulo: 'Senado destituye al ministro Diego Simpertigue: quinto magistrado removido',
+    imagen: 'https://media-front.elmostrador.cl/2025/12/A_UNO_1708684-700x467.jpg', imagenMedio: 'El Mostrador, 22/12/2025',
     desc: 'El Senado destituye al ministro de la Corte Suprema Diego Simpertigue por notable abandono de deberes. Es el quinto magistrado removido en menos de dos años a raíz del caso. La cadena de destituciones —Ángela Vivanco, Sergio Muñoz (CS), Verónica Sabaj, Antonio Ulloa y Diego Simpertigue— refleja la crisis sistémica de credibilidad e independencia judicial gatillada por el Caso Hermosilla.',
     intervinientes: ['Diego Simpertigue (ministro Corte Suprema)', 'Senado de Chile', 'Corte Suprema de Chile'],
     categorias: ['judicial', 'político'],
@@ -1943,6 +2088,7 @@ const EVENTOS = [
   {
     fecha: '14 enero 2026', anio: 2026,
     titulo: 'PDI allana domicilio de la exministra suprema María Teresa Letelier e incauta un aparato electrónico',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-letelier-2.png', imagenMedio: 'CIPER Chile, 14/01/2026',
     desc: 'Cuatro efectivos de la PDI realizan una diligencia en el domicilio de María Teresa Letelier —exministra de la Corte Suprema, jubilada el 24 de diciembre de 2025— a cargo de la Fiscal Regional de Valparaíso, Claudia Perivancich. La investigación detectó "presuntas discordancias" con la declaración que Letelier brindó en abril de 2025, en el marco de la arista de nombramientos judiciales. Se incauta un aparato electrónico. Letelier aparece en chats entre Hermosilla y el juez Mario Carroza: reconoció haber recibido a Hermosilla en abril de 2021, quien le ofreció "ayuda para convertirse en integrante de ese tribunal". El exjuez Juan Antonio Poblete habría realizado "gestiones y lobby" para facilitar su nombramiento a la Suprema.',
     intervinientes: ['María Teresa Letelier (exministra Corte Suprema)', 'PDI', 'Claudia Perivancich (fiscal regional Valparaíso)', 'Luis Hermosilla', 'Mario Carroza (exministro Corte Suprema)', 'Juan Antonio Poblete (exjuez)'],
     categorias: ['judicial'],
@@ -1954,6 +2100,7 @@ const EVENTOS = [
   {
     fecha: '16 enero 2026', anio: 2026,
     titulo: 'Fiscalía cierra investigación: se alista acusación formal',
+    imagen: 'https://www.latercera.com/resizer/v2/VZBIZ226PRAAJEPUVUFFJBU64E.png?auth=549903c0246dc714356ee9e09c1f0505b6f518d0a2479098318aba55be6381db&height=630&width=1200&focal=977%2C394', imagenMedio: 'La Tercera',
     desc: 'La Fiscalía Metropolitana Oriente cierra la investigación del caso Audio-Factop. A partir de esa fecha, el Ministerio Público tiene diez días para presentar la acusación formal e ir a juicio oral contra todos los imputados. Los fiscales Felipe Sepúlveda y Juan Pablo Araya confirman estar a punto de acusar a Luis Hermosilla, Leonarda Villalobos, Daniel Sauer, Antonio Jalaff y Álvaro Jalaff, entre otros.',
     intervinientes: ['Fiscalía Metropolitana Oriente', 'Felipe Sepúlveda', 'Juan Pablo Araya', 'Luis Hermosilla', 'María Leonarda Villalobos', 'Daniel Sauer', 'Antonio Jalaff', 'Álvaro Jalaff'],
     categorias: ['judicial'],
@@ -1966,6 +2113,7 @@ const EVENTOS = [
   {
     fecha: '25 enero 2026', anio: 2026,
     titulo: 'Formalización y prisión preventiva de Ángela Vivanco en la arista bielorrusa',
+    imagen: 'https://www.cooperativa.cl/noticias/site/artic/20260130/imag/foto_0000000120260130121959.png', imagenMedio: 'Cooperativa, 30/01/2026',
     desc: 'Personal del OS7 de Carabineros detiene a la exministra Ángela Vivanco en el marco de la arista bielorrusa, a solicitud de la Fiscalía Regional de Los Lagos. El 30 de enero, el tribunal decreta prisión preventiva por los delitos de cohecho y lavado de activos: la acusación sostiene que Vivanco habría favorecido al Consorcio Belaz-Movitec (CBM) en litigios contra Codelco desde la Tercera Sala de la Corte Suprema, recibiendo a cambio pagos cercanos a $90 millones canalizados a Gonzalo Migueles por los abogados Mario Vargas y Eduardo Lagos. Es la primera exministra de la Corte Suprema detenida y enviada a prisión preventiva en el contexto del Caso Hermosilla. Queda recluida en un centro de detención femenino.',
     intervinientes: ['Ángela Vivanco', 'OS7 de Carabineros', 'Fiscalía Regional de Los Lagos', 'Gonzalo Migueles', 'Mario Vargas (abogado CBM)', 'Eduardo Lagos (abogado CBM)', 'Consorcio Belaz-Movitec', 'Codelco'],
     categorias: ['judicial'],
@@ -1979,6 +2127,7 @@ const EVENTOS = [
   {
     fecha: '27 enero 2026', anio: 2026,
     titulo: 'Fiscalía de Aysén investigará a parlamentarios mencionados en la trama bielorrusa',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-lagos.png', imagenMedio: 'CIPER Chile, 27/01/2026',
     desc: 'El fiscal nacional Ángel Valencia instruye que la arista política del caso —vinculada al consorcio Belaz-Movitec— quede a cargo de la Fiscalía Regional de Aysén, encabezada por el fiscal regional Hernán Libedinsky. El abogado Eduardo Lagos declaró que la senadora Loreto Carvajal (PPD) habría recibido $300 millones por intervenir en el nombramiento de Yamil Najle como conservador de bienes raíces de Chillán. Otros parlamentarios mencionados: Paulina Vodanovic (PS), Matías Walker (Demócratas), Sergio Gahona (UDI) y el diputado Cristián Araya (PR).',
     intervinientes: ['Ángel Valencia (fiscal nacional)', 'Fiscalía Regional de Aysén', 'Hernán Libedinsky (fiscal regional)', 'Eduardo Lagos (abogado)', 'Loreto Carvajal (senadora PPD)', 'Paulina Vodanovic (senadora PS)', 'Matías Walker (senador Demócratas)', 'Sergio Gahona (senador UDI)', 'Cristián Araya (diputado PR)', 'Yamil Najle (conservador)', 'Gabriel Silber'],
     categorias: ['judicial', 'político'],
@@ -1992,6 +2141,7 @@ const EVENTOS = [
   {
     fecha: '27 enero 2026', anio: 2026,
     titulo: 'OS7 descubre 26 cajas de documentos de Vivanco en bodega del conservador Yáber',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-vivanco-1.png', imagenMedio: 'CIPER Chile, 18/03/2026',
     desc: 'El mismo día en que se conoce la detención de Vivanco, el OS7 de Carabineros descubre 26 cajas con documentos de la exministra y de Gonzalo Migueles en una bodega del Conservador de Bienes Raíces de Puente Alto, a cargo de Sergio Yáber. Solo dos cajas contienen material de interés investigativo: tres archivadores con documentación contable entre 2009 y 2022 —"cuentas personales 2009-2015", "pagos y documentos 2015-2018" y "cuentas pagadas 24-09-18 a abril 2022"—. Escuchas telefónicas previas revelan que Vivanco intentó contactar a los conservadores cuando la investigación estaba aún en reserva.',
     intervinientes: ['OS7 de Carabineros', 'Ángela Vivanco', 'Gonzalo Migueles', 'Sergio Yáber (conservador Puente Alto)', 'Yamil Najle', 'Marco Muñoz (fiscal)', 'Fiscalía Regional de Los Lagos'],
     categorias: ['judicial'],
@@ -2003,6 +2153,7 @@ const EVENTOS = [
   {
     fecha: '27 enero 2026', anio: 2026,
     titulo: 'Fiscalía revela que Chadwick es imputado en causa reservada',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2026/01/social-fiscalia-confirma-que-andres-chadwick-es-imputado-en-causa-reservada-tras-cierre-de-factop.png', imagenMedio: 'BioBioChile, 27/01/2026',
     desc: 'La fiscal regional Oriente, Lorena Parra, revela que Andrés Chadwick figura como imputado en una causa reservada de esa fiscalía —independiente de la causa Guerra— que investiga pagos de Hermosilla a Chadwick y las actuaciones que ambos realizaron en favor de clientes privados, entre ellos Clínica Las Condes, Huawei, Graneles de Chile, AFP Plan Vital, Grupo Patio y Vivo Corp. Según fuentes con acceso al caso, de las cuentas bancarias de Hermosilla y sus empresas se transfirieron al menos $226 millones en favor de Chadwick. Chadwick mantiene el estatus de imputado en tres causas distintas del Ministerio Público.',
     intervinientes: ['Andrés Chadwick (exministro Interior)', 'Lorena Parra (fiscal regional Oriente)', 'Luis Hermosilla', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'político', 'financiero'],
@@ -2015,6 +2166,7 @@ const EVENTOS = [
   {
     fecha: '28 enero 2026', anio: 2026,
     titulo: 'Fiscalía presenta acusación formal: 10 imputados y penas de hasta 20 años de presidio',
+    imagen: 'https://media.cnnchile.com/2026/01/SALA-DE-AUDIENCIAS-MINISTERIO-PUBLICO-FISCALIA-CASO-AUDIOS-PENAS-PARA-LOS-IMPUTADOS-768x512.jpg', imagenMedio: 'CNN Chile, 28/01/2026',
     desc: 'Tras el cierre de la investigación el 16 de enero, la Fiscalía Metropolitana Oriente presenta la acusación formal contra 10 imputados en el caso Audio-Factop. Las penas solicitadas son: Daniel Sauer (20 años), María Leonarda Villalobos (18 años), Luis Hermosilla (14 años), Ariel Sauer (14 años), Álvaro Jalaff (13 años), Luis Flores (12 años), Antonio Jalaff (10 años y un día), Rodrigo Topelberg (7 años), Cristián Menichetti (6 años y 2 días) y Luis Angulo (5 años y un día). La fiscal Lorena Parra confirma que los tres directamente involucrados en el audio —Hermosilla, Villalobos y Daniel Sauer— irán a juicio oral "sin ninguna duda".',
     intervinientes: ['Fiscalía Metropolitana Oriente', 'Lorena Parra (fiscal regional Oriente)', 'Luis Hermosilla', 'María Leonarda Villalobos', 'Daniel Sauer', 'Ariel Sauer', 'Álvaro Jalaff', 'Antonio Jalaff', 'Luis Flores', 'Rodrigo Topelberg', 'Cristián Menichetti', 'Luis Angulo'],
     categorias: ['judicial'],
@@ -2026,6 +2178,7 @@ const EVENTOS = [
   {
     fecha: '30 enero 2026', anio: 2026,
     titulo: 'Hermosilla arremete contra la fiscal Parra en audiencia de cautelares',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2026/01/30/file_20260130130057.jpg', imagenMedio: 'Emol, 30/01/2026',
     desc: 'En audiencia de revisión de medidas cautelares, Luis Hermosilla acusa públicamente a la fiscal regional Lorena Parra de haberle pedido que interviniera ante ministros de la Corte a su favor: "No solo me mandó su currículum; me pidió que interviniera" e "insistió y me pidió cuenta de cómo iban las gestiones". También la acusa de haberse convertido en "una especie de influencer que graba y hace videos" para redes sociales antes de conocerse la acusación formal. El tribunal mantiene el arresto domiciliario total de Hermosilla; este anuncia que apelará.',
     intervinientes: ['Luis Hermosilla', 'Lorena Parra (fiscal regional Oriente)'],
     categorias: ['judicial'],
@@ -2037,6 +2190,7 @@ const EVENTOS = [
   {
     fecha: '9 febrero 2026', anio: 2026,
     titulo: 'Corte de Apelaciones mantiene prisión preventiva de Vivanco',
+    imagen: 'https://media.eldinamo.cl/2026/02/Angela-Vivanco-5.png', imagenMedio: 'El Dínamo, 09/02/2026',
     desc: 'La Corte de Apelaciones de Santiago rechaza la apelación de la defensa de Ángela Vivanco y mantiene la prisión preventiva decretada el 30 de enero. El tribunal acoge los argumentos de la Fiscalía Regional de Los Lagos, que sostiene tener suficiente evidencia para mantener la medida. Los cuatro imputados en la arista —Vivanco, Gonzalo Migueles, Mario Vargas y Eduardo Lagos— permanecen en prisión preventiva.',
     intervinientes: ['Ángela Vivanco', 'Gonzalo Migueles', 'Mario Vargas', 'Eduardo Lagos', 'Corte de Apelaciones de Santiago', 'Fiscalía Regional de Los Lagos'],
     categorias: ['judicial'],
@@ -2049,6 +2203,7 @@ const EVENTOS = [
   {
     fecha: '13 febrero 2026', anio: 2026,
     titulo: 'CIPER publica los audios originales de escuchas telefónicas de la causa bielorrusa',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-audios.png', imagenMedio: 'CIPER Chile, 13/02/2026',
     desc: 'CIPER publica ocho registros de conversaciones interceptadas por el OS7 de Carabineros en la investigación del Consorcio Belaz-Movitec (CBM). Los audios revelan presuntas coimas, lavado de dinero y presiones a autoridades judiciales. Entre los elementos clave: el conservador Yamil Najle transfirió $25 millones fraccionados a Gonzalo Migueles; el conservador Sergio Yáber habría transferido ~$78 millones a Antonio Ulloa en seis años; a la exministra Vivanco habrían llegado "palitos de dólares"; y al diputado republicano Cristián Araya se le habrían pagado $1,7 millones. Los audios también mencionan al ministro de la Corte Suprema Arturo Prado en el contexto de las coordinaciones.',
     intervinientes: ['Sergio Yáber (conservador Puente Alto)', 'Yamil Najle (conservador Chillán)', 'Ángela Vivanco', 'Gonzalo Migueles', 'Mario Vargas', 'Eduardo Lagos', 'Cristián Araya (diputado republicano)', 'Antonio Ulloa', 'Arturo Prado (ministro Corte Suprema)', 'OS7 de Carabineros', 'CIPER Chile'],
     categorias: ['judicial', 'mediático'],
@@ -2060,6 +2215,7 @@ const EVENTOS = [
   {
     fecha: '9 marzo 2026', anio: 2026,
     titulo: 'Exfiscal Manuel Guerra es formalizado por cohecho, prevaricación y violación de secreto',
+    imagen: 'https://media-front.elmostrador.cl/2026/03/A_UNO_1725855-700x467.jpg', imagenMedio: 'El Mostrador, 09/03/2026',
     desc: 'Comienza la audiencia de formalización del exfiscal regional Metropolitano Oriente Manuel Guerra, a cargo del fiscal regional de Arica, Mario Carrera. Los cargos son cohecho, prevaricación administrativa y revelación de secreto. La Fiscalía sostiene que Guerra habría favorecido a cercanos a Hermosilla en causas como Penta, Exalmar y Dominga. La Fiscalía pide arresto domiciliario total; el CDE pide prisión preventiva.',
     intervinientes: ['Manuel Guerra (exfiscal regional Oriente)', 'Mario Carrera (fiscal regional Arica)', 'Fiscalía', 'CDE', 'Luis Hermosilla'],
     categorias: ['judicial'],
@@ -2072,6 +2228,7 @@ const EVENTOS = [
   {
     fecha: '17 marzo 2026', anio: 2026,
     titulo: 'CIPER: cuatro informes y 198 correos ya habían alertado a la CMF antes del caso',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-cmf-1.png', imagenMedio: 'CIPER Chile, 17/03/2026',
     desc: 'CIPER revela que desde enero de 2021 la CMF recibió al menos cuatro informes e intercambió 198 correos electrónicos con ejecutivos de STF Capital sobre irregularidades en la corredora de los Sauer —dos años antes de la suspensión de marzo 2023. La revelación cuestiona la oportunidad y diligencia de la fiscalización del regulador.',
     intervinientes: ['CMF', 'STF Capital', 'Daniel Sauer', 'Ariel Sauer', 'CIPER Chile'],
     categorias: ['regulatorio', 'financiero', 'mediático'],
@@ -2083,6 +2240,7 @@ const EVENTOS = [
   {
     fecha: '19 marzo 2026', anio: 2026,
     titulo: 'Prisión preventiva para el exfiscal Manuel Guerra: primer fiscal regional en Capitán Yáber',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2026/03/social-exfiscal-manuel-guerra-queda-en-prision-preventiva-por-cohecho-prevaricacion-y-violacion-de-secreto.png', imagenMedio: 'BioBioChile, 19/03/2026',
     desc: 'Tras ocho jornadas de formalización, el juez Guillermo Rodríguez decreta **prisión preventiva** para el exfiscal Manuel Guerra por cohecho, prevaricación administrativa y revelación de secreto. Guerra ingresa al anexo penal Capitán Yáber —es **la primera vez que un fiscal regional cumple prisión preventiva** en Chile. La resolución menciona 24 veces al exministro Andrés Chadwick y dice que "Guerra condicionaba sus decisiones a la postura de la UDI".',
     intervinientes: ['Manuel Guerra', 'juez Guillermo Rodríguez', 'Andrés Chadwick', 'Luis Hermosilla', 'Fiscalía', 'Capitán Yáber'],
     categorias: ['judicial', 'político'],
@@ -2097,6 +2255,7 @@ const EVENTOS = [
   {
     fecha: '25 marzo 2026', anio: 2026,
     titulo: 'CIPER: SII revela que Hermosilla gastó casi $4.000 millones, pero declaró sólo $1.675 millones',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/web-hermosilla-2.png', imagenMedio: 'CIPER Chile, 25/03/2026',
     desc: 'CIPER publica un informe del SII basado en las cuentas bancarias de Hermosilla entre 2017 y 2024: gastó $3.964 millones mientras declaró ingresos por solo $1.675 millones —una diferencia de $2.289 millones sin justificar. El reporte respalda la persecución por delitos tributarios y lavado de activos.',
     intervinientes: ['SII', 'Luis Hermosilla', 'CIPER Chile'],
     categorias: ['judicial', 'financiero', 'mediático'],
@@ -2108,6 +2267,7 @@ const EVENTOS = [
   {
     fecha: '22 abril 2026', anio: 2026,
     titulo: 'Fiscalía solicita todos los chats de Hermosilla en que se menciona a Chadwick',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/chadwick-guerra-hermosilla.png', imagenMedio: 'CIPER Chile, 22/04/2026',
     desc: 'La Fiscalía Regional de Arica, a cargo de la causa contra Manuel Guerra, presenta una solicitud al tribunal para acceder a todos los chats del teléfono de Luis Hermosilla en que se mencione a Andrés Chadwick —incluyendo 10 personas naturales, 3 instituciones y 4 causas judiciales—, con el objetivo de rastrear la cadena de favores Guerra–Chadwick–Hermosilla. El tribunal ya había determinado que Guerra gestionó con Chadwick y Hermosilla su incorporación a la Universidad San Sebastián (USS), materializando así la liquidación de un "crédito corruptivo acumulado durante cinco años" de actuaciones favorables en causas como Penta, Exalmar y Dominga. El plazo de investigación vencía los primeros días de mayo.',
     intervinientes: ['Manuel Guerra (exfiscal regional)', 'Andrés Chadwick', 'Luis Hermosilla', 'Mario Carrera (fiscal regional Arica)', 'juez Guillermo Rodríguez', 'Lorena Parra (fiscal regional Oriente)'],
     categorias: ['judicial'],
@@ -2119,6 +2279,7 @@ const EVENTOS = [
   {
     fecha: '4 mayo 2026', anio: 2026,
     titulo: 'Nueva formalización: delitos tributarios 2018-2019',
+    imagen: 'https://static.theclinic.cl/media/2026/05/04-143659_e7uk_WhatsApp-Image-2026-05-04-at-10.22.40.jpeg', imagenMedio: 'The Clinic, 04/05/2026',
     desc: 'La Fiscalía Oriente formaliza a Luis Hermosilla por nuevos delitos tributarios reiterados cometidos en sus declaraciones de renta de 2018 y 2019. El Ministerio Público imputa un perjuicio fiscal superior a $500 millones. La Fiscalía estima comenzar el juicio oral del caso Audio-Factop en un plazo de 90 días.',
     intervinientes: ['Luis Hermosilla', 'Fiscalía Metropolitana Oriente'],
     categorias: ['judicial', 'financiero'],
@@ -2130,6 +2291,7 @@ const EVENTOS = [
   {
     fecha: '31 mayo 2026', anio: 2026,
     titulo: 'La trabada investigación Hermosilla-Carroza: obstáculos para llegar a Hernán Larraín y posible prescripción',
+    imagen: 'https://media-front.elmostrador.cl/2026/05/Hermosilla_Hernandez_Carroza-700x347.jpeg', imagenMedio: 'El Mostrador, 31/05/2026',
     desc: 'El Mostrador revela que la investigación contra Luis Hermosilla y el exministro de la Corte Suprema Mario Carroza —a cargo del fiscal adjunto César Urzúa de la Fiscalía Local Santiago— enfrenta múltiples trabas: rechazo de incautación de teléfonos de Carroza, denegación de declaraciones de Andrés Chadwick y Hernán Larraín, y una posible prescripción de la acción penal. Los chats publicados por The Clinic revelan la coordinación entre Chadwick y Hermosilla para posicionar a Carroza en la Corte Suprema (diciembre 2020), y que Carroza a su vez consultaba con Hermosilla las quinas del tribunal. La querella fue presentada por Mauricio Hernández Norambuena (FPMR) por el no abono de años de prisión preventiva en Brasil y conflicto de intereses de Hermosilla, quien representaba simultáneamente a la familia Guzmán y al Ministerio del Interior mientras Carroza era juez de la causa.',
     intervinientes: ['Luis Hermosilla', 'Mario Carroza (exministro Corte Suprema)', 'César Urzúa (fiscal adjunto)', 'Andrés Chadwick', 'Hernán Larraín', 'Benjamín Salas (asesor presidencial)', 'Mauricio Hernández Norambuena (querellante)', 'El Mostrador'],
     categorias: ['judicial', 'mediático'],
@@ -2141,6 +2303,7 @@ const EVENTOS = [
   {
     fecha: '4 junio 2026', anio: 2026,
     titulo: 'Tribunal mantiene prisión preventiva de Vivanco: más de cuatro meses recluida',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2026/06/04/file_20260604165840.jpg', imagenMedio: 'Emol, 04/06/2026',
     desc: 'En una nueva audiencia de cautelares, el tribunal mantiene la prisión preventiva de Ángela Vivanco, quien cumple ya más de cuatro meses en el centro penitenciario femenino. La defensa vuelve a apelar argumentando que no hay peligro para la investigación ni para la sociedad.',
     intervinientes: ['Ángela Vivanco', 'Fiscalía Regional de Los Lagos'],
     categorias: ['judicial'],
@@ -2152,6 +2315,7 @@ const EVENTOS = [
   {
     fecha: '4 junio 2026', anio: 2026,
     titulo: 'Reportea destapa la red judicial de José Ramón Correa: coordinó con Hermosilla nombramientos y gestionó por la Contralora',
+    imagen: 'https://reportea.cl/wp-content/uploads/2026/06/portada-chats-secretos-hermosilla-1-1.jpg', imagenMedio: 'Reportea, 04/06/2026',
     desc: 'Reportea publica chats entre Luis Hermosilla y el abogado José Ramón Correa —exjefe de gabinete de la Contraloría y accionista/director de Azul Azul— que abarcan el período 2018–2023. Las conversaciones revelan: (1) gestión conjunta en el caso Luchsinger-Mackay (Correa identifica al ministro Valderrama como contacto clave para evitar la anulación del juicio); (2) coordinación ante la Corte Suprema en 2018 para que la actual Contralora Dorothy Pérez fuera reincorporada tras su desvinculación; y (3) participación en el nombramiento de al menos cuatro magistrados: Lilian Leyton (Corte de Apelaciones, 2019), Verónica Sabaj (Corte de Santiago, 2020), Mario Carroza (Suprema) y Ángela Vivanco (Suprema, 2018). En los chats, Correa describe a uno de los ministros como "absolutamente nuestro". La red de Correa también cruza con Chadwick, Héctor Mery, Gabriel Zaliasnik y Sergio Yáber.',
     intervinientes: ['José Ramón Correa (abogado', 'exjefe gabinete Contraloría', 'Azul Azul)', 'Luis Hermosilla', 'Dorothy Pérez (Contralora)', 'Lilian Leyton', 'Verónica Sabaj', 'Mario Carroza', 'Ángela Vivanco', 'Andrés Chadwick', 'Héctor Mery', 'Gabriel Zaliasnik', 'Sergio Yáber', 'Manuel Valderrama (ministro Suprema)', 'Reportea'],
     categorias: ['judicial', 'político', 'mediático'],
@@ -2163,6 +2327,7 @@ const EVENTOS = [
   {
     fecha: '4 junio 2026', anio: 2026,
     titulo: 'Álvaro Jalaff reconoce ante la Fiscalía coima de 10 mil UF (~$410 millones) a Hermosilla por Parque Capital',
+    imagen: 'https://images2-mega.cdn.mdstrm.com/meganoticias/2026/06/19/_525081_1_6a35cfa3685e5.jpg?d=1200x675', imagenMedio: 'Meganoticias, 19/06/2026',
     desc: 'Álvaro Jalaff, cofundador del Grupo Patio, declara ante la Fiscalía de Alta Complejidad Metropolitana Oriente y reconoce haber pagado a Luis Hermosilla 10.000 UF (aproximadamente $410 millones) por gestiones para destrabar el proyecto Parque Capital. El desglose: 6.000 UF en efectivo sin respaldo documental y 4.000 UF mediante compensación de una deuda que Hermosilla mantenía con Factop. Jalaff señala textualmente: "En total a Luis Hermosilla le pagué el equivalente a 10 mil UF" y "No se emitió ninguna clase de documento". Reconoce además que sabía que el pago constituía delito: "Luis, en esa época, era un funcionario público y que lo que yo le solicité y por lo cual le pagué era un delito". La declaración compromete también al exministro de Vivienda Felipe Ward, a quien Hermosilla habría mostrado conversaciones de WhatsApp para acreditar cercanía, y describe reuniones en su oficina y residencia vinculadas al proyecto. La declaración se hizo pública el 19 de junio de 2026 a través de Mega Investiga.',
     intervinientes: ['Álvaro Jalaff (Grupo Patio)', 'Luis Hermosilla', 'Felipe Ward (exministro de Vivienda)', 'Fiscalía de Alta Complejidad Metropolitana Oriente', 'Factop'],
     categorias: ['judicial', 'financiero'],
@@ -2176,6 +2341,7 @@ const EVENTOS = [
   {
     fecha: '8 junio 2026', anio: 2026,
     titulo: 'Formalización de Verónica Sabaj y de Hermosilla en la arista nombramientos judiciales',
+    imagen: 'https://media-front.elmostrador.cl/2025/04/Jueza-Veronica-Sabaj-768x432-1-700x394-1.jpg', imagenMedio: 'El Mostrador, 08/06/2026',
     desc: 'Ante el Séptimo Juzgado de Garantía de Santiago, la Fiscalía formaliza a la destituida exministra Verónica Sabaj por cohecho agravado, prevaricación judicial y revelación de secreto, y también a Luis Hermosilla por soborno en el marco de esta arista. El Consejo de Defensa del Estado es querellante. Los cargos se centran en las gestiones irregulares durante la postulación de Sabaj a la Corte de Apelaciones y su ejercicio posterior como jueza, coordinadas con Hermosilla. Es la primera formalización penal de Sabaj y una nueva imputación para Hermosilla, ahora en la arista de nombramientos.',
     intervinientes: ['Verónica Sabaj', 'Luis Hermosilla', 'Consejo de Defensa del Estado (CDE)', 'Séptimo Juzgado de Garantía de Santiago', 'Fiscalía'],
     categorias: ['judicial'],
@@ -2189,6 +2355,7 @@ const EVENTOS = [
   {
     fecha: '10 junio 2026', anio: 2026,
     titulo: 'Fiscalía abre investigación contra el embajador de Chile en Israel, Gabriel Zaliasnik',
+    imagen: 'https://media.eldinamo.cl/2026/06/Zaliasnik-.jpg', imagenMedio: 'El Dínamo, 10/06/2026',
     desc: 'La Fiscalía confirma la apertura de una investigación contra Gabriel Zaliasnik —recién nombrado embajador de Chile en Israel por el presidente Kast— tras la publicación de sus chats con Luis Hermosilla por el medio Reportea. Los mensajes revelan: solicitud de uso de gastos reservados del Estado para financiar defensa penal privada, gestión de honorarios a través de la presidenta del directorio de ENAP, intervención en nombramientos judiciales, y pedidos de interceptación ilegal de teléfonos y seguimientos contra opositores políticos. La denuncia fue presentada por la senadora Daniella Cicardini y el diputado Daniel Manouchehri (PS). El gobierno de Kast descarta remover a Zaliasnik del cargo.',
     intervinientes: ['Gabriel Zaliasnik (embajador de Chile en Israel)', 'Luis Hermosilla', 'Fiscalía', 'Daniella Cicardini (senadora PS)', 'Daniel Manouchehri (diputado PS)', 'presidente José Antonio Kast', 'ENAP', 'canciller Pérez Mackenna'],
     categorias: ['judicial', 'político'],
@@ -2203,6 +2370,7 @@ const EVENTOS = [
   {
     fecha: '11 junio 2026', anio: 2026,
     titulo: 'Gobierno ratifica a Zaliasnik como embajador pese a sus vínculos con el Caso Hermosilla',
+    imagen: 'https://media-front.elmostrador.cl/2026/06/A_UNO_862299-700x467.jpg', imagenMedio: 'El Mostrador, 11/06/2026',
     desc: 'Pese a la apertura de la investigación fiscal y la presión política, el gobierno de José Antonio Kast ratifica a Gabriel Zaliasnik en su cargo de embajador en Israel. El canciller sostiene que la investigación "no modifica las decisiones". La posición generó críticas de parlamentarios de oposición y alimentó el debate sobre estándares de probidad del gobierno.',
     intervinientes: ['Gabriel Zaliasnik', 'José Antonio Kast (presidente)', 'canciller Pérez Mackenna'],
     categorias: ['político'],
@@ -2215,6 +2383,7 @@ const EVENTOS = [
   {
     fecha: '12 junio 2026', anio: 2026,
     titulo: 'Vivanco sale de prisión preventiva tras 133 días: arresto domiciliario total',
+    imagen: 'https://www.latercera.com/resizer/v2/2FDRM3O7TJAO5GBQXTLQFMQB6Y.jpg?auth=807eaad2c439571b7eede561ce5dc0fd660c17590c8b86de5cbd1aa9e9cacd9e&height=630&width=1200&smart=true', imagenMedio: 'La Tercera',
     desc: 'Tras 133 días en el centro penitenciario femenino, la Corte de Apelaciones de Santiago acoge la apelación de Ángela Vivanco y sustituye la prisión preventiva por arresto domiciliario total. Al salir de reclusión, Vivanco insiste en su inocencia: "No soy una persona que se pueda catalogar de peligro para la sociedad" y declara que quiere "defenderme en un juicio justo".',
     intervinientes: ['Ángela Vivanco', 'Corte de Apelaciones de Santiago', 'Fiscalía Regional de Los Lagos'],
     categorias: ['judicial'],
@@ -2228,6 +2397,7 @@ const EVENTOS = [
   {
     fecha: '15 junio 2026', anio: 2026,
     titulo: 'Sabaj revisó borrador del recurso para frenar publicación de chats Zaliasnik-Donoso',
+    imagen: 'https://reportea.cl/wp-content/uploads/2026/06/portada-chats-secretos-hermosilla-4.jpg', imagenMedio: 'Reportea, 15/06/2026',
     desc: 'Una investigación de Reportea y la PDI revela que en noviembre de 2024 la entonces ministra Verónica Sabaj revisó el borrador de un recurso de protección preparado por el bufete de Samuel Donoso —firmado por el abogado Ramiro Araya— para impedir la publicación de un reportaje de The Clinic que contenía chats entre Hermosilla, Donoso y Gabriel Zaliasnik. El recurso fue declarado inadmisible. Sabaj pidió "borrar" los mensajes después. La defensa de Zaliasnik queda más comprometida.',
     intervinientes: ['Verónica Sabaj', 'Samuel Donoso (abogado)', 'Gabriel Zaliasnik', 'Luis Hermosilla', 'Ramiro Araya (abogado)', 'The Clinic', 'Reportea', 'PDI'],
     categorias: ['judicial', 'mediático'],
@@ -2253,6 +2423,7 @@ const EVENTOS = [
   {
     fecha: '17 junio 2026', anio: 2026,
     titulo: 'Gobierno condiciona continuidad de Zaliasnik a una eventual formalización; Colegio de Abogados abre proceso disciplinario',
+    imagen: 'https://media-front.elmostrador.cl/2026/06/zaliasnik-embajador-e1781738674436.jpg', imagenMedio: 'El Mostrador, 17/06/2026',
     desc: 'El gobierno de Kast cambia su posición respecto a Gabriel Zaliasnik: el ministro José García Ruminot declara que, si el embajador es formalizado, "no debiera seguir" en el cargo. Es la primera señal de condicionalidad desde el Ejecutivo. En paralelo, el Colegio de Abogados de Chile confirma que inició un proceso disciplinario contra Zaliasnik por sus conversaciones con Luis Hermosilla, a raíz de la denuncia presentada en días anteriores.',
     intervinientes: ['Gabriel Zaliasnik', 'José García Ruminot (ministro)', 'Colegio de Abogados de Chile'],
     categorias: ['judicial', 'político'],
@@ -2265,6 +2436,7 @@ const EVENTOS = [
   {
     fecha: '22 junio 2026', anio: 2026,
     titulo: 'Jalaff firma acuerdo con la Fiscalía: procedimiento abreviado fijado para julio',
+    imagen: 'https://media.biobiochile.cl/wp-content/uploads/2026/06/social-jalaff-hermosilla.png', imagenMedio: 'BioBioChile, 22/06/2026',
     desc: 'BioBioChile revela que Álvaro Jalaff firmó un acuerdo con la Fiscalía bajo la modalidad de procedimiento abreviado, con audiencia programada para el 27 de julio de 2026. A cambio de su confesión y de comprometer a Luis Hermosilla y al exministro Felipe Ward, Jalaff obtiene beneficios procesales: rebaja de pena por colaboración eficaz y cambio de medida cautelar desde arresto domiciliario parcial a firma mensual. El acuerdo tiene carácter reservado según fuentes judiciales consultadas por el medio.',
     intervinientes: ['Álvaro Jalaff', 'Fiscalía de Alta Complejidad Metropolitana Oriente', 'Luis Hermosilla'],
     categorias: ['judicial'],
@@ -2276,6 +2448,7 @@ const EVENTOS = [
   {
     fecha: '22 junio 2026', anio: 2026,
     titulo: 'CDE se querella contra Hermosilla y Jalaff en el Cuarto Juzgado de Garantía por arista Parque Capital',
+    imagen: 'https://media-front.elmostrador.cl/2026/06/jalaff.jpeg', imagenMedio: 'El Mostrador, 22/06/2026',
     desc: 'El Consejo de Defensa del Estado presenta una querella en el Cuarto Juzgado de Garantía de Santiago contra Luis Hermosilla y Álvaro Jalaff por los hechos de la arista Parque Capital. A Hermosilla se le imputan cohecho agravado y tráfico de influencias; a Jalaff, soborno. La querella se sustenta en la declaración del 4 de junio en que Jalaff reconoció pagos en efectivo a Hermosilla en 2019 (aproximadamente $300 millones, sumados luego al resto hasta totalizar 10.000 UF) para destrabar permisos del Ministerio de Vivienda. Menciona también al exministro Felipe Ward y al seremi metropolitano de Vivienda Manuel José Errázuriz como funcionarios cuyas decisiones se habrían visto influenciadas. Los permisos del proyecto Parque Capital fueron aprobados en agosto de 2021.',
     intervinientes: ['Consejo de Defensa del Estado (CDE)', 'Luis Hermosilla', 'Álvaro Jalaff', 'Felipe Ward (exministro de Vivienda)', 'Manuel José Errázuriz (seremi Metropolitano de Vivienda)', 'Cuarto Juzgado de Garantía de Santiago'],
     categorias: ['judicial'],
@@ -2287,6 +2460,7 @@ const EVENTOS = [
   {
     fecha: '22 junio 2026', anio: 2026,
     titulo: 'El Colegio de Abogados expulsa a Luis Hermosilla en fallo unánime',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2026/06/22/file_20260622191656.jpg', imagenMedio: 'Emol, 22/06/2026',
     desc: 'Se hace pública la sentencia del Tribunal Ético del Colegio de Abogados de Chile que, con fecha 4 de junio, resolvió por unanimidad expulsar a Luis Hermosilla del gremio por infracciones al Código de Ética Profesional derivadas de los hechos públicos y notorios del Caso Audio. Es la sanción máxima que contempla la orden gremial. Hermosilla presentó el 17 de junio un recurso de apelación que será conocido por la Corte de Apelaciones de Santiago.',
     intervinientes: ['Luis Hermosilla', 'Colegio de Abogados de Chile', 'Tribunal Ético del Colegio de Abogados', 'Corte de Apelaciones de Santiago'],
     categorias: ['judicial'],
@@ -2299,6 +2473,7 @@ const EVENTOS = [
   {
     fecha: '25 junio 2026', anio: 2026,
     titulo: '"Eres mi ángel de la guarda": Reportea revela chats de Hermosilla con dos juezas más',
+    imagen: 'https://reportea.cl/wp-content/uploads/2026/06/portada-chats-secretos-hermosilla-5-1.jpg', imagenMedio: 'Reportea, 25/06/2026',
     desc: 'Reportea publica una nueva tanda de conversaciones extraídas del teléfono de Luis Hermosilla que exponen su relación con dos magistradas hasta entonces no vinculadas públicamente al caso: la ministra de la Corte de Apelaciones de Santiago Lilian Leyton y la jueza del 1er Juzgado Civil de Santiago Isabel Margarita Zúñiga. Leyton, cuando era relatora, entregaba información al penalista, le pedía apoyo para su nombramiento como ministra, comentaba perfiles de otros jueces y respondía consultas sobre causas específicas. Zúñiga —que trabajó varios meses con Hermosilla— le solicitaba gestiones en su favor y en beneficio de personas cercanas para facilitar ascensos en el Poder Judicial. Los chats se suman al patrón ya documentado con Verónica Sabaj y consolidan la tesis de una red de tráfico de influencias dentro del Poder Judicial.',
     intervinientes: ['Luis Hermosilla', 'Lilian Leyton (ministra Corte de Apelaciones de Santiago)', 'Isabel Margarita Zúñiga (jueza 1er Juzgado Civil de Santiago)', 'Verónica Sabaj', 'Reportea'],
     categorias: ['judicial', 'mediático'],
@@ -2312,6 +2487,7 @@ const EVENTOS = [
   {
     fecha: '2 julio 2026', anio: 2026,
     titulo: 'La Corte de Santiago abre sumario contra la jueza Zúñiga, pero salva a la ministra Leyton invocando cosa juzgada',
+    imagen: 'https://www.latercera.com/resizer/v2/GLNJRLT24VDBFKOZUUGRDNSJ4U.jpg?auth=e4ccb4c39a99657b0a2f402c58dd954bf7a481725cc04f9d6022c962e0f83b5a&height=630&width=1200&smart=true', imagenMedio: 'La Tercera',
     desc: 'El pleno de la Corte de Apelaciones de Santiago resuelve de manera dispar frente a los chats revelados por Reportea. Ordena instruir sumario administrativo contra la jueza Isabel Margarita Zúñiga del 1er Juzgado Civil de Santiago. En cambio, por mayoría decide **no** abrir un nuevo sumario contra la ministra Lilian Leyton, argumentando cosa juzgada: la magistrada ya había sido objeto de un proceso disciplinario en 2024 que terminó con sobreseimiento unánime. Algunos ministros propusieron reabrir la investigación sin éxito. La decisión es criticada como un "salvataje" corporativo y deja a Leyton en el radar de la Fiscalía y de los querellantes, que presionan por abrir una causa penal.',
     intervinientes: ['Corte de Apelaciones de Santiago', 'Lilian Leyton', 'Isabel Margarita Zúñiga', 'Luis Hermosilla', 'Reportea'],
     categorias: ['judicial'],
@@ -2325,6 +2501,7 @@ const EVENTOS = [
   {
     fecha: '3 julio 2026', anio: 2026,
     titulo: 'Reportea revela que el "agente topo" de Hermosilla en la PDI dirigía la contrainteligencia de la ANI; renuncia dos días después',
+    imagen: 'https://media-front.elmostrador.cl/2026/07/WhatsApp-Image-2026-07-03-at-2.51.45-PM-700x350.jpeg', imagenMedio: 'El Mostrador, 03/07/2026',
     desc: 'Una investigación de Reportea, basada en un informe de más de 470 páginas, revela que el exprefecto general de la PDI Paulo Contreras —segundo al mando de la institución tras la caída de Sergio Muñoz— mantuvo entre 2018 y 2023 un intercambio de información reservada con Luis Hermosilla: datos de investigaciones judiciales, reportes de inteligencia policial y movimientos de figuras públicas (entre ellos, la ubicación de Daniel Jadue en el extranjero y antecedentes de generales de Carabineros durante evaluaciones de ascensos), vía WhatsApp, Telegram y reuniones presenciales. Contreras había asumido en marzo de 2026, con la llegada del presidente Kast, como jefe de la División de Contrainteligencia de la Agencia Nacional de Inteligencia (ANI). El 5 de julio, tras la divulgación de los chats, renuncia al cargo, según confirma el Ministerio del Interior.',
     intervinientes: ['Paulo Contreras (exprefecto PDI', 'exjefe de Contrainteligencia ANI)', 'Luis Hermosilla', 'ANI', 'PDI', 'Ministerio del Interior', 'Reportea'],
     categorias: ['mediático', 'político'],
@@ -2337,6 +2514,7 @@ const EVENTOS = [
   {
     fecha: '6 julio 2026', anio: 2026,
     titulo: 'A tres años del audio: Hermosilla apela su expulsión y pide volver a declarar; arriesga más de 20 años solo en la arista Audios',
+    imagen: 'https://media-front.elmostrador.cl/2026/07/6-julio-punto-por-punto-700x394.jpg', imagenMedio: 'El Mostrador, 06/07/2026',
     desc: 'Al cumplirse tres años de la grabación del audio que destapó el caso, El Mostrador repasa la situación procesal de Luis Hermosilla: el exabogado apeló ante la Corte de Apelaciones de Santiago la expulsión dictada por el Tribunal Ético del Colegio de Abogados y solicitó volver a declarar ante la Fiscalía Oriente. Tras la confesión de Álvaro Jalaff sobre la coima de $410 millones por Parque Capital, Hermosilla arriesga más de 20 años de cárcel solo en la arista Audios, con investigaciones repartidas en tres fiscalías distintas.',
     intervinientes: ['Luis Hermosilla', 'Colegio de Abogados de Chile', 'Corte de Apelaciones de Santiago', 'Fiscalía Oriente', 'Álvaro Jalaff'],
     categorias: ['judicial', 'mediático'],
@@ -2348,6 +2526,7 @@ const EVENTOS = [
   {
     fecha: '23 julio 2026', anio: 2026,
     titulo: 'Fijan para el 26 de octubre la formalización de Hermosilla por el soborno al exfiscal Guerra',
+    imagen: 'https://www.ciperchile.cl/wp-content/uploads/hermosilla_guerra_v1_HOME.png', imagenMedio: 'CIPER Chile, 23/07/2026',
     desc: 'El Cuarto Juzgado de Garantía de Santiago fija para el 26 de octubre de 2026 la audiencia de formalización de Luis Hermosilla en la arista del exfiscal Manuel Guerra. A solicitud del fiscal regional de Arica Mario Carrera, se le imputarán los delitos de **cohecho agravado, soborno y violación de secreto**. La imputación se sustenta en los chats de WhatsApp extraídos del teléfono del penalista: entre 2016 y 2023 Guerra le habría filtrado información de investigaciones que dirigía y que involucraban a personas cercanas a Hermosilla, y —mientras Hermosilla era asesor del Ministerio del Interior en el gobierno de Sebastián Piñera— habría favorecido a imputados en causas contra figuras políticas de ese sector, incluido el propio expresidente. La contraprestación se habría materializado en la contratación de Guerra en la Universidad San Sebastián en 2021, casa de estudios donde Andrés Chadwick era decano. Guerra fue formalizado por estos mismos hechos en marzo de 2026 y permanece en prisión preventiva.',
     intervinientes: ['Luis Hermosilla', 'Manuel Guerra (exfiscal regional Oriente)', 'Mario Carrera (fiscal regional Arica)', 'Cuarto Juzgado de Garantía de Santiago', 'Andrés Chadwick', 'Universidad San Sebastián', 'Sebastián Piñera'],
     categorias: ['judicial'],
@@ -2361,6 +2540,7 @@ const EVENTOS = [
   {
     fecha: '27 julio 2026', anio: 2026,
     titulo: '"¿Hago algo con Manuel Guerra?": nuevos chats de Telegram acorralan a Chadwick',
+    imagen: 'https://reportea.cl/wp-content/uploads/2026/07/portada-chats-secretos-hermosilla-7-ok.jpg', imagenMedio: 'Reportea, 27/07/2026',
     desc: 'Reportea revela conversaciones por **Telegram** entre Luis Hermosilla y Andrés Chadwick, un canal que el penalista reservaba para sus contactos de mayor confianza mientras usaba WhatsApp para comunicaciones menos sensibles. En abril de 2018, tras la caída de un acuerdo fiscal en el caso del empresario Santiago Valdés, Hermosilla escribe: "¿Hago algo en relación con esta noticia con MG?" —en referencia a Manuel Guerra— y Chadwick responde: "Bueno … cuánto?". Los mensajes también documentan seguimiento a las investigaciones del Caso Penta sobre financiamiento electoral, gestiones para que el senador Iván Moreira pagara íntegras las facturas cuestionadas, la indagatoria de Minera Dominga y discusiones sobre el control de querellas y cambios administrativos en el Servicio de Impuestos Internos. Los chats provienen de las 12.135 páginas del teléfono de Hermosilla cuya incorporación autorizó el Cuarto Juzgado de Garantía el 18 de mayo de 2026, ingresadas por la Fiscalía de Arica. Los mensajes de Telegram aún no habían sido periciados por el Ministerio Público —solo los de WhatsApp—, pese a estar respaldados en el dispositivo incautado en noviembre de 2023. Chadwick mantiene la calidad de imputado; el fiscal Mario Carrera había señalado que "aparece, pero nunca tenemos alguna acción directa de él".',
     intervinientes: ['Luis Hermosilla', 'Andrés Chadwick', 'Manuel Guerra', 'Mario Carrera (fiscal regional Arica)', 'Cuarto Juzgado de Garantía de Santiago', 'Santiago Valdés (empresario)', 'Iván Moreira (senador)', 'Fiscalía de Arica', 'Reportea'],
     categorias: ['judicial', 'mediático', 'político'],
@@ -2374,6 +2554,7 @@ const EVENTOS = [
   {
     fecha: '28 julio 2026', anio: 2026,
     titulo: 'Vivanco rompe su silencio: declarará el 5 de agosto ante la Fiscalía por la trama bielorrusa',
+    imagen: 'https://media-front.elmostrador.cl/2026/02/A_UNO_1715147-scaled-e1773265110860-700x364.jpg', imagenMedio: 'El Mostrador, 28/07/2026',
     desc: 'El Mostrador informa que Ángela Vivanco prestará su primera declaración como imputada en la arista "Muñeca Bielorrusa" el miércoles 5 de agosto de 2026, ante la fiscal regional de Los Lagos Carmen Gloria Wittwer, en dependencias del OS7 de Carabineros en Providencia. La exministra de la Corte Suprema —hoy en arresto domiciliario total tras más de cuatro meses en prisión preventiva— es investigada por cohecho y lavado de activos: se le acusa de recibir sobornos a través de su expareja Gonzalo Migueles, provenientes de los abogados Eduardo Lagos Herrera y Mario Vargas, para favorecer al consorcio Belaz Movitec en su litigio contra Codelco. Para el 13 de agosto está fijada una audiencia sobre las cautelares de Lagos y la ampliación del plazo de investigación.',
     intervinientes: ['Ángela Vivanco', 'Carmen Gloria Wittwer (fiscal regional de Los Lagos)', 'Gonzalo Migueles', 'Eduardo Lagos Herrera', 'Mario Vargas', 'Belaz Movitec', 'Codelco', 'OS7 de Carabineros'],
     categorias: ['judicial'],
@@ -2385,6 +2566,7 @@ const EVENTOS = [
   {
     fecha: '29 julio 2026', anio: 2026,
     titulo: 'Álvaro Jalaff condenado en procedimiento abreviado: cinco años de libertad vigilada y $720 millones en multas',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2026/07/29/file_20260729133844.jpg', imagenMedio: 'Emol, 29/07/2026',
     desc: 'El Cuarto Juzgado de Garantía de Santiago ratifica el acuerdo entre el Ministerio Público y la defensa de Álvaro Jalaff y lo condena en procedimiento abreviado a **cinco años de presidio, sustituidos por libertad vigilada intensiva**, más multas que suman **$720 millones** a beneficio fiscal ($220 millones por cohecho y soborno; $500 millones por infracciones tributarias). Los delitos incluyen estafa a los inversionistas de Factop —como cómplice—, cohecho, infracciones a la ley de mercado de valores, administración desleal e infracciones tributarias. En el marco de la causa, Jalaff reconoció ante el tribunal haber pagado aproximadamente **$410 millones a Luis Hermosilla** para destrabar el proyecto inmobiliario Parque Capital del Grupo Patio. El fiscal Felipe Sepúlveda destacó que Jalaff prestó "una colaboración muy relevante" mediante 11 declaraciones, acogiéndose al estatuto de cooperación eficaz, y que "entregó información de mucha relevancia" para imputar a otras personas. El cierre de la arista de los Jalaff despeja el camino para que la Fiscalía concentre el juicio oral en Hermosilla, Villalobos y Sauer.',
     intervinientes: ['Álvaro Jalaff', 'Cuarto Juzgado de Garantía de Santiago', 'Felipe Sepúlveda (fiscal)', 'Ministerio Público', 'Luis Hermosilla', 'Grupo Patio', 'Factop', 'CDE', 'SII'],
     categorias: ['judicial', 'financiero'],
@@ -2399,6 +2581,7 @@ const EVENTOS = [
   {
     fecha: '30 julio 2026', anio: 2026,
     titulo: 'Formalizarán al exdiputado Gabriel Silber el 22 de septiembre; Vivanco será reformalizada por la arista Fundamenta',
+    imagen: 'https://static.emol.cl/emol50/Fotos/2026/07/30/file_20260730142047.jpg', imagenMedio: 'Emol, 30/07/2026',
     desc: 'Tras incorporarse nuevos peritajes por la arista Fundamenta, la Fiscalía fija para el 22 de septiembre de 2026 la formalización del exdiputado y abogado Gabriel Silber, del estudio Lagos, Vargas y Silber Asesorías Legales —el último integrante de ese equipo jurídico en enfrentar cargos—. Se le imputa participación en sobornos a ministros de la Corte Suprema para obtener fallos favorables a sus clientes. La arista Fundamenta corresponde a un fallo de 2023 que destrabó los permisos para que la inmobiliaria del mismo nombre levantara cuatro torres residenciales en Plaza Egaña, proyecto resistido por los vecinos. Los peritajes del OS7 de Carabineros analizaron un depósito de $13 millones que Eduardo Lagos habría impulsado hacia Gonzalo Migueles, además de cuentas bancarias y comunicaciones entre los involucrados. En la misma audiencia será reformalizada Ángela Vivanco.',
     intervinientes: ['Gabriel Silber (exdiputado y abogado)', 'Eduardo Lagos Herrera', 'Mario Vargas', 'Ángela Vivanco', 'Gonzalo Migueles', 'Inmobiliaria Fundamenta', 'OS7 de Carabineros', 'Corte Suprema'],
     categorias: ['judicial'],
@@ -2531,12 +2714,23 @@ function renderTimeline() {
         return `<span class="arista-pill" style="background:${info.color}">${info.label}</span>`;
       }).join('');
 
+      // Si la imagen del medio no carga, se elimina la banda entera para no
+      // dejar un hueco ni el icono de imagen rota.
+      const thumb = ev.imagen ? `
+          <div class="event-thumb">
+            <img src="${ev.imagen}" alt="" loading="lazy" referrerpolicy="no-referrer"
+                 onerror="this.closest('.event-card').classList.remove('has-img');this.closest('.event-thumb').remove();">
+          </div>` : '';
+
       eventEl.innerHTML = `
-        <div class="event-card" style="--card-color:${primaryColor}" data-idx="${idx}">
-          <div class="event-date">${ev.fecha}</div>
-          <div class="event-title">${ev.titulo}</div>
-          <div class="event-desc">${ev.desc}</div>
-          <div class="event-aristas">${aristasPills}</div>
+        <div class="event-card${ev.imagen ? ' has-img' : ''}" style="--card-color:${primaryColor}" data-idx="${idx}">
+          ${thumb}
+          <div class="event-body">
+            <div class="event-date">${ev.fecha}</div>
+            <div class="event-title">${ev.titulo}</div>
+            <div class="event-desc">${ev.desc}</div>
+            <div class="event-aristas">${aristasPills}</div>
+          </div>
         </div>
         <div class="connector" style="background:${primaryColor}"></div>
         <div class="dot" style="border-color:${primaryColor}"></div>
@@ -2649,6 +2843,13 @@ function openModal(idx) {
   const intervinientesTags = ev.intervinientes.map(i => `<span class="tag">${i}</span>`).join('');
   const categoriasTags = ev.categorias.map(c => `<span class="tag">${c}</span>`).join('');
 
+  const figura = ev.imagen ? `
+    <figure class="modal-figure">
+      <img src="${ev.imagen}" alt="" loading="lazy" referrerpolicy="no-referrer"
+           onerror="this.closest('.modal-figure').remove();">
+      ${ev.imagenMedio ? `<figcaption>Imagen: ${ev.imagenMedio}</figcaption>` : ''}
+    </figure>` : '';
+
   const fuentesHtml = ev.fuentes.map(f => `
     <a href="${f.url}" target="_blank" rel="noopener" class="source-item">
       <div class="source-title">${f.titulo}</div>
@@ -2663,6 +2864,7 @@ function openModal(idx) {
       <h2 class="modal-title">${ev.titulo}</h2>
     </div>
     <div class="modal-body">
+      ${figura}
       <div class="modal-section">
         <h3>Descripción</h3>
         <p class="modal-desc">${ev.desc}</p>
