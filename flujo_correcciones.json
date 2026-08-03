@@ -1,0 +1,354 @@
+{
+  "_ayuda": [
+    "GENERADO por construir_correcciones.py — no editar a mano.",
+    "",
+    "Correcciones que valen SOLO para flujo.html. La linea de tiempo",
+    "(cronologia.md / cronologia.jsonl / cronologia.html) no se toca desde aqui:",
+    "gen_flujo.py lee el JSONL y aplica esto encima al vuelo, sin escribirlo.",
+    "",
+    "'ref' es la clave estable del hito: la URL de su primera fuente, mas el",
+    "titulo cuando dos hitos comparten fuente. Aguanta que el JSONL se",
+    "regenere; el numero de hito no, porque se corre al insertar uno nuevo."
+  ],
+  "hitos": [
+    {
+      "n": 2,
+      "aristas": [
+        "parque-capital"
+      ],
+      "_por_que": "sigue enmarcado en Parque Capital; no es politico-diplomatico",
+      "ref": "https://www.ciperchile.cl/2024/10/01/los-detalles-que-revelo-el-exministro-ward-sobre-su-reunion-con-chadwick-y-hermosilla-en-la-que-hablaron-del-proyecto-parque-capital/#Chadwick presenta a Hermosilla ante el ministro Ward: origen de la gestión Parque Capital",
+      "titulo": "Chadwick presenta a Hermosilla ante el ministro Ward: origen de la gestión Parque Capital"
+    },
+    {
+      "n": 5,
+      "aristas": [
+        "factop"
+      ],
+      "_por_que": "todavia no abre el Caso Hermosilla: en este punto es solo Factop",
+      "ref": "https://www.ex-ante.cl/la-ruta-del-audio-como-y-por-que-se-filtro-la-reunion-que-termino-con-hermosilla-en-prision/#Reunión en edificio Grupo Patio: la grabación que origina el caso",
+      "titulo": "Reunión en edificio Grupo Patio: la grabación que origina el caso"
+    },
+    {
+      "n": 6,
+      "enlaces": [
+        {
+          "ref": "https://www.ex-ante.cl/la-ruta-del-audio-como-y-por-que-se-filtro-la-reunion-que-termino-con-hermosilla-en-prision/#Reunión en edificio Grupo Patio: la grabación que origina el caso",
+          "razon": "el audio sale de esta reunión",
+          "_hito": 5
+        }
+      ],
+      "_por_que": "este es el que abre el Caso Hermosilla; su unico nexo real es la reunion grabada",
+      "ref": "https://www.ex-ante.cl/la-ruta-del-audio-como-y-por-que-se-filtro-la-reunion-que-termino-con-hermosilla-en-prision/#El audio \"Némesis\" llega al Ministerio Público y a CIPER",
+      "titulo": "El audio \"Némesis\" llega al Ministerio Público y a CIPER"
+    },
+    {
+      "n": 7,
+      "enlaces": [],
+      "_por_que": "el vinculo con el 5 no existe",
+      "ref": "https://www.ciperchile.cl/2023/11/14/aqui-estamos-haciendo-una-hueva-que-es-delito-el-audio-en-el-que-luis-hermosilla-menciona-pagos-a-funcionarios-del-sii-y-la-cmf/",
+      "titulo": "CIPER publica el audio: estalla el escándalo"
+    },
+    {
+      "n": 12,
+      "enlaces": [],
+      "_por_que": "no se vincula directamente con nada anterior",
+      "ref": "https://www.elmostrador.cl/noticias/pais/2024/04/08/hermanos-sauer-pasaran-la-noche-en-la-carcel-cautelares-por-caso-factop-se-decretan-este-martes/",
+      "titulo": "Formalización de Daniel y Ariel Sauer por facturas falsas"
+    },
+    {
+      "n": 14,
+      "aristas": [
+        "factop"
+      ],
+      "enlaces": [],
+      "_por_que": "pertenece solo a Factop y la punteada estaba de mas",
+      "ref": "https://www.biobiochile.cl/noticias/nacional/chile/2024/08/27/prision-preventiva-para-luis-hermosilla-y-maria-leonarda-villalobos-por-caso-audio.shtml",
+      "titulo": "Comienza audiencia de formalización: caso Audio-Factop"
+    },
+    {
+      "n": 15,
+      "enlaces": [],
+      "_por_que": "no se relaciona por linea punteada",
+      "ref": "https://www.sii.cl/noticias/2024/230824noti02smn.htm",
+      "titulo": "SII presenta querella contra Hermosilla, Villalobos y Angulo por delitos tributarios"
+    },
+    {
+      "n": 16,
+      "enlaces": [],
+      "_por_que": "no se relaciona por linea punteada",
+      "ref": "https://www.latercera.com/nacional/noticia/jueza-decreta-prision-preventiva-para-luis-hermosilla-y-leonarda-villalobos/IUSMVT2XGFEEXHUJ34E5GEE6F4/",
+      "titulo": "Prisión preventiva para Hermosilla y Villalobos"
+    },
+    {
+      "n": 18,
+      "enlaces": [],
+      "_por_que": "el vinculo con PDI era solo porque ambos reportajes son de CIPER",
+      "ref": "https://www.ciperchile.cl/2024/09/02/hermosilla-opero-para-destrabar-multimillonario-negocio-de-grupo-patio-en-el-segundo-gobierno-de-pinera/#CIPER: Hermosilla operó para destrabar el multimillonario negocio de Parque Capital durante el gobierno Piñera",
+      "titulo": "CIPER: Hermosilla operó para destrabar el multimillonario negocio de Parque Capital durante el gobierno Piñera"
+    },
+    {
+      "n": 19,
+      "enlaces": [],
+      "_por_que": "mismo caso que el 18: el unico nexo era CIPER",
+      "ref": "https://www.ciperchile.cl/2024/09/05/exsenador-socialista-juan-pablo-letelier-hizo-lobby-por-el-mismo-proyecto-de-grupo-patio-investigado-por-las-gestiones-de-hermosilla/",
+      "titulo": "CIPER: exsenador Letelier hizo lobby por Parque Capital ante el SAG"
+    },
+    {
+      "n": 20,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "enlaces": [
+        {
+          "ref": "https://www.elmostrador.cl/noticias/pais/2023/11/16/caso-coimas-allanan-oficinas-del-abogado-luis-hermosilla-e-incautan-celulares-y-computadadores/",
+          "razon": "de la incautación del iPhone sale la acusación contra Vivanco",
+          "_hito": 8
+        }
+      ],
+      "_por_que": "abre Muñeca Bielorrusa, no Poder Judicial; su origen es el allanamiento",
+      "ref": "https://www.ciperchile.cl/2024/09/07/chats-revelan-los-favores-entre-hermosilla-y-la-suprema-vivanco-alguna-posibilidad-de-que-integres-la-sala-penal-manana/",
+      "titulo": "CIPER revela los favores entre Hermosilla y la ministra Vivanco"
+    },
+    {
+      "n": 21,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "sale Poder Judicial",
+      "ref": "https://www.ciperchile.cl/2024/09/11/angela-vivanco-fallo-a-favor-de-consorcio-chileno-bielorruso-sin-transparentar-su-relacion-cercana-con-abogado-de-esa-empresa/",
+      "titulo": "CIPER abre la arista bielorrusa: Vivanco falló a favor del consorcio Belaz-Movitec"
+    },
+    {
+      "n": 22,
+      "aristas": [
+        "audio-sii"
+      ],
+      "enlaces": [],
+      "_por_que": "pertenece al Caso Hermosilla porque es de los chats",
+      "ref": "https://www.ciperchile.cl/2024/09/15/chats-muestran-despliegue-de-hermosilla-y-fiscal-palma-por-la-jefatura-del-ministerio-publico-vine-a-hablar-con-andres-chadwick/",
+      "titulo": "CIPER: chats revelan que fiscal Palma coordinó con Hermosilla y Chadwick su candidatura a fiscal nacional"
+    },
+    {
+      "n": 23,
+      "enlaces": [],
+      "_por_que": "no se vincula por linea punteada con nada",
+      "ref": "https://www.df.cl/mercados/banca-fintech/corte-de-apelaciones-confirma-prision-preventiva-para-luis-hermosilla-y",
+      "titulo": "Corte de Apelaciones confirma prisión preventiva"
+    },
+    {
+      "n": 24,
+      "aristas": [
+        "parque-capital"
+      ],
+      "enlaces": [],
+      "_por_que": "solo Parque Capital, sin linea punteada",
+      "ref": "https://www.ciperchile.cl/2024/10/01/los-detalles-que-revelo-el-exministro-ward-sobre-su-reunion-con-chadwick-y-hermosilla-en-la-que-hablaron-del-proyecto-parque-capital/#Exministro Ward declara ante la Fiscalía detalles de su reunión con Chadwick y Hermosilla por Parque Capital",
+      "titulo": "Exministro Ward declara ante la Fiscalía detalles de su reunión con Chadwick y Hermosilla por Parque Capital"
+    },
+    {
+      "n": 25,
+      "enlaces": [],
+      "_por_que": "al corregir el 24 quedan vinculados en el mismo carril",
+      "ref": "https://www.ciperchile.cl/2024/10/05/la-reservada-reunion-en-la-que-hermosilla-entrego-minutas-a-felipe-ward-para-destrabar-el-proyecto-parque-capital/",
+      "titulo": "CIPER: la reunión reservada en que Hermosilla entregó minutas a Ward para destrabar Parque Capital"
+    },
+    {
+      "n": 26,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "enlaces": [],
+      "_por_que": "la destitucion de Vivanco es Muñeca Bielorrusa",
+      "ref": "https://www.elmostrador.cl/noticias/pais/2024/10/10/suprema-dio-la-senal-politica-por-unanimidad-maximo-tribunal-destituye-a-angela-vivanco/",
+      "titulo": "Corte Suprema destituye a la ministra Ángela Vivanco"
+    },
+    {
+      "n": 27,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "enlaces": [
+        {
+          "ref": "https://www.elmostrador.cl/noticias/pais/2024/10/10/suprema-dio-la-senal-politica-por-unanimidad-maximo-tribunal-destituye-a-angela-vivanco/",
+          "razon": "la destitución de Vivanco antecede a la de Muñoz",
+          "_hito": 26
+        }
+      ],
+      "_por_que": "este es el que abre Poder Judicial; se vincula con el 26",
+      "ref": "https://www.cnnchile.com/pais/senado-aprueba-acusacion-constitucional-sergio-munoz_20241016/",
+      "titulo": "Senado destituye al ministro de la Corte Suprema Sergio Muñoz vía acusación constitucional"
+    },
+    {
+      "n": 28,
+      "aristas": [
+        "audio-sii"
+      ],
+      "enlaces": [],
+      "_por_que": "va en Caso Hermosilla",
+      "ref": "https://www.theclinic.cl/2024/10/04/chats-del-exfiscal-guerra-con-luis-hermosilla-coordinacion-con-chadwick-durante-el-caso-penta-y-solicitud-de-trabajo-mientras-estaba-en-la-fiscalia/",
+      "titulo": "The Clinic publica los chats del exfiscal Manuel Guerra con Hermosilla"
+    },
+    {
+      "n": 29,
+      "aristas": [
+        "audio-sii"
+      ],
+      "_por_que": "va en Caso Hermosilla",
+      "ref": "https://www.elmostrador.cl/noticias/pais/2024/11/21/en-calidad-de-imputado-andres-chadwick-declaro-por-mas-de-dos-horas-por-su-rol-en-caso-hermosilla/",
+      "titulo": "Andrés Chadwick declara más de 2 horas como imputado en el Caso Audio"
+    },
+    {
+      "n": 30,
+      "aristas": [
+        "audio-sii"
+      ],
+      "_por_que": "va en Caso Hermosilla",
+      "ref": "https://www.latercera.com/nacional/noticia/juan-pablo-hermosilla-da-a-conocer-lista-de-chats-de-su-hermano-con-jueces-y-fiscales/GQP7OHUPUZE5RG2ZBHKK4JF43U/",
+      "titulo": "\"La caja de Pandora\": Juan Pablo Hermosilla revela lista de 28 jueces y fiscales"
+    },
+    {
+      "n": 32,
+      "aristas": [
+        "audio-sii"
+      ],
+      "_por_que": "va en Caso Hermosilla",
+      "ref": "https://www.ciperchile.cl/2024/11/29/caso-hermosilla-fiscalia-oriente-entrega-al-cde-chats-de-funcionarios-publicos-detectados-en-el-telefono-del-penalista/",
+      "titulo": "Fiscalía entrega al CDE chats de funcionarios públicos del teléfono de Hermosilla"
+    },
+    {
+      "n": 33,
+      "aristas": [
+        "parque-capital"
+      ],
+      "_por_que": "solo Parque Capital",
+      "ref": "https://www.ciperchile.cl/2024/12/03/chadwick-declaro-que-se-reunio-con-felipe-ward-y-que-luego-hermosilla-le-dijo-al-ministro-de-vivienda-que-tenia-que-conversar-un-tema-con-el/",
+      "titulo": "CIPER: Chadwick declaró haber convocado la reunión con Ward y admite $235 millones en pagos de Hermosilla"
+    },
+    {
+      "n": 35,
+      "enlaces": [],
+      "_por_que": "no se vincula por linea punteada con nada",
+      "ref": "https://www.elmostrador.cl/noticias/pais/2024/12/17/caso-factop-ariel-sauer-y-rodrigo-topelberg-dejan-prision-preventiva/",
+      "titulo": "Ariel Sauer y Rodrigo Topelberg dejan la prisión preventiva"
+    },
+    {
+      "n": 38,
+      "omitir": true,
+      "_por_que": "hito malo: sale del diagrama (sigue en la cronologia)",
+      "ref": "https://www.infobae.com/america/america-latina/2025/01/14/se-inicio-la-formalizacion-de-los-20-imputados-por-el-caso-de-corrupcion-mas-grande-de-los-ultimos-anos-en-chile/",
+      "titulo": "Comienza formalización de 20 imputados: causa unificada"
+    },
+    {
+      "n": 39,
+      "enlaces": [],
+      "_por_que": "no se vincula por linea punteada con nada",
+      "ref": "https://www.elmostrador.cl/noticias/pais/2025/01/22/suprema-suspende-a-jueza-veronica-sabaj-y-le-abre-cuaderno-de-remocion-por-chats-con-hermosilla/",
+      "titulo": "Corte Suprema suspende a la ministra Verónica Sabaj y abre cuaderno de remoción"
+    },
+    {
+      "n": 40,
+      "aristas": [
+        "factop"
+      ],
+      "_por_que": "solo Factop",
+      "ref": "https://www.eldinamo.cl/pais/2025/01/23/caso-factop-tribunal-decreta-arresto-domiciliario-para-los-hermanos-antonio-y-alvaro-jalaff/",
+      "titulo": "Tribunal decreta arresto domiciliario para los hermanos Jalaff"
+    },
+    {
+      "n": 42,
+      "enlaces": [],
+      "_por_que": "no se vincula con nada",
+      "ref": "https://radio.uchile.cl/2025/02/05/corte-de-apelaciones-rechaza-sobreseer-a-hermosilla-en-arista-parque-capital/",
+      "titulo": "Corte de Apelaciones rechaza sobreseer a Hermosilla en arista Parque Capital"
+    },
+    {
+      "n": 43,
+      "enlaces": [],
+      "_por_que": "quitar linea punteada",
+      "ref": "https://www.emol.com/noticias/Nacional/2025/03/20/1161057/caso-audios-hermosilla-prision-preventiva.html",
+      "titulo": "Hermosilla sale de prisión preventiva tras 205 días: arresto domiciliario"
+    },
+    {
+      "n": 44,
+      "enlaces": [],
+      "_por_que": "quitar lineas punteadas",
+      "ref": "https://www.t13.cl/noticia/ex-ante/nacional/primera-sentencia-del-caso-audios-exdirector-pdi-sergio-munoz-llega-acuerdo-28-3-2025",
+      "titulo": "Exdirector PDI llega a acuerdo de procedimiento abreviado"
+    },
+    {
+      "n": 45,
+      "enlaces": [],
+      "_por_que": "quitar lineas punteadas",
+      "ref": "https://www.emol.com/noticias/Nacional/2025/03/31/1162185/luis-hermosilla-corte-apelaciones-cautelar.html",
+      "titulo": "Corte de Apelaciones revoca el arresto domiciliario: Hermosilla vuelve a prisión"
+    },
+    {
+      "n": 46,
+      "enlaces": [
+        {
+          "ref": "https://www.latercera.com/nacional/noticia/juan-pablo-hermosilla-da-a-conocer-lista-de-chats-de-su-hermano-con-jueces-y-fiscales/GQP7OHUPUZE5RG2ZBHKK4JF43U/",
+          "razon": "las gestiones salen de la lista de \"La caja de Pandora\"",
+          "_hito": 30
+        }
+      ],
+      "_por_que": "solo se vincula con La caja de Pandora",
+      "ref": "https://www.ciperchile.cl/2025/03/19/fiscalia-investiga-gestiones-del-ministro-ulloa-y-el-abogado-hermosilla-en-el-nombramiento-de-ocho-jueces-y-tres-fiscales-judiciales/",
+      "titulo": "CIPER: Fiscalía investiga gestiones de Ulloa y Hermosilla en el nombramiento de 8 jueces y 3 fiscales judiciales"
+    },
+    {
+      "n": 47,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "enlaces": [],
+      "_por_que": "Chadwick y el exfiscal Guerra: son gestiones ante fiscales, no politico-diplomatico, que todavia no se abre aqui",
+      "ref": "https://www.ciperchile.cl/2025/04/04/contradiccion-entre-guerra-y-chadwick-exministro-declaro-que-nunca-se-reunio-con-el-exfiscal-pero-este-admitio-cinco-o-seis-encuentros/",
+      "titulo": "Contradicción entre Chadwick y Guerra: el exministro niega reuniones, el exfiscal admite cinco o seis encuentros"
+    },
+    {
+      "n": 48,
+      "aristas": [
+        "audio-sii"
+      ],
+      "_por_que": "va solo en Caso Hermosilla",
+      "ref": "https://eldesconcierto.cl/2025/04/07/se-metio-a-la-oficina-carlos-eugenio-lavin-confirma-reuniones-con-chadwick-y-hermosilla-por-el-caso-penta",
+      "titulo": "Carlos Eugenio Lavín confirma reuniones con Chadwick y Hermosilla por el Caso Penta"
+    },
+    {
+      "n": 49,
+      "enlaces": [],
+      "_por_que": "quitar lineas punteadas",
+      "ref": "https://www.ciperchile.cl/2025/04/25/fiscalia-ofrecio-al-ministro-del-tc-hector-mery-que-el-determine-los-mensajes-con-hermosilla-que-se-deben-extraer-de-su-telefono/",
+      "titulo": "Fiscalía ofrece a Héctor Mery (ministro TC) que él mismo seleccione sus mensajes con Hermosilla"
+    },
+    {
+      "n": 50,
+      "enlaces": [],
+      "_por_que": "va solo",
+      "ref": "https://www.cooperativa.cl/noticias/pais/judicial/denuncias-de-corrupcion/exdirector-pdi-sergio-munoz-condenado-por-corrupcion-cometi-un-error/2025-05-09/123013.html",
+      "titulo": "PRIMERA SENTENCIA del caso: exdirector PDI Sergio Muñoz condenado a 3 años de libertad vigilada"
+    },
+    {
+      "n": 51,
+      "enlaces": [],
+      "_por_que": "sin lineas punteadas",
+      "ref": "https://www.ciperchile.cl/2025/05/20/nuevos-chats-de-ulloa-con-hermosilla-ministro-le-filtraba-resoluciones-reservadas-de-causas-y-sumarios/",
+      "titulo": "CIPER: nuevos chats muestran que Ulloa filtraba resoluciones reservadas a Hermosilla"
+    },
+    {
+      "n": 52,
+      "enlaces": [],
+      "_por_que": "sin lineas punteadas",
+      "ref": "https://www.t13.cl/noticia/politica/corte-santiago-suspende-ministra-veronica-sabaj-por-chats-luis-hermosilla-26-5-2025",
+      "titulo": "Corte de Santiago aplica sanción máxima a Sabaj: suspensión de cuatro meses"
+    },
+    {
+      "n": 53,
+      "enlaces": [],
+      "_por_que": "sin lineas punteadas",
+      "ref": "https://radio.uchile.cl/2025/06/06/corte-de-apelaciones-revoca-prision-preventiva-de-luis-hermosilla-queda-con-arresto-domiciliario-total/",
+      "titulo": "Corte revoca prisión preventiva: Hermosilla sale de Capitán Yáber"
+    }
+  ]
+}
