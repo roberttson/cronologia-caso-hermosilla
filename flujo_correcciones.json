@@ -349,6 +349,238 @@
       "_por_que": "sin lineas punteadas",
       "ref": "https://radio.uchile.cl/2025/06/06/corte-de-apelaciones-revoca-prision-preventiva-de-luis-hermosilla-queda-con-arresto-domiciliario-total/",
       "titulo": "Corte revoca prisión preventiva: Hermosilla sale de Capitán Yáber"
+    },
+    {
+      "n": 56,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.ciperchile.cl/2025/06/28/arista-bielorrusa-fiscalia-pidio-al-banco-central-movimientos-de-dinero-de-exjueza-vivanco-su-marido-hermosilla-y-otras-ocho-personas/",
+      "titulo": "Arista bielorrusa: Fiscalía solicita al Banco Central los movimientos de Vivanco"
+    },
+    {
+      "n": 57,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.ciperchile.cl/2025/08/13/jueza-nombrada-con-apoyo-de-ulloa-y-hermosilla-voto-por-conservador-que-despues-transfirio-25-millones-a-la-pareja-de-angela-vivanco/",
+      "titulo": "CIPER: jueza nombrada por Ulloa y Hermosilla votó por el conservador que transfirió $25 millones a la pareja de Vivanco"
+    },
+    {
+      "n": 70,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.ciperchile.cl/2025/11/05/fiscalia-acusa-que-al-menos-57-millones-del-consorcio-bielorruso-llegaron-a-exjueza-vivanco-y-su-pareja/",
+      "titulo": "Fiscalía acusa: al menos $57 millones del consorcio bielorruso llegaron a Vivanco y su pareja"
+    },
+    {
+      "n": 71,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.ciperchile.cl/2025/11/14/supremo-que-viajo-en-crucero-con-abogado-del-consorcio-bielorruso-redacto-el-fallo-que-entrego-1-026-millones-a-esa-empresa/",
+      "titulo": "CIPER: supremo que viajó en crucero con abogado bielorruso redactó el fallo a favor del consorcio"
+    },
+    {
+      "n": 75,
+      "aristas": [
+        "factop"
+      ],
+      "_por_que": "solo Factop",
+      "ref": "https://www.latercera.com/nacional/noticia/llego-la-hora-de-luis-hermosilla-fiscalia-cierra-investigacion-de-caso-factop-audio-y-alista-acusacion/",
+      "titulo": "Fiscalía cierra investigación: se alista acusación formal"
+    },
+    {
+      "n": 76,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.cooperativa.cl/noticias/pais/judicial/denuncias-de-corrupcion/trama-bielorrusa-justicia-envio-a-prision-preventiva-a-la/2026-01-30/121959.html",
+      "titulo": "Formalización y prisión preventiva de Ángela Vivanco en la arista bielorrusa"
+    },
+    {
+      "n": 77,
+      "aristas": [
+        "politico-diplomatico"
+      ],
+      "enlaces": [
+        {
+          "ref": "https://www.cooperativa.cl/noticias/pais/judicial/denuncias-de-corrupcion/trama-bielorrusa-justicia-envio-a-prision-preventiva-a-la/2026-01-30/121959.html",
+          "razon": "sale de la formalización de Vivanco",
+          "_hito": 76
+        }
+      ],
+      "_por_que": "abre Politico-diplomatico; cuelga del ultimo hito bielorruso",
+      "ref": "https://www.ciperchile.cl/2026/01/27/la-arista-politica-del-caso-hermosilla-fiscalia-de-aysen-investigara-a-parlamentarios-mencionados-en-la-causa-del-consorcio-bielorruso/",
+      "titulo": "Fiscalía de Aysén investigará a parlamentarios mencionados en la trama bielorrusa"
+    },
+    {
+      "n": 79,
+      "aristas": [
+        "politico-diplomatico"
+      ],
+      "_por_que": "solo Politico-diplomatico",
+      "ref": "https://www.biobiochile.cl/noticias/nacional/chile/2026/01/27/sigue-en-la-mira-fiscalia-confirma-que-andres-chadwick-es-imputado-en-causa-reservada.shtml",
+      "titulo": "Fiscalía revela que Chadwick es imputado en causa reservada"
+    },
+    {
+      "n": 80,
+      "aristas": [
+        "factop"
+      ],
+      "_por_que": "solo Factop",
+      "ref": "https://www.cnnchile.com/pais/penas-fiscalia-10-imputados-caso-audios-hermosilla-topelberg_20260128/",
+      "titulo": "Fiscalía presenta acusación formal: 10 imputados y penas de hasta 20 años de presidio"
+    },
+    {
+      "n": 81,
+      "aristas": [
+        "audio-sii"
+      ],
+      "_por_que": "solo Caso Hermosilla",
+      "ref": "https://www.emol.com/noticias/Nacional/2026/01/30/1190129/hermosilla-arremete-contra-fiscalparra.html",
+      "titulo": "Hermosilla arremete contra la fiscal Parra en audiencia de cautelares"
+    },
+    {
+      "n": 83,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.ciperchile.cl/2026/02/13/estos-son-los-audios-originales-de-las-escuchas-telefonicas-que-la-fiscalia-exhibio-en-audiencias-como-pruebas-de-la-causa-bielorrusa/",
+      "titulo": "CIPER publica los audios originales de escuchas telefónicas de la causa bielorrusa"
+    },
+    {
+      "n": 84,
+      "enlaces": [
+        {
+          "ref": "https://www.theclinic.cl/2024/10/04/chats-del-exfiscal-guerra-con-luis-hermosilla-coordinacion-con-chadwick-durante-el-caso-penta-y-solicitud-de-trabajo-mientras-estaba-en-la-fiscalia/",
+          "razon": "Manuel Guerra",
+          "_hito": 28
+        },
+        {
+          "ref": "https://www.elmostrador.cl/noticias/pais/2024/11/21/en-calidad-de-imputado-andres-chadwick-declaro-por-mas-de-dos-horas-por-su-rol-en-caso-hermosilla/",
+          "razon": "Manuel Guerra",
+          "_hito": 29
+        },
+        {
+          "ref": "https://www.latercera.com/nacional/noticia/juan-pablo-hermosilla-da-a-conocer-lista-de-chats-de-su-hermano-con-jueces-y-fiscales/GQP7OHUPUZE5RG2ZBHKK4JF43U/",
+          "razon": "Manuel Guerra",
+          "_hito": 30
+        },
+        {
+          "ref": "https://www.ciperchile.cl/2025/04/04/contradiccion-entre-guerra-y-chadwick-exministro-declaro-que-nunca-se-reunio-con-el-exfiscal-pero-este-admitio-cinco-o-seis-encuentros/",
+          "razon": "Manuel Guerra",
+          "_hito": 47
+        },
+        {
+          "ref": "https://eldesconcierto.cl/2025/04/07/se-metio-a-la-oficina-carlos-eugenio-lavin-confirma-reuniones-con-chadwick-y-hermosilla-por-el-caso-penta",
+          "razon": "Manuel Guerra",
+          "_hito": 48
+        },
+        {
+          "ref": "https://www.ciperchile.cl/2025/06/17/manuel-guerra-declaro-que-actual-fiscal-del-caso-hermosilla-le-revelo-antecedentes-de-la-investigacion-sobre-el-exalcalde-torrealba/",
+          "razon": "Manuel Guerra",
+          "_hito": 55
+        }
+      ],
+      "_por_que": "se vincula con todos los hitos anteriores donde figura Manuel Guerra",
+      "ref": "https://www.elmostrador.cl/noticias/pais/2026/03/09/caso-hermosilla-formalizan-a-exfiscal-guerra-por-cohecho-prevaricacion-y-violacion-de-secreto/",
+      "titulo": "Exfiscal Manuel Guerra es formalizado por cohecho, prevaricación y violación de secreto"
+    },
+    {
+      "n": 88,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "_por_que": "solo Poder Judicial",
+      "ref": "https://www.ciperchile.cl/2026/04/22/caso-guerra-fiscalia-solicita-todos-los-chats-de-hermosilla-en-los-que-se-menciona-a-chadwick/",
+      "titulo": "Fiscalía solicita todos los chats de Hermosilla en que se menciona a Chadwick"
+    },
+    {
+      "n": 90,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "_por_que": "solo Poder Judicial",
+      "ref": "https://www.elmostrador.cl/unidad-de-investigacion/2026/05/31/la-trabada-investigacion-contra-luis-hermosilla-y-el-exsupremo-mario-carroza/",
+      "titulo": "La trabada investigación Hermosilla-Carroza: obstáculos para llegar a Hernán Larraín y posible prescripción"
+    },
+    {
+      "n": 92,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "_por_que": "solo Poder Judicial",
+      "ref": "https://reportea.cl/2026/06/04/chats-con-hermosilla-destapan-las-redes-judiciales-de-jose-ramon-correa-nombramientos-de-ministros-y-gestiones-en-favor-de-la-contralora/",
+      "titulo": "Reportea destapa la red judicial de José Ramón Correa: coordinó con Hermosilla nombramientos y gestionó por la Contralora"
+    },
+    {
+      "n": 93,
+      "aristas": [
+        "factop"
+      ],
+      "_por_que": "solo Factop",
+      "ref": "https://www.meganoticias.cl/nacional/525081-mega-investiga-revela-declaracion-alvaro-jalaff-pago-efectivo-luis-hermosilla-parque-capital-19-06-2026.html",
+      "titulo": "Álvaro Jalaff reconoce ante la Fiscalía coima de 10 mil UF (~$410 millones) a Hermosilla por Parque Capital"
+    },
+    {
+      "n": 98,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "_por_que": "solo Poder Judicial",
+      "ref": "https://www.elciudadano.com/justicia/y-borramos-x-fa-despues-pdi-detecta-que-sabaj-reviso-borrador-de-recurso-judicial-para-bloquear-publicacion-de-chats-de-hermosilla-y-zaliasnik/06/16/",
+      "titulo": "Sabaj revisó borrador del recurso para frenar publicación de chats Zaliasnik-Donoso"
+    },
+    {
+      "n": 108,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "_por_que": "solo Poder Judicial",
+      "ref": "https://www.ciperchile.cl/2026/07/23/fijan-audiencia-para-formalizar-a-hermosilla-por-presunto-soborno-en-la-investigacion-del-exfiscal-manuel-guerra/",
+      "titulo": "Fijan para el 26 de octubre la formalización de Hermosilla por el soborno al exfiscal Guerra"
+    },
+    {
+      "n": 109,
+      "aristas": [
+        "poder-judicial"
+      ],
+      "_por_que": "solo Poder Judicial",
+      "ref": "https://reportea.cl/2026/07/27/hago-algo-con-manuel-guerra-nuevos-chats-de-hermosilla-acorralan-a-chadwick-y-revelan-conversaciones-secretas-por-telegram/",
+      "titulo": "\"¿Hago algo con Manuel Guerra?\": nuevos chats de Telegram acorralan a Chadwick"
+    },
+    {
+      "n": 111,
+      "aristas": [
+        "factop"
+      ],
+      "_por_que": "solo Factop",
+      "ref": "https://www.ciperchile.cl/2026/07/29/radar-29-07-26/",
+      "titulo": "Álvaro Jalaff condenado en procedimiento abreviado: cinco años de libertad vigilada y $720 millones en multas"
+    },
+    {
+      "n": 112,
+      "aristas": [
+        "bielorrusa"
+      ],
+      "_por_que": "solo Muñeca Bielorrusa",
+      "ref": "https://www.emol.com/noticias/Nacional/2026/07/30/1207148/muneca-bielorrusa-formalizaran-silber.html",
+      "titulo": "Formalizarán al exdiputado Gabriel Silber el 22 de septiembre; Vivanco será reformalizada por la arista Fundamenta"
+    },
+    {
+      "n": 99,
+      "sin_imagen": true,
+      "_por_que": "la foto era generica, reciclada de una nota sobre Chadwick imputado, y el aparece en la imagen sin tener nada que ver",
+      "ref": "https://www.t13.cl/noticia/politica/comision-investigadora-sobre-estallido-social-citara-canciller-por-conversacion-16-6-2026",
+      "titulo": "Comisión investigadora cita al canciller por chats Zaliasnik-Hermosilla"
     }
   ]
 }

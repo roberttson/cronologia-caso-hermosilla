@@ -506,6 +506,205 @@ body.presenta header { padding: 9px 18px; }
    dedo. Si se colara despues, en la version noventera el panel volveria a ser
    una columna de 380 px dentro de una pantalla de 360. */
 
+/* ═══ PIEL: PORTAL 90s ════════════════════════════════════════════════ */
+:root {
+  --bg: #0A1214;
+  --bg-card: #1A2328;
+  --bg-card-hover: #222D33;
+  --border: #4A5A62;
+  --text: #FFFFFF;
+  --text-muted: #9FB4BD;
+  --accent: #FFD400;
+  --gris: #C0C0C0;
+  --navy: #000080;
+  --teal: #008080;
+  --v: Verdana, Geneva, Tahoma, sans-serif;
+  --m: "Courier New", monospace;
+}
+
+body {
+  font-family: var(--v);
+  background:
+    linear-gradient(180deg, #0D181B 0%, #060C0E 100%);
+}
+
+/* ── Barra de titulo Windows 95 ───────────────────────────────────── */
+header {
+  background: linear-gradient(90deg, var(--navy) 0%, #1084D0 100%);
+  border-bottom: 2px solid var(--gris);
+  box-shadow: inset 0 1px 0 #6BA6D6;
+}
+h1 { font-family: var(--v); font-size: 0.88rem; color: #FFF; text-shadow: 1px 1px 0 rgba(0,0,0,0.6); }
+h1 span { color: var(--accent); }
+h1::before { content: "\25A0\00A0"; }
+
+.progreso { font-family: var(--v); font-size: 0.76rem; color: #E8F4FF; }
+.progreso b {
+  font-family: var(--v);
+  background: var(--accent); color: #000;
+  border: 1px solid #000;
+  padding: 1px 7px;
+}
+.avance {
+  border-left-color: #6BA6D6; color: #E8F4FF;
+  font-size: 0.7rem; letter-spacing: 0.05em;
+}
+
+/* Botones con bisel */
+button {
+  font-family: var(--v);
+  font-size: 0.76rem;
+  font-weight: 700;
+  background: var(--gris);
+  color: #000;
+  border: 2px outset var(--gris);
+  border-radius: 0;
+  text-shadow: none;
+}
+button:hover:not(:disabled) { background: #D4D4D4; border-color: #D4D4D4; }
+button:active:not(:disabled) { border-style: inset; }
+button.primario { background: var(--accent); border-color: var(--accent); color: #000; }
+button.primario:hover:not(:disabled) { background: #FFE550; border-color: #FFE550; }
+
+.barra {
+  background: #0A1214;
+  border: 2px inset var(--gris);
+  border-radius: 0;
+  height: 15px;
+}
+.barra i {
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, var(--teal) 0 7px, #0A1214 7px 9px);
+}
+.barra::after { border-radius: 0; background: var(--accent); border-color: #000; }
+
+/* ── Carriles ─────────────────────────────────────────────────────── */
+.carril { border-bottom: 1px dotted rgba(159,180,189,0.4); }
+.carril::before { opacity: 0.05; }
+.anio-linea { background: rgba(159,180,189,0.25); }
+.anio-marca {
+  font-family: var(--v);
+  font-size: 0.68rem;
+  color: #000;
+  background: var(--gris);
+  border: 2px outset var(--gris);
+  padding: 1px 7px;
+  letter-spacing: 0.05em;
+}
+.etiqueta {
+  font-family: var(--v);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.etiqueta i { border-radius: 0; width: 11px; height: 11px; border: 1px solid rgba(0,0,0,0.5); }
+
+/* ── Tarjetas: ventanitas con bisel ───────────────────────────────── */
+.tarjeta {
+  border-radius: 0;
+  border: 2px outset var(--gris);
+  background: var(--bg-card);
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.7);
+}
+.t-franja { height: 4px; }
+.tarjeta img { border-bottom: 1px solid #000; }
+
+/* Franja de metadatos: barra de estado de la ventana */
+.t-cab {
+  font-family: var(--v);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: #CFE4EE;
+  background: rgba(0,0,0,0.35);
+  padding: 4px 7px;
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+}
+.t-cab i { border-radius: 0; width: 7px; height: 7px; }
+.t-cab b {
+  font-family: var(--v);
+  background: var(--accent); color: #000;
+  border: 1px solid #000; border-radius: 0;
+  padding: 0 4px;
+}
+.t-tit {
+  font-family: var(--v);
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.32;
+  padding-top: 5px;
+}
+.nodo:not(.clave) .tarjeta { opacity: 0.72; }
+.nodo:not(.clave) .t-tit { color: #D6E4EA; font-weight: 700; }
+
+.t-nueva {
+  background: var(--teal); color: #FFF;
+  font-family: var(--v); font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.nodo:hover .tarjeta { transform: translate(-2px, -2px); box-shadow: 4px 4px 0 rgba(0,0,0,0.8); }
+.nodo.actual .tarjeta {
+  border: 2px outset var(--accent);
+  box-shadow: 3px 3px 0 rgba(255,212,0,0.55), 0 0 20px rgba(255,212,0,0.25);
+}
+.nodo.frontera .tarjeta { box-shadow: 2px 2px 0 rgba(255,255,255,0.65); }
+.nodo.resalta .tarjeta { border-color: var(--p); box-shadow: 3px 3px 0 var(--p); }
+.cruce-marca { border-radius: 0; border-color: #000; }
+
+/* ── Panel: ventana de propiedades ────────────────────────────────── */
+aside { background: #121D21; border-left: 2px solid var(--gris); }
+.p-fecha {
+  font-family: var(--v); font-size: 0.68rem;
+  color: #000; background: var(--gris);
+  display: block; padding: 4px 8px;
+  border: 2px outset var(--gris);
+  letter-spacing: 0.03em;
+}
+.p-titulo { font-family: var(--v); font-size: 1rem; font-weight: 700; color: #FFF; }
+.p-img { border: 2px inset var(--gris); border-radius: 0; }
+.p-desc { font-family: var(--v); font-size: 0.8rem; line-height: 1.68; color: #DDE9EE; }
+.p-bloque h3 {
+  font-family: var(--v); font-size: 0.62rem;
+  color: #FFF; background: var(--navy);
+  display: block; padding: 4px 8px;
+  border: 1px solid #000;
+  letter-spacing: 0.1em;
+}
+.pill { border-radius: 0; font-family: var(--v); font-weight: 700; border: 1px solid #000; }
+.tag {
+  border-radius: 0;
+  font-family: var(--v); font-size: 0.68rem; font-weight: 700;
+  background: var(--gris); color: #000;
+  border: 2px outset var(--gris);
+  padding: 3px 8px;
+}
+.tag:hover { background: #D4D4D4; color: #000; border-color: #D4D4D4; }
+.tag.activo { border-style: inset; }
+.p-fuente {
+  border-radius: 0;
+  font-family: var(--v); font-size: 0.7rem;
+  border: 1px solid var(--border);
+  color: #9FD8EE;
+}
+.p-fuente:hover { background: #17262C; color: #FFF; text-decoration: underline; }
+.aviso, .revisando { border-radius: 0; }
+.aviso { background: rgba(255,212,0,0.1); }
+.revisando { border: 2px inset var(--gris); font-family: var(--v); font-size: 0.74rem; }
+.vacio { font-family: var(--v); font-size: 0.82rem; line-height: 1.7; color: #DDE9EE; }
+.vacio::before {
+  content: "\25BA BIENVENIDO AL CASO HERMOSILLA";
+  display: block;
+  background: var(--navy); color: #FFF;
+  font-size: 0.7rem; font-weight: 700;
+  padding: 5px 8px; margin-bottom: 14px;
+  border: 1px solid #000;
+  letter-spacing: 0.06em;
+}
+.persona-chip { border-radius: 0; border: 1px solid #000; font-family: var(--v); font-weight: 700; }
+
 
 /* ── Celular ────────────────────────────────────────────────────────
    En pantalla chica no caben header + carriles + panel al mismo tiempo, asi
@@ -669,8 +868,8 @@ body.presenta header { padding: 9px 18px; }
     <button id="btn-atras" title="Anterior (←)">‹ Atrás</button>
     <button id="btn-sig" class="primario" title="Siguiente (→ o Espacio)">Siguiente ›</button>
     <button id="btn-auto" title="Reproducir solo">▶ Auto</button>
-    <button id="btn-piel" onclick="location.href='flujo_retro.html'"
-            title="Ver la versión noventera">▣ 90s</button>
+    <button id="btn-piel" onclick="location.href='flujo.html'"
+            title="Volver a la versión actual">▣ Actual</button>
     <button id="btn-full" title="Pantalla completa (F)">⛶</button>
   </div>
 </header>

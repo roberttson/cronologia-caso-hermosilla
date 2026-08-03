@@ -155,6 +155,42 @@ CORRECCIONES = [
 
     {'n': 53, 'enlaces': [],
      '_por_que': 'sin lineas punteadas'},
+
+    {'n': 56, 'aristas': ['bielorrusa'], '_por_que': 'solo Muñeca Bielorrusa'},
+    {'n': 57, 'aristas': ['bielorrusa'], '_por_que': 'solo Muñeca Bielorrusa'},
+    {'n': 70, 'aristas': ['bielorrusa'], '_por_que': 'solo Muñeca Bielorrusa'},
+    {'n': 71, 'aristas': ['bielorrusa'], '_por_que': 'solo Muñeca Bielorrusa'},
+
+    {'n': 75, 'aristas': ['factop'], '_por_que': 'solo Factop'},
+
+    {'n': 76, 'aristas': ['bielorrusa'], '_por_que': 'solo Muñeca Bielorrusa'},
+
+    {'n': 77, 'aristas': ['politico-diplomatico'],
+     'enlaces': [enlace(76, 'sale de la formalización de Vivanco')],
+     '_por_que': 'abre Politico-diplomatico; cuelga del ultimo hito bielorruso'},
+
+    {'n': 79, 'aristas': ['politico-diplomatico'], '_por_que': 'solo Politico-diplomatico'},
+    {'n': 80, 'aristas': ['factop'], '_por_que': 'solo Factop'},
+    {'n': 81, 'aristas': ['audio-sii'], '_por_que': 'solo Caso Hermosilla'},
+    {'n': 83, 'aristas': ['bielorrusa'], '_por_que': 'solo Muñeca Bielorrusa'},
+
+    # Manuel Guerra aparece antes en el 28, 29, 30, 47, 48 y 55.
+    {'n': 84, 'enlaces': [enlace(k, 'Manuel Guerra') for k in (28, 29, 30, 47, 48, 55)],
+     '_por_que': 'se vincula con todos los hitos anteriores donde figura Manuel Guerra'},
+
+    {'n': 88,  'aristas': ['poder-judicial'], '_por_que': 'solo Poder Judicial'},
+    {'n': 90,  'aristas': ['poder-judicial'], '_por_que': 'solo Poder Judicial'},
+    {'n': 92,  'aristas': ['poder-judicial'], '_por_que': 'solo Poder Judicial'},
+    {'n': 93,  'aristas': ['factop'],         '_por_que': 'solo Factop'},
+    {'n': 98,  'aristas': ['poder-judicial'], '_por_que': 'solo Poder Judicial'},
+    {'n': 108, 'aristas': ['poder-judicial'], '_por_que': 'solo Poder Judicial'},
+    {'n': 109, 'aristas': ['poder-judicial'], '_por_que': 'solo Poder Judicial'},
+    {'n': 111, 'aristas': ['factop'],         '_por_que': 'solo Factop'},
+    {'n': 112, 'aristas': ['bielorrusa'],     '_por_que': 'solo Muñeca Bielorrusa'},
+
+    {'n': 99, 'sin_imagen': True,
+     '_por_que': 'la foto era generica, reciclada de una nota sobre Chadwick '
+                 'imputado, y el aparece en la imagen sin tener nada que ver'},
 ]
 
 for c in CORRECCIONES:
