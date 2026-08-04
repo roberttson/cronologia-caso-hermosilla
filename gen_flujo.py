@@ -539,7 +539,7 @@ svg.lineas { position: absolute; inset: 0; overflow: visible; pointer-events: no
   border: 1px solid var(--border);
   border-radius: 9px;
   overflow: hidden;
-  opacity: 0.9;
+  opacity: 1;
   box-shadow: 0 2px 8px rgba(0,0,0,0.35);
   transition: transform 0.25s cubic-bezier(.2,.9,.3,1.3),
               box-shadow 0.25s ease, opacity 0.25s ease, border-color 0.25s ease;
@@ -549,7 +549,6 @@ svg.lineas { position: absolute; inset: 0; overflow: visible; pointer-events: no
    aristas se lee como tal sin necesidad de dibujarlo dos veces en el lienzo. */
 .t-franja { display: flex; height: 4px; flex: none; }
 .t-franja i { flex: 1; }
-.nodo:not(.clave) .t-franja { height: 3px; }
 
 .tarjeta img {
   width: 100%;
@@ -599,9 +598,19 @@ svg.lineas { position: absolute; inset: 0; overflow: visible; pointer-events: no
   hyphens: auto;
 }
 
-/* Hitos secundarios: mas discretos, sin foto */
-.nodo:not(.clave) .tarjeta { opacity: 0.62; }
-.nodo:not(.clave) .t-tit { font-weight: 600; color: #A9B4C3; }
+/* Todas las tarjetas pesan lo mismo. Antes los hitos "clave" iban al 90% de
+   opacidad y el resto al 62%, y el diagrama se leia como si la mitad de los
+   hechos estuvieran a medio apagar. La jerarquia la lleva ahora una sola cosa:
+   abrir una arista. */
+
+/* El hito que inaugura una trama: es el unico que se destaca del resto, con el
+   color de la arista que abre (--a, que no siempre es la del carril donde cae)
+   en el borde y en una franja mas gruesa. */
+.nodo.abre .tarjeta {
+  border-color: var(--a);
+  box-shadow: 0 0 0 1px var(--a), 0 5px 18px rgba(0,0,0,0.5);
+}
+.nodo.abre .t-franja { height: 7px; }
 
 .nodo:hover .tarjeta {
   opacity: 1;
@@ -1281,9 +1290,13 @@ function redibujar(scrollTo) {
 
     const suyas = [...personas.keys()].filter(p => n.pers.includes(p));
     const d = document.createElement('div');
+    // 'clave' ya no cambia como se ve la tarjeta, pero se sigue emitiendo
+    // porque el dato viaja en NODOS y lo usan las correcciones.
     d.className = 'nodo' + (n.clave ? ' clave' : '')
+                + (n.abre.length ? ' abre' : '')
                 + (esActual ? ' actual' : '') + (esFrontera ? ' frontera' : '')
                 + (suyas.length ? ' resalta' : '');
+    if (n.abre.length) d.style.setProperty('--a', ARISTAS[n.abre[0]].color);
     if (suyas.length) d.style.setProperty('--p', colorDe(suyas[0]));
     d.style.left = x + 'px';
     d.style.top = y + 'px';
@@ -1718,8 +1731,7 @@ button.primario:hover:not(:disabled) { background: #FFE550; border-color: #FFE55
   line-height: 1.32;
   padding-top: 5px;
 }
-.nodo:not(.clave) .tarjeta { opacity: 0.72; }
-.nodo:not(.clave) .t-tit { color: #D6E4EA; font-weight: 700; }
+.t-tit { color: #D6E4EA; font-weight: 700; }
 
 .t-nueva {
   background: var(--teal); color: #FFF;
